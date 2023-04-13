@@ -3,9 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yiking/services/auth/auth_exceptions.dart';
 import 'package:yiking/services/auth/bloc/auth_event.dart';
 import 'package:yiking/utilities/dialogs/error_dialogs.dart';
+import 'package:yiking/utilities/dialogs/password_reset_dialog.dart';
 
-import '../services/auth/bloc/auth_bloc.dart';
-import '../services/auth/bloc/auth_state.dart';
+import '../../services/auth/bloc/auth_bloc.dart';
+import '../../services/auth/bloc/auth_state.dart';
 
 class RecoverView extends StatefulWidget {
   const RecoverView({super.key});
@@ -41,6 +42,9 @@ class _RecoverViewState extends State<RecoverView> {
           } else if (state.exception is GenericAuthException) {
             await errorDialog(context,
                 'Une erreur est survenue, veuillez recommencer utérieurement');
+          } else if (state.hasSentEmail! == true) {
+            await passwordResetDialog(context,
+                'Un email avec les infos nécessaires vous a été envoyé');
           }
         }
       },

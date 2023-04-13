@@ -151,4 +151,13 @@ class AuthService {
       throw GenericAuthException();
     }
   }
+
+  Future<void> deleteUser() async {
+    try {
+      FirebaseAuth.instance.currentUser!.delete();
+      signOut();
+    } catch (e) {
+      throw GenericAuthException();
+    }
+  }
 }

@@ -42,3 +42,7 @@ class AuthEventRecoverPassword extends AuthEvent {
 class AuthEventSendVerificationEmail extends AuthEvent {
   const AuthEventSendVerificationEmail();
 }
+
+class AuthEventDeleteUser extends AuthEvent {
+  const AuthEventDeleteUser();
+}

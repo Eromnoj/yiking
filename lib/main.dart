@@ -4,11 +4,11 @@ import 'package:yiking/services/auth/auth_service.dart';
 import 'package:yiking/services/auth/bloc/auth_bloc.dart';
 import 'package:yiking/services/auth/bloc/auth_event.dart';
 import 'package:yiking/services/auth/bloc/auth_state.dart';
-import 'package:yiking/views/home_view.dart';
-import 'package:yiking/views/login_view.dart';
-import 'package:yiking/views/recover_view.dart';
-import 'package:yiking/views/register_view.dart';
-import 'package:yiking/views/verify_email_view.dart';
+import 'package:yiking/views/account/home_view.dart';
+import 'package:yiking/views/auth/login_view.dart';
+import 'package:yiking/views/auth/recover_view.dart';
+import 'package:yiking/views/auth/register_view.dart';
+import 'package:yiking/views/auth/verify_email_view.dart';
 
 // import
 

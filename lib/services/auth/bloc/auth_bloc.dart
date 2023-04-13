@@ -9,6 +9,19 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<AuthEventInitialize>(
       (event, emit) async {
         await provider.initialize();
+        final user = provider.currentUser;
+        if (user == null) {
+          emit(
+            const AuthStateLoggedOut(
+              exception: null,
+            ),
+          );
+        } else if (!user.isEmailVerified) {
+          emit(const AuthStateCheckEmail());
+        } else {
+          emit(AuthStateLoggedIn(
+              user: user.email, id: user.id, isVerified: user.isEmailVerified));
+        }
       },
     );
     on<AuthEventLogInWithEmail>(
@@ -98,10 +111,22 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         } else {
           try {
             await provider.sendPasword(toEmail: email);
-            emit(const AuthStateLoggedOut(exception: null));
+            emit(const AuthStateRecoverPassword(
+                exception: null, hasSentEmail: true));
           } on Exception catch (e) {
             emit(AuthStateRecoverPassword(exception: e));
           }
+        }
+      },
+    );
+
+    on<AuthEventDeleteUser>(
+      (event, emit) async {
+        try {
+          await provider.deleteUser();
+          emit(const AuthStateLoggedOut());
+        } on Exception catch (e) {
+          emit(AuthStateLoggedOut(exception: e));
         }
       },
     );
