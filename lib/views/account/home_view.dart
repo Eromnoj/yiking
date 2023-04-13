@@ -2,11 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yiking/services/auth/auth_service.dart';
 import 'package:yiking/services/auth/auth_user.dart';
-import 'package:yiking/services/auth/bloc/auth_event.dart';
 import 'package:yiking/services/firebase/draw/draw_storage.dart';
-import 'package:yiking/views/account/draw_list_view.dart';
-import 'package:yiking/views/account/widgets/drawer_menu.dart';
-import 'package:yiking/views/auth/account_view.dart';
+import 'package:yiking/views/account/widgets/widget_list.dart';
 import '../../services/auth/bloc/auth_bloc.dart';
 import '../../services/auth/bloc/auth_state.dart';
 
@@ -20,6 +17,13 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   late final DrawStorage _draw;
   late final AuthUser? currentUser;
+  int _seletedIndex = 0;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _seletedIndex = index;
+    });
+  }
 
   @override
   void initState() {
@@ -34,29 +38,28 @@ class _HomeViewState extends State<HomeView> {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
-            title: const Text('Mon Compte'),
+            title: const Text('Mon Carnet Yi-King'),
           ),
-          drawer: drawer(context),
-          body: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton(
-                  onPressed: () async {
-                    await _draw.createNewDraw(
-                        userId: currentUser!.id,
-                        date: DateTime.now(),
-                        question: 'Est-ce que je dois tester ?',
-                        draw: [6, 7, 8, 6, 9, 9]);
-                  },
-                  child: const Text('Effectuer un tirage avec l\'application'),
-                ),
-                ElevatedButton(
-                  onPressed: () {},
-                  child: const Text('Entrer un tirage manuellement'),
-                ),
-              ],
-            ),
+          body:
+              widgetList(context, _draw, currentUser!).elementAt(_seletedIndex),
+          bottomNavigationBar: BottomNavigationBar(
+            items: const <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                icon: Icon(Icons.home),
+                label: 'Accueil',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.list),
+                label: 'Mes tirages',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.account_box),
+                label: 'Mon compte',
+              ),
+            ],
+            currentIndex: _seletedIndex,
+            selectedItemColor: Colors.blue,
+            onTap: _onItemTapped,
           ),
         );
       },

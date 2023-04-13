@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yiking/routes/constants_routes.dart';
 import 'package:yiking/services/auth/auth_service.dart';
 import 'package:yiking/services/auth/bloc/auth_bloc.dart';
 import 'package:yiking/services/auth/bloc/auth_event.dart';
 import 'package:yiking/services/auth/bloc/auth_state.dart';
 import 'package:yiking/views/account/home_view.dart';
+import 'package:yiking/views/account/unique_draw_view.dart';
 import 'package:yiking/views/auth/login_view.dart';
 import 'package:yiking/views/auth/recover_view.dart';
 import 'package:yiking/views/auth/register_view.dart';
@@ -26,6 +28,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+      routes: {
+        uniqueDrawRoute: (context) => const UniqueDrawView(),
+      },
       home: BlocProvider<AuthBloc>(
           create: (context) => AuthBloc(AuthService()),
           child: BlocBuilder<AuthBloc, AuthState>(
