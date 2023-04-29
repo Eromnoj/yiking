@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yiking/routes/constants_routes.dart';
 
 import '../../services/auth/auth_service.dart';
 import '../../services/auth/auth_user.dart';
@@ -34,12 +35,8 @@ class _NewDrawViewState extends State<NewDrawView> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ElevatedButton(
-                onPressed: () async {
-                  await drawStorage.createNewDraw(
-                      userId: currentUser!.id,
-                      date: DateTime.now(),
-                      question: 'Est-ce que je dois tester ?',
-                      draw: [6, 7, 8, 6, 9, 9]);
+                onPressed: () {
+                  Navigator.of(context).pushNamed(makeAYiKingDrawRoute);
                 },
                 child: const Text('Effectuer un tirage avec l\'application'),
               ),

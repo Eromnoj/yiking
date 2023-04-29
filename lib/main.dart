@@ -5,7 +5,9 @@ import 'package:yiking/services/auth/auth_service.dart';
 import 'package:yiking/services/auth/bloc/auth_bloc.dart';
 import 'package:yiking/services/auth/bloc/auth_event.dart';
 import 'package:yiking/services/auth/bloc/auth_state.dart';
+import 'package:yiking/views/account/app_draw_view.dart';
 import 'package:yiking/views/account/home_view.dart';
+import 'package:yiking/views/account/result_draw_view.dart';
 import 'package:yiking/views/account/unique_draw_view.dart';
 import 'package:yiking/views/auth/login_view.dart';
 import 'package:yiking/views/auth/recover_view.dart';
@@ -23,17 +25,20 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      routes: {
-        uniqueDrawRoute: (context) => const UniqueDrawView(),
-      },
-      home: BlocProvider<AuthBloc>(
-          create: (context) => AuthBloc(AuthService()),
-          child: BlocBuilder<AuthBloc, AuthState>(
+    return BlocProvider<AuthBloc>(
+      create: (context) => AuthBloc(AuthService()),
+      child: MaterialApp(
+          title: 'Flutter Demo',
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+          ),
+          routes: {
+            uniqueDrawRoute: (context) => const UniqueDrawView(),
+            makeAYiKingDrawRoute: (context) => const AppDrawView(),
+            userAccountRoute: (context) => const HomeView(),
+            yikingDrawResultRoute: (context) => const ResultDrawView(),
+          },
+          home: BlocBuilder<AuthBloc, AuthState>(
             builder: (context, state) {
               context.read<AuthBloc>().add(const AuthEventInitialize());
               if (state is AuthStateLoggedIn) {

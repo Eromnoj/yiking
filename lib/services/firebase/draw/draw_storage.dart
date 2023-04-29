@@ -15,7 +15,7 @@ class DrawStorage {
   }
 
   Stream<Iterable<DrawStructure>> allDraws({required String userId}) =>
-      draws.snapshots().map((event) =>
+      draws.orderBy(dateField, descending: true).snapshots().map((event) =>
           event.docs.map((doc) => DrawStructure.fromSnapShot(doc)).where(
                 (draw) => draw.userId == userId,
               ));
@@ -24,7 +24,7 @@ class DrawStorage {
     required String userId,
     required DateTime date,
     required String question,
-    required List<int> draw,
+    required List<dynamic> draw,
   }) async {
     try {
       final document = await draws.add({
