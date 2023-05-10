@@ -3,19 +3,17 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yiking/routes/constants_routes.dart';
-import 'package:yiking/services/firebase/draw/draw_constants.dart';
 import 'package:yiking/services/firebase/draw/draw_structure.dart';
 import 'package:yiking/utilities/yiking/yiking_draw.dart';
-import 'package:yiking/views/account/result_draw_view.dart';
 import 'package:yiking/views/account/widgets/coin_container.dart';
 import 'package:yiking/utilities/dialogs/question_dialog.dart';
-import 'package:yiking/utilities/yiking/yking_painter.dart';
+import 'package:yiking/utilities/yiking/yiking_painter.dart';
 
-import '../../services/auth/auth_service.dart';
-import '../../services/auth/auth_user.dart';
-import '../../services/auth/bloc/auth_bloc.dart';
-import '../../services/auth/bloc/auth_state.dart';
-import '../../services/firebase/draw/draw_storage.dart';
+import 'package:yiking/services/auth/auth_service.dart';
+import 'package:yiking/services/auth/auth_user.dart';
+import 'package:yiking/services/auth/bloc/auth_bloc.dart';
+import 'package:yiking/services/auth/bloc/auth_state.dart';
+import 'package:yiking/services/firebase/draw/draw_storage.dart';
 
 class AppDrawView extends StatefulWidget {
   const AppDrawView({super.key});
@@ -41,6 +39,9 @@ class _AppDrawViewState extends State<AppDrawView> {
     _draw = DrawStorage();
     currentUser = AuthService().currentUser;
     draw = YikingDraw();
+    Timer.run(
+      () => questionDialog(context, _questionField),
+    );
   }
 
   @override

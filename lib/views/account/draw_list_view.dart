@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:yiking/services/firebase/draw/draw_structure.dart';
 import 'package:yiking/views/account/widgets/list_tile.dart';
 
-import '../../services/auth/auth_service.dart';
-import '../../services/auth/auth_user.dart';
-import '../../services/firebase/draw/draw_storage.dart';
+import 'package:yiking/services/auth/auth_service.dart';
+import 'package:yiking/services/auth/auth_user.dart';
+import 'package:yiking/services/firebase/draw/draw_storage.dart';
 
 class DrawListView extends StatefulWidget {
   const DrawListView({super.key});

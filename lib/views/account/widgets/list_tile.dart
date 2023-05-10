@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:yiking/routes/constants_routes.dart';
+import 'package:yiking/utilities/dialogs/confirm_delete_dialog.dart';
 
-import '../../../services/firebase/draw/draw_storage.dart';
-import '../../../services/firebase/draw/draw_structure.dart';
+import 'package:yiking/services/firebase/draw/draw_storage.dart';
+import 'package:yiking/services/firebase/draw/draw_structure.dart';
 
 Widget customListTile(
     BuildContext context, DrawStorage draw, DrawStructure element, int index) {
   return GestureDetector(
       onTap: () {
-        print(element);
         Navigator.of(context).pushNamed(
           uniqueDrawRoute,
           arguments: element,
@@ -26,8 +26,8 @@ Widget customListTile(
             ),
             IconButton(
               icon: const Icon(Icons.delete_outline),
-              onPressed: () {
-                draw.deleteNote(documentId: element.documentId);
+              onPressed: () async {
+                await deleteDialog(context, element, draw);
               },
             ),
           ],

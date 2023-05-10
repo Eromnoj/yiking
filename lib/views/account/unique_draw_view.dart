@@ -35,7 +35,7 @@ class _UniqueDrawViewState extends State<UniqueDrawView> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Mon tirage'),
+        title: Text(draw!.question),
       ),
       body: SingleChildScrollView(
         child: Center(

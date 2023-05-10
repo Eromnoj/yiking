@@ -7,6 +7,7 @@ import 'package:yiking/services/auth/bloc/auth_event.dart';
 import 'package:yiking/services/auth/bloc/auth_state.dart';
 import 'package:yiking/views/account/app_draw_view.dart';
 import 'package:yiking/views/account/home_view.dart';
+import 'package:yiking/views/account/insert_draw_view.dart';
 import 'package:yiking/views/account/result_draw_view.dart';
 import 'package:yiking/views/account/unique_draw_view.dart';
 import 'package:yiking/views/auth/login_view.dart';
@@ -35,6 +36,7 @@ class MyApp extends StatelessWidget {
           routes: {
             uniqueDrawRoute: (context) => const UniqueDrawView(),
             makeAYiKingDrawRoute: (context) => const AppDrawView(),
+            insertAYiKingDrawRoute: (context) => const InsertDrawView(),
             userAccountRoute: (context) => const HomeView(),
             yikingDrawResultRoute: (context) => const ResultDrawView(),
           },

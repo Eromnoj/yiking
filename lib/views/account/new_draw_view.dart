@@ -41,7 +41,9 @@ class _NewDrawViewState extends State<NewDrawView> {
                 child: const Text('Effectuer un tirage avec l\'application'),
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).pushNamed(insertAYiKingDrawRoute);
+                },
                 child: const Text('Entrer un tirage manuellement'),
               ),
             ],
