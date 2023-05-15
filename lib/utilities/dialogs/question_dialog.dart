@@ -9,15 +9,22 @@ Future<void> questionDialog(
       return SimpleDialog(
         title: const Text('Posez votre question'),
         children: [
-          TextField(
-            controller: textController,
-            keyboardType: TextInputType.text,
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TextField(
+              controller: textController,
+              keyboardType: TextInputType.text,
+              maxLines: null,
+            ),
           ),
-          TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text('OK'))
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text('OK')),
+          )
         ],
       );
     },

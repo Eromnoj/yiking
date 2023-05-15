@@ -45,4 +45,9 @@ class DrawStorage {
       throw CouldNotCreateDrawException();
     }
   }
+
+  // creating a singleton
+  static final DrawStorage _shared = DrawStorage._sharedInstance();
+  DrawStorage._sharedInstance();
+  factory DrawStorage() => _shared;
 }

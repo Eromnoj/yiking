@@ -12,12 +12,12 @@ Widget yikingButton(
     child: Container(
       decoration: const BoxDecoration(
         boxShadow: [
-          BoxShadow(
-            offset: Offset(-4, 3),
-            color: Colors.black54,
-            spreadRadius: 4,
-            blurRadius: 10,
-          ),
+          // BoxShadow(
+          //   offset: Offset(-4, 3),
+          //   color: Colors.black54,
+          //   spreadRadius: 4,
+          //   blurRadius: 10,
+          // ),
         ],
       ),
       child: CustomPaint(

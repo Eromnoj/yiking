@@ -11,13 +11,12 @@ Widget coinContainer(int coin, bool click, {pos = false}) {
     decoration: BoxDecoration(
       shape: BoxShape.circle,
       color: coin == 2 ? Colors.black : Colors.red,
-      boxShadow: const [
-        BoxShadow(
-          offset: Offset(2, 1),
-          spreadRadius: 2,
-          blurRadius: 10,
-        ),
-      ],
+      // boxShadow: const [
+      //   BoxShadow(
+      //     blurRadius: 5,
+      //     blurStyle: BlurStyle.outer,
+      //   ),
+      // ],
     ),
     height: 80,
     width: 80,

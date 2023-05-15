@@ -7,6 +7,7 @@ import 'package:yiking/services/firebase/draw/draw_structure.dart';
 import 'package:yiking/services/auth/bloc/auth_bloc.dart';
 import 'package:yiking/services/auth/bloc/auth_state.dart';
 import 'package:yiking/utilities/yiking/yiking_draw.dart';
+import 'package:yiking/views/account/widgets/custom_text_widget.dart';
 import 'package:yiking/views/account/widgets/show_draw_result.dart';
 
 class ResultDrawView extends StatefulWidget {
@@ -44,7 +45,10 @@ class _ResultDrawViewState extends State<ResultDrawView> {
         // print(yikingDraw.getDraw);
         return Scaffold(
           appBar: AppBar(
-            title: const Text('Mon tirage'),
+            title: titleText(
+              'Mon tirage',
+              fontSize: 35,
+            ),
             actions: [
               IconButton(
                 onPressed: () {
@@ -60,13 +64,12 @@ class _ResultDrawViewState extends State<ResultDrawView> {
             child: Center(
               child: Column(
                 children: [
-                  Text(draw!.question),
-                  const Text('Resultat :'),
+                  titleText(draw!.question, fontSize: 40),
                   showDrawResult(yikingDraw, width, height),
                   !eq(yikingDraw.mutation(), yikingDraw.getDraw)
                       ? showDrawResult(yikingDraw, width, height,
                           what: 'mutate')
-                      : const Text('Pas de mutations'),
+                      : const SizedBox(),
                   showDrawResult(yikingDraw, width, height, what: 'nuclear'),
                   showDrawResult(yikingDraw, width, height, what: 'opposite'),
                 ],

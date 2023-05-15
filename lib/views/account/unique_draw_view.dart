@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:yiking/services/firebase/draw/draw_structure.dart';
 import 'package:yiking/utilities/yiking/yiking_draw.dart';
+import 'package:yiking/views/account/widgets/custom_text_widget.dart';
 import 'package:yiking/views/account/widgets/show_draw_result.dart';
 
 class UniqueDrawView extends StatefulWidget {
@@ -35,18 +36,20 @@ class _UniqueDrawViewState extends State<UniqueDrawView> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(draw!.question),
+        title: titleText(
+          draw!.question,
+          fontSize: 35,
+        ),
       ),
       body: SingleChildScrollView(
         child: Center(
           child: Column(
             children: [
-              Text(draw!.question),
-              const Text('Resultat :'),
+              titleText(draw!.question, fontSize: 33),
               showDrawResult(yikingDraw, width, height),
               !eq(yikingDraw.mutation(), yikingDraw.getDraw)
                   ? showDrawResult(yikingDraw, width, height, what: 'mutate')
-                  : const Text('Pas de mutations'),
+                  : const SizedBox(),
               showDrawResult(yikingDraw, width, height, what: 'nuclear'),
               showDrawResult(yikingDraw, width, height, what: 'opposite'),
             ],

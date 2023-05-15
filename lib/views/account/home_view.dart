@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yiking/services/auth/auth_service.dart';
 import 'package:yiking/services/auth/auth_user.dart';
 import 'package:yiking/services/firebase/draw/draw_storage.dart';
+import 'package:yiking/views/account/widgets/custom_text_widget.dart';
 import 'package:yiking/views/account/widgets/widget_list.dart';
 import '../../services/auth/bloc/auth_bloc.dart';
 import '../../services/auth/bloc/auth_state.dart';
@@ -38,7 +39,7 @@ class _HomeViewState extends State<HomeView> {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
-            title: const Text('Mon Carnet Yi-King'),
+            title: titleText('Mon Carnet Yi-King', fontSize: 35),
           ),
           body:
               widgetList(context, _draw, currentUser!).elementAt(_seletedIndex),
@@ -58,7 +59,6 @@ class _HomeViewState extends State<HomeView> {
               ),
             ],
             currentIndex: _seletedIndex,
-            selectedItemColor: Colors.blue,
             onTap: _onItemTapped,
           ),
         );

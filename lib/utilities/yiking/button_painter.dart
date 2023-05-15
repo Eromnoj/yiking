@@ -72,7 +72,7 @@ class ButtonPainter extends CustomPainter {
         (containerSize.width / 16.76),
         Paint()
           ..style = PaintingStyle.stroke
-          ..strokeWidth = 5);
+          ..strokeWidth = containerSize.width / 40);
   }
 
   void _mYin(Canvas canvas) {
@@ -90,14 +90,14 @@ class ButtonPainter extends CustomPainter {
             (yOffset - (containerSize.width / 30))),
         Offset((containerSize.width / 1.76),
             (yOffset + (containerSize.width / 10))),
-        Paint()..strokeWidth = 5);
+        Paint()..strokeWidth = containerSize.width / 40);
 
     canvas.drawLine(
         Offset((containerSize.width / 1.76),
             (yOffset - (containerSize.width / 30))),
         Offset((containerSize.width / 2.31),
             (yOffset + (containerSize.width / 10))),
-        Paint()..strokeWidth = 5);
+        Paint()..strokeWidth = containerSize.width / 40);
   }
 
   @override
