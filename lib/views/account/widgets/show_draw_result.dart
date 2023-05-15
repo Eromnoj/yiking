@@ -45,36 +45,39 @@ Widget showDrawResult(
                               : what == 'opposite'
                                   ? titleText('Opposé', fontSize: 27)
                                   : titleText('Nucléaire', fontSize: 27),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Container(
-                            decoration: const BoxDecoration(
-                                color: Color(0xFFFFFFFF),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10))),
-                            child: CustomPaint(
-                              painter: YiKingPainter(
-                                  draw, Size(width / 2, height / 2)),
-                              child: SizedBox(
-                                height: height / 2,
-                                width: width / 2,
+                      Padding(
+                        padding: const EdgeInsets.all(24.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              decoration: const BoxDecoration(
+                                  color: Color(0xFFFFFFFF),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10))),
+                              child: CustomPaint(
+                                painter: YiKingPainter(
+                                    draw, Size(width / 2, height / 2)),
+                                child: SizedBox(
+                                  height: height / 2,
+                                  width: width / 2,
+                                ),
                               ),
                             ),
-                          ),
-                          titleText(
-                            snapshot.data!.yikingId.toString(),
-                            fontSize: 30,
-                          ),
-                          titleText(
-                            snapshot.data!.symbol,
-                            fontSize: 40.0,
-                          ),
-                          titleText(
-                            snapshot.data!.name,
-                            fontSize: 30,
-                          ),
-                        ],
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                titleText(
+                                  snapshot.data!.symbol,
+                                  fontSize: 40.0,
+                                ),
+                                titleText(
+                                  snapshot.data!.name,
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -83,6 +86,9 @@ Widget showDrawResult(
                           children: [
                             contentText(snapshot.data!.translate,
                                 textOverflow: null),
+                            titleText(
+                              snapshot.data!.yikingId.toString(),
+                            ),
                           ],
                         ),
                       ),

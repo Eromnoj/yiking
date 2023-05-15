@@ -12,10 +12,12 @@ Widget titleText(
     padding: EdgeInsets.all(padding),
     child: Text(
       text,
-      style: GoogleFonts.shadowsIntoLight(
+      textAlign: TextAlign.center,
+      style: TextStyle(
         fontSize: fontSize,
         color: color ?? color,
         fontWeight: fontWeight,
+        fontFamily: GoogleFonts.architectsDaughter().fontFamily,
       ),
     ),
   );
@@ -36,6 +38,24 @@ Widget contentText(String text,
         color: color ?? color,
         fontWeight: fontWeight,
         overflow: textOverflow ?? textOverflow,
+      ),
+    ),
+  );
+}
+
+Widget customTextField(
+  String label,
+  TextEditingController controller,
+  TextInputType inputType,
+) {
+  return TextField(
+    controller: controller,
+    keyboardType: inputType,
+    decoration: InputDecoration(
+      labelText: label,
+      floatingLabelStyle: const TextStyle(
+        color: Color.fromARGB(255, 153, 40, 40),
+        fontSize: 20,
       ),
     ),
   );

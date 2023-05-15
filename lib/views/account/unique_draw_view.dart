@@ -37,15 +37,15 @@ class _UniqueDrawViewState extends State<UniqueDrawView> {
     return Scaffold(
       appBar: AppBar(
         title: titleText(
-          draw!.question,
-          fontSize: 35,
+          'Mon tirage',
+          fontSize: 25,
         ),
       ),
       body: SingleChildScrollView(
         child: Center(
           child: Column(
             children: [
-              titleText(draw!.question, fontSize: 33),
+              titleText(draw!.question, fontSize: 30),
               showDrawResult(yikingDraw, width, height),
               !eq(yikingDraw.mutation(), yikingDraw.getDraw)
                   ? showDrawResult(yikingDraw, width, height, what: 'mutate')

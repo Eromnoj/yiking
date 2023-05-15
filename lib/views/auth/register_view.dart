@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yiking/services/auth/auth_exceptions.dart';
 import 'package:yiking/services/auth/bloc/auth_event.dart';
 import 'package:yiking/utilities/dialogs/error_dialogs.dart';
+import 'package:yiking/views/account/widgets/custom_text_widget.dart';
 
 import '../../services/auth/bloc/auth_bloc.dart';
 import '../../services/auth/bloc/auth_state.dart';
@@ -52,39 +53,58 @@ class _RegisterViewState extends State<RegisterView> {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
-            title: const Text('Register'),
+            title: titleText(
+              'Créer un carnet',
+              fontSize: 25,
+            ),
           ),
-          body: Column(
-            children: [
-              const Text('Register page'),
-              TextField(
-                controller: _emailField,
-                keyboardType: TextInputType.emailAddress,
-              ),
-              TextField(
-                controller: _passwordField,
-                keyboardType: TextInputType.visiblePassword,
-                obscureText: true,
-                enableSuggestions: false,
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  final email = _emailField.text;
-                  final password = _passwordField.text;
-                  context.read<AuthBloc>().add(AuthEventCreateAccount(
-                        email,
-                        password,
-                      ));
-                },
-                child: const Text('Register'),
-              ),
-              TextButton(
-                onPressed: () {
-                  context.read<AuthBloc>().add(const AuthEventLogOut());
-                },
-                child: const Text('Back to Log in'),
-              ),
-            ],
+          body: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                titleText('Créer un carnet'),
+                Column(
+                  children: [
+                    customTextField(
+                      "Votre adresse email",
+                      _emailField,
+                      TextInputType.emailAddress,
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    customTextField(
+                      "Mot de passe",
+                      _passwordField,
+                      TextInputType.visiblePassword,
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        final email = _emailField.text;
+                        final password = _passwordField.text;
+                        context.read<AuthBloc>().add(AuthEventCreateAccount(
+                              email,
+                              password,
+                            ));
+                      },
+                      child: titleText('Créer'),
+                    ),
+                  ],
+                ),
+                TextButton(
+                  onPressed: () {
+                    context.read<AuthBloc>().add(const AuthEventLogOut());
+                  },
+                  child: contentText(
+                    'Retour à la page de connexion',
+                  ),
+                ),
+              ],
+            ),
           ),
         );
       },

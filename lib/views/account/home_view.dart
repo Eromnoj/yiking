@@ -18,7 +18,7 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   late final DrawStorage _draw;
   late final AuthUser? currentUser;
-  int _seletedIndex = 0;
+  late int _seletedIndex;
 
   void _onItemTapped(int index) {
     setState(() {
@@ -30,6 +30,7 @@ class _HomeViewState extends State<HomeView> {
   void initState() {
     _draw = DrawStorage();
     currentUser = AuthService().currentUser;
+    _seletedIndex = 0;
     super.initState();
   }
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yiking/routes/constants_routes.dart';
+import 'package:yiking/views/account/widgets/custom_text_widget.dart';
 
 import '../../services/auth/auth_service.dart';
 import '../../services/auth/auth_user.dart';
@@ -31,22 +32,28 @@ class _NewDrawViewState extends State<NewDrawView> {
     return BlocBuilder<AuthBloc, AuthState>(
       builder: (context, state) {
         return Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).pushNamed(makeAYiKingDrawRoute);
-                },
-                child: const Text('Effectuer un tirage avec l\'application'),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).pushNamed(insertAYiKingDrawRoute);
-                },
-                child: const Text('Entrer un tirage manuellement'),
-              ),
-            ],
+          child: Padding(
+            padding: const EdgeInsets.all(24.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).pushNamed(makeAYiKingDrawRoute);
+                  },
+                  child: titleText('Effectuer un tirage avec l\'application'),
+                ),
+                const SizedBox(
+                  height: 28,
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).pushNamed(insertAYiKingDrawRoute);
+                  },
+                  child: titleText('Entrer un tirage manuellement'),
+                ),
+              ],
+            ),
           ),
         );
       },

@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yiking/routes/constants_routes.dart';
 import 'package:yiking/services/firebase/draw/draw_structure.dart';
 import 'package:yiking/utilities/yiking/yiking_draw.dart';
@@ -11,8 +10,6 @@ import 'package:yiking/utilities/yiking/yiking_painter.dart';
 
 import 'package:yiking/services/auth/auth_service.dart';
 import 'package:yiking/services/auth/auth_user.dart';
-import 'package:yiking/services/auth/bloc/auth_bloc.dart';
-import 'package:yiking/services/auth/bloc/auth_state.dart';
 import 'package:yiking/services/firebase/draw/draw_storage.dart';
 import 'package:yiking/views/account/widgets/custom_text_widget.dart';
 
@@ -63,92 +60,84 @@ class _AppDrawViewState extends State<AppDrawView> {
           fontSize: 35,
         ),
       ),
-      body: BlocBuilder<AuthBloc, AuthState>(
-        builder: (context, state) {
-          return LayoutBuilder(
-            builder: (context, constraint) {
-              return SingleChildScrollView(
-                child: ConstrainedBox(
-                  constraints: BoxConstraints(minHeight: constraint.maxHeight),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
+      body: LayoutBuilder(
+        builder: (context, constraint) {
+          return SingleChildScrollView(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(minHeight: constraint.maxHeight),
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ElevatedButton(
+                    onPressed: () async {
+                      await questionDialog(context, _questionField);
+                    },
+                    child: const Text(
+                      'Changer la question',
+                    ),
+                  ),
+                  contentText(_questionField.text),
+                  Center(
+                    child: Card(
+                      elevation: 10,
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                      ),
+                      child: CustomPaint(
+                        painter: YiKingPainter(draw.draw, Size(width, height)),
+                        child: SizedBox(
+                          height: height,
+                          width: width,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      ElevatedButton(
-                        onPressed: () async {
-                          await questionDialog(context, _questionField);
-                        },
-                        child: const Text(
-                          'Changer la question',
-                        ),
-                      ),
-                      contentText(_questionField.text),
-                      Center(
-                        child: Card(
-                          elevation: 10,
-                          shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(10)),
-                          ),
-                          child: CustomPaint(
-                            painter:
-                                YiKingPainter(draw.draw, Size(width, height)),
-                            child: SizedBox(
-                              height: height,
-                              width: width,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          coinContainer(draw.coin1, click),
-                          coinContainer(draw.coin2, click, pos: true),
-                          coinContainer(draw.coin3, click),
-                        ],
-                      ),
-                      ElevatedButton(
-                        onPressed: () async {
-                          if (draw.draw.length < 6) {
-                            setState(() {
-                              click = false;
-                            });
-                            Timer(
-                              const Duration(milliseconds: 800),
-                              () => setState(() {
-                                draw.chance();
-                                click = true;
-                              }),
-                            );
-                          } else {
-                            if (_questionField.text.isEmpty) {
-                              await questionDialog(context, _questionField);
-                            } else {
-                              result = await _draw.createNewDraw(
-                                userId: currentUser!.id,
-                                date: DateTime.now(),
-                                question: _questionField.text,
-                                draw: draw.draw,
-                              );
-                              if (context.mounted) {
-                                Navigator.of(context).pushNamedAndRemoveUntil(
-                                  yikingDrawResultRoute,
-                                  (route) => false,
-                                  arguments: result,
-                                );
-                              }
-                            }
-                          }
-                        },
-                        child: Text(draw.draw.length < 6
-                            ? 'Tirage'
-                            : 'Voir le résultat'),
-                      ),
+                      coinContainer(draw.coin1, click),
+                      coinContainer(draw.coin2, click, pos: true),
+                      coinContainer(draw.coin3, click),
                     ],
                   ),
-                ),
-              );
-            },
+                  ElevatedButton(
+                    onPressed: () async {
+                      if (draw.draw.length < 6) {
+                        setState(() {
+                          click = false;
+                        });
+                        Timer(
+                          const Duration(milliseconds: 800),
+                          () => setState(() {
+                            draw.chance();
+                            click = true;
+                          }),
+                        );
+                      } else {
+                        if (_questionField.text.isEmpty) {
+                          await questionDialog(context, _questionField);
+                        } else {
+                          result = await _draw.createNewDraw(
+                            userId: currentUser!.id,
+                            date: DateTime.now(),
+                            question: _questionField.text,
+                            draw: draw.draw,
+                          );
+                          if (context.mounted) {
+                            Navigator.of(context).pushReplacementNamed(
+                                yikingDrawResultRoute,
+                                arguments: result);
+                          }
+                        }
+                      }
+                    },
+                    child: Text(
+                        draw.draw.length < 6 ? 'Tirage' : 'Voir le résultat'),
+                  ),
+                ],
+              ),
+            ),
           );
         },
       ),

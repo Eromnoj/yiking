@@ -6,6 +6,7 @@ import 'package:yiking/utilities/dialogs/error_dialogs.dart';
 
 import '../../services/auth/bloc/auth_bloc.dart';
 import '../../services/auth/bloc/auth_state.dart';
+import '../account/widgets/custom_text_widget.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -49,53 +50,98 @@ class _LoginViewState extends State<LoginView> {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
-            title: const Text('Login'),
+            title: titleText(
+              'Mon Carnet Yiking',
+              fontSize: 35,
+            ),
           ),
-          body: Column(
-            children: [
-              const Text('Login page'),
-              TextField(
-                controller: _emailField,
-                keyboardType: TextInputType.emailAddress,
-              ),
-              TextField(
-                controller: _passwordField,
-                keyboardType: TextInputType.visiblePassword,
-                obscureText: true,
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  final email = _emailField.text;
-                  final password = _passwordField.text;
-                  context
-                      .read<AuthBloc>()
-                      .add(AuthEventLogInWithEmail(email, password));
-                },
-                child: const Text('Login'),
-              ),
-              ElevatedButton(
-                onPressed: () async {
-                  context
-                      .read<AuthBloc>()
-                      .add(const AuthEventLogInWithGoogle());
-                },
-                child: const Text('Login with Google'),
-              ),
-              TextButton(
-                onPressed: () {
-                  context.read<AuthBloc>().add(const AuthEventRegister());
-                },
-                child: const Text('Register'),
-              ),
-              TextButton(
-                onPressed: () {
-                  context
-                      .read<AuthBloc>()
-                      .add(const AuthEventRecoverPassword(email: null));
-                },
-                child: const Text('Retrouver mon mon de passe'),
-              ),
-            ],
+          body: LayoutBuilder(
+            builder: (context, constraint) {
+              return SingleChildScrollView(
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(minHeight: constraint.maxHeight),
+                  child: Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        titleText('Me connecter'),
+                        Column(children: [
+                          customTextField(
+                            "Votre adresse email",
+                            _emailField,
+                            TextInputType.emailAddress,
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          customTextField(
+                            "Mot de passe",
+                            _passwordField,
+                            TextInputType.visiblePassword,
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          ElevatedButton(
+                            onPressed: () {
+                              final email = _emailField.text;
+                              final password = _passwordField.text;
+                              context
+                                  .read<AuthBloc>()
+                                  .add(const AuthEventInitialize());
+
+                              context.read<AuthBloc>().add(
+                                  AuthEventLogInWithEmail(email, password));
+                            },
+                            child: titleText('Connexion'),
+                          ),
+                        ]),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        ElevatedButton(
+                          onPressed: () async {
+                            context
+                                .read<AuthBloc>()
+                                .add(const AuthEventInitialize());
+
+                            context
+                                .read<AuthBloc>()
+                                .add(const AuthEventLogInWithGoogle());
+                          },
+                          child: titleText('Me connecter avec Google'),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Column(
+                          children: [
+                            TextButton(
+                              onPressed: () {
+                                context
+                                    .read<AuthBloc>()
+                                    .add(const AuthEventRegister());
+                              },
+                              child: contentText('Créer un carnet'),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                context.read<AuthBloc>().add(
+                                    const AuthEventRecoverPassword(
+                                        email: null));
+                              },
+                              child: contentText('Mot de passe oublié ?'),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            },
           ),
         );
       },
