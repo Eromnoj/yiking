@@ -19,7 +19,6 @@ Widget customListTile(
       child: Padding(
         padding: const EdgeInsets.all(4.0),
         child: Card(
-          elevation: 8,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
@@ -33,16 +32,21 @@ Widget customListTile(
                       width: MediaQuery.of(context).size.width / 1.3,
                       child: contentText(
                         element.question,
+                        color: const Color.fromARGB(255, 199, 197, 208),
                       ),
                     ),
                     contentText(
                       '${element.date.day} / ${element.date.month} / ${element.date.year}',
                       fontSize: 16,
+                      color: const Color.fromARGB(255, 199, 197, 208),
                     ),
                   ],
                 ),
                 IconButton(
-                  icon: const Icon(Icons.delete_outline),
+                  icon: const Icon(
+                    Icons.delete_outline,
+                    color: Color.fromARGB(255, 199, 197, 208),
+                  ),
                   onPressed: () async {
                     await deleteDialog(context, element, draw);
                   },

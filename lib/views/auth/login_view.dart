@@ -72,6 +72,7 @@ class _LoginViewState extends State<LoginView> {
                             "Votre adresse email",
                             _emailField,
                             TextInputType.emailAddress,
+                            false,
                           ),
                           const SizedBox(
                             height: 10,
@@ -80,6 +81,7 @@ class _LoginViewState extends State<LoginView> {
                             "Mot de passe",
                             _passwordField,
                             TextInputType.visiblePassword,
+                            true,
                           ),
                           const SizedBox(
                             height: 10,

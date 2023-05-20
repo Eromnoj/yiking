@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yiking/services/auth/auth_service.dart';
 import 'package:yiking/services/auth/auth_user.dart';
-import 'package:yiking/services/firebase/draw/draw_storage.dart';
+import 'package:yiking/views/account/account_view.dart';
+import 'package:yiking/views/account/draw_list_view.dart';
+import 'package:yiking/views/account/new_draw_view.dart';
 import 'package:yiking/views/account/widgets/custom_text_widget.dart';
-import 'package:yiking/views/account/widgets/widget_list.dart';
 import '../../services/auth/bloc/auth_bloc.dart';
 import '../../services/auth/bloc/auth_state.dart';
 
@@ -16,11 +17,20 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  late final DrawStorage _draw;
   late final AuthUser? currentUser;
-  late int _seletedIndex;
+  int _seletedIndex = 0;
+  final PageController _pageController = PageController();
 
   void _onItemTapped(int index) {
+    _onPageSwipped(index);
+    _pageController.animateToPage(
+      _seletedIndex,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeOut,
+    );
+  }
+
+  void _onPageSwipped(int index) {
     setState(() {
       _seletedIndex = index;
     });
@@ -28,9 +38,7 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   void initState() {
-    _draw = DrawStorage();
     currentUser = AuthService().currentUser;
-    _seletedIndex = 0;
     super.initState();
   }
 
@@ -40,27 +48,45 @@ class _HomeViewState extends State<HomeView> {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
-            title: titleText('Mon Carnet Yi-King', fontSize: 35),
+            title: titleText(
+              'Mon Carnet Yi-King',
+              fontSize: 25,
+            ),
           ),
-          body:
-              widgetList(context, _draw, currentUser!).elementAt(_seletedIndex),
-          bottomNavigationBar: BottomNavigationBar(
-            items: const <BottomNavigationBarItem>[
-              BottomNavigationBarItem(
-                icon: Icon(Icons.home),
-                label: 'Accueil',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.list),
-                label: 'Mes tirages',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.account_box),
-                label: 'Mon compte',
-              ),
+          extendBody: true,
+          body: PageView(
+            controller: _pageController,
+            onPageChanged: _onPageSwipped,
+            children: const [
+              NewDrawView(),
+              DrawListView(),
+              AccountView(),
             ],
-            currentIndex: _seletedIndex,
-            onTap: _onItemTapped,
+          ),
+          bottomNavigationBar: ClipRRect(
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.elliptical(80, 40),
+              topRight: Radius.elliptical(80, 40),
+            ),
+            child: NavigationBar(
+              animationDuration: const Duration(milliseconds: 300),
+              destinations: const <Widget>[
+                NavigationDestination(
+                  icon: Icon(Icons.home),
+                  label: 'Accueil',
+                ),
+                NavigationDestination(
+                  icon: Icon(Icons.list),
+                  label: 'Mes tirages',
+                ),
+                NavigationDestination(
+                  icon: Icon(Icons.account_box),
+                  label: 'Mon compte',
+                ),
+              ],
+              onDestinationSelected: _onItemTapped,
+              selectedIndex: _seletedIndex,
+            ),
           ),
         );
       },

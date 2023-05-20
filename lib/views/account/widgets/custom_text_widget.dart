@@ -24,7 +24,7 @@ Widget titleText(
 }
 
 Widget contentText(String text,
-    {double fontSize = 18,
+    {double fontSize = 17,
     Color? color,
     double padding = 4,
     FontWeight fontWeight = FontWeight.normal,
@@ -47,10 +47,12 @@ Widget customTextField(
   String label,
   TextEditingController controller,
   TextInputType inputType,
+  bool password,
 ) {
   return TextField(
     controller: controller,
     keyboardType: inputType,
+    obscureText: password,
     decoration: InputDecoration(
       labelText: label,
       floatingLabelStyle: const TextStyle(

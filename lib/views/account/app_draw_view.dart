@@ -132,8 +132,9 @@ class _AppDrawViewState extends State<AppDrawView> {
                         }
                       }
                     },
-                    child: Text(
-                        draw.draw.length < 6 ? 'Tirage' : 'Voir le résultat'),
+                    child: Text(draw.draw.length < 6
+                        ? 'Lancer les pièces'
+                        : 'Voir le résultat'),
                   ),
                 ],
               ),

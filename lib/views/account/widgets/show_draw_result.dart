@@ -3,6 +3,7 @@ import 'package:yiking/services/firebase/yiking_data_fr/yiking_storage.dart';
 import 'package:yiking/utilities/yiking/yiking_draw.dart';
 import 'package:yiking/utilities/yiking/yiking_painter.dart';
 import 'package:yiking/views/account/widgets/custom_text_widget.dart';
+import 'package:yiking/views/account/widgets/explanation_container_widget.dart';
 
 Widget showDrawResult(
   YikingDraw yikingDraw,
@@ -33,18 +34,38 @@ Widget showDrawResult(
           switch (snapshot.connectionState) {
             case ConnectionState.done:
               return Card(
-                elevation: 9,
+                // color: const Color.fromARGB(255, 28, 29, 33),
+                // elevation: 1,
                 child: Padding(
                   padding: const EdgeInsets.all(12.0),
                   child: Column(
                     children: [
                       what == ''
-                          ? titleText('Hexagramme principal', fontSize: 30)
+                          ? titleText(
+                              'Hexagramme principal',
+                              fontSize: 30,
+                              color: const Color.fromARGB(255, 199, 197, 208),
+                            )
                           : what == 'mutate'
-                              ? titleText('Mutation', fontSize: 27)
+                              ? titleText(
+                                  'Mutation',
+                                  fontSize: 27,
+                                  color:
+                                      const Color.fromARGB(255, 199, 197, 208),
+                                )
                               : what == 'opposite'
-                                  ? titleText('Opposé', fontSize: 27)
-                                  : titleText('Nucléaire', fontSize: 27),
+                                  ? titleText(
+                                      'Opposé',
+                                      fontSize: 27,
+                                      color: const Color.fromARGB(
+                                          255, 199, 197, 208),
+                                    )
+                                  : titleText(
+                                      'Nucléaire',
+                                      fontSize: 27,
+                                      color: const Color.fromARGB(
+                                          255, 199, 197, 208),
+                                    ),
                       Padding(
                         padding: const EdgeInsets.all(24.0),
                         child: Row(
@@ -70,9 +91,13 @@ Widget showDrawResult(
                                 titleText(
                                   snapshot.data!.symbol,
                                   fontSize: 40.0,
+                                  color:
+                                      const Color.fromARGB(255, 199, 197, 208),
                                 ),
                                 titleText(
                                   snapshot.data!.name,
+                                  color:
+                                      const Color.fromARGB(255, 199, 197, 208),
                                 ),
                               ],
                             ),
@@ -84,16 +109,31 @@ Widget showDrawResult(
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            contentText(snapshot.data!.translate,
-                                textOverflow: null),
+                            contentText(
+                              snapshot.data!.translate,
+                              textOverflow: null,
+                              color: const Color.fromARGB(255, 199, 197, 208),
+                            ),
                             titleText(
                               snapshot.data!.yikingId.toString(),
+                              color: const Color.fromARGB(255, 199, 197, 208),
                             ),
                           ],
                         ),
                       ),
-                      titleText('Jugement', fontSize: 25),
-                      contentText(snapshot.data!.prophecy),
+                      titleText(
+                        'Jugement',
+                        fontSize: 25,
+                        color: const Color.fromARGB(255, 199, 197, 208),
+                      ),
+                      contentText(
+                        snapshot.data!.prophecy,
+                        color: const Color.fromARGB(255, 199, 197, 208),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      explanationContainer(snapshot.data!.prophecyExplanation),
                       if (what == '')
                         Column(
                           children: [
@@ -114,9 +154,19 @@ Widget showDrawResult(
                                         titleText(
                                           '${content[0]}: ',
                                           fontWeight: FontWeight.bold,
+                                          color: const Color.fromARGB(
+                                              255, 199, 197, 208),
                                         ),
                                         contentText(
                                           content[1],
+                                          color: const Color.fromARGB(
+                                              255, 199, 197, 208),
+                                        ),
+                                        const SizedBox(
+                                          height: 15,
+                                        ),
+                                        explanationContainer(
+                                          snapshot.data!.linesExplanation[id],
                                         ),
                                         const SizedBox(
                                           height: 10,

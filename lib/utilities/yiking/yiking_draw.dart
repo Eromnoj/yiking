@@ -97,14 +97,14 @@ class YikingDraw {
 
     //trigram definition 0 is Yin, 1 is Yang. Trigrams are in the same order as the axises from consult[][]
     final List<String> trigram = [
-      '111',
-      '011',
-      '101',
-      '110',
-      '000',
-      '100',
-      '010',
-      '001',
+      '111', // Sky
+      '011', // Wind
+      '101', // Fire
+      '110', // mist
+      '000', // Earth
+      '100', // Thunder
+      '010', // Water
+      '001', // Mountain
     ];
 
     List<int> convertTotrigram = [];

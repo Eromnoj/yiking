@@ -76,6 +76,7 @@ class _InsertDrawViewState extends State<InsertDrawView> {
                   Center(
                     child: Card(
                       elevation: 10,
+                      color: const Color.fromARGB(255, 199, 197, 208),
                       shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                       ),

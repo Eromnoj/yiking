@@ -70,6 +70,7 @@ class _RegisterViewState extends State<RegisterView> {
                       "Votre adresse email",
                       _emailField,
                       TextInputType.emailAddress,
+                      false,
                     ),
                     const SizedBox(
                       height: 10,
@@ -78,6 +79,7 @@ class _RegisterViewState extends State<RegisterView> {
                       "Mot de passe",
                       _passwordField,
                       TextInputType.visiblePassword,
+                      true,
                     ),
                     const SizedBox(
                       height: 10,

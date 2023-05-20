@@ -7,6 +7,7 @@ import 'package:yiking/utilities/dialogs/password_reset_dialog.dart';
 
 import '../../services/auth/bloc/auth_bloc.dart';
 import '../../services/auth/bloc/auth_state.dart';
+import '../account/widgets/custom_text_widget.dart';
 
 class RecoverView extends StatefulWidget {
   const RecoverView({super.key});
@@ -51,28 +52,49 @@ class _RecoverViewState extends State<RecoverView> {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
-            title: const Text('Recover email'),
+            title: titleText(
+              'Récupérer mon compte',
+              fontSize: 25,
+            ),
           ),
-          body: Column(children: [
-            const Text('Recover Email :'),
-            TextField(
-              controller: _emailField,
-              keyboardType: TextInputType.emailAddress,
+          body: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                titleText(
+                  'Créer un nouveau mot de passe',
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Column(
+                  children: [
+                    customTextField('Votre email', _emailField,
+                        TextInputType.emailAddress, false),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        context.read<AuthBloc>().add(
+                            AuthEventRecoverPassword(email: _emailField.text));
+                      },
+                      child: titleText('Envoyer le mail de renouvellement'),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 40,
+                ),
+                TextButton(
+                    onPressed: () {
+                      context.read<AuthBloc>().add(const AuthEventLogOut());
+                    },
+                    child: contentText('Retour à l\'écran de connexion'))
+              ],
             ),
-            ElevatedButton(
-              onPressed: () {
-                context
-                    .read<AuthBloc>()
-                    .add(AuthEventRecoverPassword(email: _emailField.text));
-              },
-              child: const Text('Récupérer mon mot de passe'),
-            ),
-            TextButton(
-                onPressed: () {
-                  context.read<AuthBloc>().add(const AuthEventLogOut());
-                },
-                child: const Text('Retour à l\'écran de connexion'))
-          ]),
+          ),
         );
       },
     );

@@ -14,7 +14,13 @@ class YiKingPainter extends CustomPainter {
     canvas.drawRRect(
       RRect.fromRectAndRadius(rect, const Radius.circular(10)),
       Paint()
-        ..color = const Color.fromARGB(255, 143, 22, 22)
+        ..color = const Color.fromARGB(255, 199, 197, 208)
+        ..style = PaintingStyle.fill,
+    );
+    canvas.drawRRect(
+      RRect.fromRectAndRadius(rect, const Radius.circular(10)),
+      Paint()
+        ..color = const Color.fromARGB(255, 34, 34, 43)
         ..style = PaintingStyle.stroke
         ..strokeWidth = 3,
     );

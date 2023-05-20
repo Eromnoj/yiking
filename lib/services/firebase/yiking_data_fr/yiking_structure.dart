@@ -7,10 +7,19 @@ class YikingStructure {
   final String translate;
   final String symbol;
   final String prophecy;
+  final String prophecyExplanation;
   final List lines;
+  final List linesExplanation;
 
-  YikingStructure(this.yikingId, this.name, this.translate, this.symbol,
-      this.prophecy, this.lines);
+  YikingStructure(
+      this.yikingId,
+      this.name,
+      this.translate,
+      this.symbol,
+      this.prophecy,
+      this.lines,
+      this.prophecyExplanation,
+      this.linesExplanation);
 
   YikingStructure.fromJson(Map<String, dynamic> json, int id)
       : yikingId = json[id][yikingIdField],
@@ -18,6 +27,8 @@ class YikingStructure {
         translate = json[id][translateField],
         symbol = json[id][symbolField],
         prophecy = json[id][prophecyField],
+        prophecyExplanation = json[id][prophecyExplanationField],
+        linesExplanation = json[id][linesExplanationField],
         lines = json[id][linesField];
 
   YikingStructure.fromSnapShot(
@@ -27,5 +38,7 @@ class YikingStructure {
         translate = snapshot.data()[translateField],
         symbol = snapshot.data()[symbolField],
         prophecy = snapshot.data()[prophecyField],
+        prophecyExplanation = snapshot.data()[prophecyExplanationField],
+        linesExplanation = snapshot.data()[linesExplanationField],
         lines = snapshot.data()[linesField];
 }
