@@ -43,28 +43,28 @@ Widget showDrawResult(
                       what == ''
                           ? titleText(
                               'Hexagramme principal',
-                              fontSize: 30,
-                              color: const Color.fromARGB(255, 199, 197, 208),
+                              // fontSize: 30,
+                              // color: const Color.fromARGB(255, 199, 197, 208),
                             )
                           : what == 'mutate'
                               ? titleText(
                                   'Mutation',
                                   fontSize: 27,
-                                  color:
-                                      const Color.fromARGB(255, 199, 197, 208),
+                                  // color:
+                                  //     const Color.fromARGB(255, 199, 197, 208),
                                 )
                               : what == 'opposite'
                                   ? titleText(
                                       'Opposé',
                                       fontSize: 27,
-                                      color: const Color.fromARGB(
-                                          255, 199, 197, 208),
+                                      // color: const Color.fromARGB(
+                                      //     255, 199, 197, 208),
                                     )
                                   : titleText(
                                       'Nucléaire',
                                       fontSize: 27,
-                                      color: const Color.fromARGB(
-                                          255, 199, 197, 208),
+                                      // color: const Color.fromARGB(
+                                      //     255, 199, 197, 208),
                                     ),
                       Padding(
                         padding: const EdgeInsets.all(24.0),
@@ -91,13 +91,13 @@ Widget showDrawResult(
                                 titleText(
                                   snapshot.data!.symbol,
                                   fontSize: 40.0,
-                                  color:
-                                      const Color.fromARGB(255, 199, 197, 208),
+                                  // color:
+                                  // const Color.fromARGB(255, 199, 197, 208),
                                 ),
                                 titleText(
                                   snapshot.data!.name,
-                                  color:
-                                      const Color.fromARGB(255, 199, 197, 208),
+                                  // color:
+                                  // const Color.fromARGB(255, 199, 197, 208),
                                 ),
                               ],
                             ),
@@ -112,11 +112,11 @@ Widget showDrawResult(
                             contentText(
                               snapshot.data!.translate,
                               textOverflow: null,
-                              color: const Color.fromARGB(255, 199, 197, 208),
+                              // color: const Color.fromARGB(255, 199, 197, 208),
                             ),
                             titleText(
                               snapshot.data!.yikingId.toString(),
-                              color: const Color.fromARGB(255, 199, 197, 208),
+                              // color: const Color.fromARGB(255, 199, 197, 208),
                             ),
                           ],
                         ),
@@ -124,11 +124,11 @@ Widget showDrawResult(
                       titleText(
                         'Jugement',
                         fontSize: 25,
-                        color: const Color.fromARGB(255, 199, 197, 208),
+                        // color: const Color.fromARGB(255, 199, 197, 208),
                       ),
                       contentText(
                         snapshot.data!.prophecy,
-                        color: const Color.fromARGB(255, 199, 197, 208),
+                        // color: const Color.fromARGB(255, 199, 197, 208),
                       ),
                       const SizedBox(
                         height: 20,
@@ -154,13 +154,13 @@ Widget showDrawResult(
                                         titleText(
                                           '${content[0]}: ',
                                           fontWeight: FontWeight.bold,
-                                          color: const Color.fromARGB(
-                                              255, 199, 197, 208),
+                                          // color: const Color.fromARGB(
+                                          //     255, 199, 197, 208),
                                         ),
                                         contentText(
                                           content[1],
-                                          color: const Color.fromARGB(
-                                              255, 199, 197, 208),
+                                          // color: const Color.fromARGB(
+                                          //     255, 199, 197, 208),
                                         ),
                                         const SizedBox(
                                           height: 15,

@@ -126,7 +126,7 @@ class _AppDrawViewState extends State<AppDrawView> {
                           );
                           if (context.mounted) {
                             Navigator.of(context).pushReplacementNamed(
-                                yikingDrawResultRoute,
+                                uniqueDrawRoute,
                                 arguments: result);
                           }
                         }

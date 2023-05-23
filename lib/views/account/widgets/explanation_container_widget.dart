@@ -10,6 +10,9 @@ Widget explanationContainer(String text) {
         color: Colors.black,
         style: BorderStyle.solid,
       ),
+      borderRadius: const BorderRadius.all(
+        Radius.circular(20),
+      ),
     ),
     child: Padding(
       padding: const EdgeInsets.all(12.0),

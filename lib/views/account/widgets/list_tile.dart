@@ -8,7 +8,7 @@ import 'package:yiking/services/firebase/draw/draw_structure.dart';
 import 'custom_text_widget.dart';
 
 Widget customListTile(
-    BuildContext context, DrawStorage draw, DrawStructure element, int index) {
+    BuildContext context, DrawStorage draw, DrawStructure element) {
   return GestureDetector(
       onTap: () {
         Navigator.of(context).pushNamed(
@@ -32,20 +32,17 @@ Widget customListTile(
                       width: MediaQuery.of(context).size.width / 1.3,
                       child: contentText(
                         element.question,
-                        color: const Color.fromARGB(255, 199, 197, 208),
                       ),
                     ),
                     contentText(
                       '${element.date.day} / ${element.date.month} / ${element.date.year}',
                       fontSize: 16,
-                      color: const Color.fromARGB(255, 199, 197, 208),
                     ),
                   ],
                 ),
                 IconButton(
                   icon: const Icon(
                     Icons.delete_outline,
-                    color: Color.fromARGB(255, 199, 197, 208),
                   ),
                   onPressed: () async {
                     await deleteDialog(context, element, draw);

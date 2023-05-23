@@ -10,7 +10,12 @@ Widget coinContainer(int coin, bool click, {pos = false}) {
         : const EdgeInsets.only(bottom: 0),
     decoration: BoxDecoration(
       shape: BoxShape.circle,
-      color: coin == 2 ? Colors.black : Colors.red,
+      color: Colors.transparent,
+      image: coin == 2
+          ? const DecorationImage(image: AssetImage('assets/img/coin/pile.png'))
+          : const DecorationImage(
+              image: AssetImage('assets/img/coin/face.png'),
+            ),
       // boxShadow: const [
       //   BoxShadow(
       //     blurRadius: 5,

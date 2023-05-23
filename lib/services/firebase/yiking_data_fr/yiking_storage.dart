@@ -6,7 +6,7 @@ import 'package:yiking/services/firebase/yiking_data_fr/yiking_structure.dart';
 class YikingStorage {
   final yiking = FirebaseFirestore.instance.collection('yiking_db');
 
-  Stream<Iterable<YikingStructure>> allYikings({required String userId}) =>
+  Stream<Iterable<YikingStructure>> allYikings() =>
       yiking.orderBy(yikingIdField).snapshots().map((event) =>
           event.docs.map((doc) => YikingStructure.fromSnapShot(doc)));
 

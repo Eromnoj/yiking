@@ -3,5 +3,5 @@ const uniqueDrawRoute = '/draws/unique/';
 const userAccountRoute = '/account/';
 const makeAYiKingDrawRoute = '/yiking/draw/';
 const insertAYiKingDrawRoute = '/yiking/insert/';
-const yikingDrawResultRoute = '/yiking/result/';
+const uniqueYikingRoute = '/yiking/unique/';
 const loginRoute = '/login/';

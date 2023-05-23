@@ -37,7 +37,7 @@ class _DrawListViewState extends State<DrawListView> {
                 itemCount: draws.length,
                 itemBuilder: (context, index) {
                   DrawStructure draw = draws.elementAt(index);
-                  return customListTile(context, _draw, draw, index);
+                  return customListTile(context, _draw, draw);
                 },
               );
             } else {

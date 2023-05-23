@@ -132,7 +132,7 @@ class _InsertDrawViewState extends State<InsertDrawView> {
                                   );
                                   if (context.mounted) {
                                     Navigator.of(context).pushReplacementNamed(
-                                        yikingDrawResultRoute,
+                                        uniqueDrawRoute,
                                         arguments: result);
                                   }
                                 }

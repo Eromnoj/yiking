@@ -1,13 +1,15 @@
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yiking/services/auth/auth_service.dart';
 import 'package:yiking/services/auth/auth_user.dart';
 import 'package:yiking/views/account/account_view.dart';
 import 'package:yiking/views/account/draw_list_view.dart';
+import 'package:yiking/views/account/full_yiking_view.dart';
 import 'package:yiking/views/account/new_draw_view.dart';
 import 'package:yiking/views/account/widgets/custom_text_widget.dart';
-import '../../services/auth/bloc/auth_bloc.dart';
-import '../../services/auth/bloc/auth_state.dart';
+import 'package:yiking/services/auth/bloc/auth_bloc.dart';
+import 'package:yiking/services/auth/bloc/auth_state.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -60,33 +62,35 @@ class _HomeViewState extends State<HomeView> {
             children: const [
               NewDrawView(),
               DrawListView(),
+              FullYikingView(),
               AccountView(),
             ],
           ),
-          bottomNavigationBar: ClipRRect(
-            borderRadius: const BorderRadius.only(
-              topLeft: Radius.elliptical(80, 40),
-              topRight: Radius.elliptical(80, 40),
-            ),
-            child: NavigationBar(
-              animationDuration: const Duration(milliseconds: 300),
-              destinations: const <Widget>[
-                NavigationDestination(
-                  icon: Icon(Icons.home),
-                  label: 'Accueil',
-                ),
-                NavigationDestination(
-                  icon: Icon(Icons.list),
-                  label: 'Mes tirages',
-                ),
-                NavigationDestination(
-                  icon: Icon(Icons.account_box),
-                  label: 'Mon compte',
-                ),
-              ],
-              onDestinationSelected: _onItemTapped,
-              selectedIndex: _seletedIndex,
-            ),
+          bottomNavigationBar: CurvedNavigationBar(
+            items: const [
+              Icon(
+                Icons.home,
+                color: Color.fromARGB(255, 179, 181, 238),
+              ),
+              Icon(
+                Icons.list_alt,
+                color: Color.fromARGB(255, 179, 181, 238),
+              ),
+              Icon(
+                Icons.import_contacts,
+                color: Color.fromARGB(255, 179, 181, 238),
+              ),
+              Icon(
+                Icons.account_box,
+                color: Color.fromARGB(255, 179, 181, 238),
+              ),
+            ],
+            onTap: _onItemTapped,
+            index: _seletedIndex,
+            backgroundColor: Colors.transparent,
+            color: const Color.fromARGB(255, 32, 32, 41),
+            height: 50,
+            animationDuration: const Duration(milliseconds: 300),
           ),
         );
       },
