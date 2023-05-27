@@ -130,4 +130,31 @@ class YikingDraw {
 
     return listIndex[trigram.indexOf(down)][trigram.indexOf(up)];
   }
+
+  List<String> getImageId({List<dynamic>? drawImage}) {
+    drawImage ??= draw;
+
+    List<int> convertTotrigram = [];
+    for (int element in drawImage) {
+      switch (element) {
+        case (6):
+          convertTotrigram.add(0);
+          break;
+        case 7:
+          convertTotrigram.add(1);
+          break;
+        case 8:
+          convertTotrigram.add(0);
+          break;
+        default:
+          convertTotrigram.add(1);
+          break;
+      }
+    }
+
+    String down = convertTotrigram.sublist(0, 3).join('');
+    String up = convertTotrigram.sublist(3).join('');
+
+    return [down, up];
+  }
 }

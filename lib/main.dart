@@ -33,9 +33,9 @@ void main() async {
           contentPadding: EdgeInsets.all(8),
           isCollapsed: true,
         ),
-        appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.transparent,
-        ),
+        // appBarTheme: const AppBarTheme(
+        //   backgroundColor: Colors.transparent,
+        // ),
         elevatedButtonTheme: const ElevatedButtonThemeData(
           style: ButtonStyle(
             elevation: MaterialStatePropertyAll(1.0),
@@ -54,9 +54,9 @@ void main() async {
           contentPadding: EdgeInsets.all(8),
           isCollapsed: true,
         ),
-        appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.transparent,
-        ),
+        // appBarTheme: const AppBarTheme(
+        //   backgroundColor: Colors.transparent,
+        // ),
         elevatedButtonTheme: const ElevatedButtonThemeData(
           style: ButtonStyle(
             elevation: MaterialStatePropertyAll(1.0),

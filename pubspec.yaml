@@ -70,6 +70,9 @@ flutter:
   assets:
     - assets/img/coin/face.png
     - assets/img/coin/pile.png
+    - assets/img/card/frame.png
+    - assets/img/card/back/
+    - assets/img/card/front/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

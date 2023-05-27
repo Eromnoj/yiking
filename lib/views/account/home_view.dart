@@ -88,7 +88,7 @@ class _HomeViewState extends State<HomeView> {
             onTap: _onItemTapped,
             index: _seletedIndex,
             backgroundColor: Colors.transparent,
-            color: const Color.fromARGB(255, 32, 32, 41),
+            color: const Color.fromARGB(255, 36, 35, 70),
             height: 50,
             animationDuration: const Duration(milliseconds: 300),
           ),
