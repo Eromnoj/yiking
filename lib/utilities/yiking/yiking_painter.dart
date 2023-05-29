@@ -9,24 +9,30 @@ class YiKingPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    size = containerSize;
-    Rect rect = const Offset(0, 0) & size;
-    canvas.drawRRect(
-      RRect.fromRectAndRadius(rect, const Radius.circular(5)),
-      Paint()
-        ..color = const Color.fromARGB(255, 240, 236, 236)
-        ..style = PaintingStyle.fill,
-    );
-    canvas.drawRRect(
-      RRect.fromRectAndRadius(rect, const Radius.circular(3)),
-      Paint()
-        ..color = const Color.fromARGB(255, 22, 22, 27)
-        ..style = PaintingStyle.stroke
-        ..strokeWidth = 2,
-    );
+    // size = containerSize;
+    // Rect rect = const Offset(0, 0) & size;
+    // canvas.drawRRect(
+    //   RRect.fromRectAndRadius(rect, const Radius.circular(5)),
+    //   Paint()
+    //     ..color = const Color.fromARGB(255, 240, 236, 236)
+    //     ..style = PaintingStyle.fill,
+    // );
+    // canvas.drawRRect(
+    //   RRect.fromRectAndRadius(rect, const Radius.circular(3)),
+    //   Paint()
+    //     ..color = const Color.fromARGB(255, 22, 22, 27)
+    //     ..style = PaintingStyle.stroke
+    //     ..strokeWidth = 2,
+    // );
 
     for (int i = 0; i < tirage.length; i++) {
       switch (tirage[i]) {
+        case 1:
+          _yang(canvas, i);
+          break;
+        case 0:
+          _yin(canvas, i);
+          break;
         case 6:
           _mYin(canvas, i);
           break;

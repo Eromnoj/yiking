@@ -9,8 +9,12 @@ import 'package:yiking/utilities/yiking/yiking_painter.dart';
 import 'package:yiking/services/auth/auth_service.dart';
 import 'package:yiking/services/auth/auth_user.dart';
 import 'package:yiking/services/firebase/draw/draw_storage.dart';
+import 'package:yiking/views/account/widgets/app_button_widget.dart';
+import 'package:yiking/views/account/widgets/custom_sliver_widget.dart';
 import 'package:yiking/views/account/widgets/custom_text_widget.dart';
 import 'package:yiking/views/account/widgets/yiking_button.dart';
+
+import '../../styles/path/background_clipper.dart';
 
 class InsertDrawView extends StatefulWidget {
   const InsertDrawView({super.key});
@@ -49,105 +53,183 @@ class _InsertDrawViewState extends State<InsertDrawView> {
     double height = width;
 
     return Scaffold(
-      appBar: AppBar(
-        title: titleText(
-          'Nouveau tirage',
-          fontSize: 35,
-        ),
-      ),
-      body: LayoutBuilder(
-        builder: (context, constraint) {
-          return SingleChildScrollView(
-            child: ConstrainedBox(
-              constraints: BoxConstraints(minHeight: constraint.maxHeight),
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  ElevatedButton(
-                    onPressed: () async {
-                      await questionDialog(context, _questionField);
-                    },
-                    child: const Text(
-                      'Changer la question',
-                    ),
-                  ),
-                  contentText(_questionField.text),
-                  Center(
-                    child: Card(
-                      elevation: 10,
-                      color: const Color.fromARGB(255, 199, 197, 208),
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
+      body: CustomScrollView(
+        slivers: [
+          customAppBarSliver('Nouveau tirage', context),
+          SliverToBoxAdapter(
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                const SizedBox(
+                  height: 40,
+                ),
+                titleText('Ma question :'),
+                GestureDetector(
+                  onTap: () async {
+                    await questionDialog(context, _questionField);
+                  },
+                  child: Stack(
+                    alignment: AlignmentDirectional.center,
+                    children: [
+                      ClipPath(
+                        clipper: BackgroundClipperLineTitle(),
+                        child: Container(
+                          height: 50,
+                          width: MediaQuery.of(context).size.width * 0.85,
+                          decoration: BoxDecoration(
+                              gradient: LinearGradient(colors: [
+                            Colors.red.shade200,
+                            Colors.pink.shade300,
+                          ])),
+                        ),
                       ),
-                      child: CustomPaint(
+                      contentText(
+                        _questionField.text,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                        textAlign: TextAlign.center,
+                        shadow: [
+                          const Shadow(
+                            color: Colors.white,
+                            blurRadius: 7,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Center(
+                  child: Stack(
+                    alignment: AlignmentDirectional.center,
+                    children: [
+                      ClipPath(
+                        clipper: BackgroundClipperHexagram(),
+                        child: Container(
+                          height: height,
+                          width: width,
+                          decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                  colors: [
+                                Colors.amber,
+                                Colors.yellow.shade600,
+                              ])),
+                        ),
+                      ),
+                      CustomPaint(
                         painter: YiKingPainter(draw, Size(width, height)),
                         child: SizedBox(
                           height: height,
                           width: width,
                         ),
                       ),
-                    ),
+                    ],
                   ),
-                  Container(
-                    child: draw.length < 6
-                        ? Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      yikingButton(6, draw, setState, context),
-                                      yikingButton(7, draw, setState, context),
-                                    ],
-                                  ),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  child: draw.length < 6
+                      ? Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    yikingButton(
+                                      6,
+                                      () {
+                                        setState(() {
+                                          draw.add(6);
+                                        });
+                                      },
+                                    ),
+                                    yikingButton(
+                                      7,
+                                      () {
+                                        setState(() {
+                                          draw.add(7);
+                                        });
+                                      },
+                                    ),
+                                  ],
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      yikingButton(8, draw, setState, context),
-                                      yikingButton(9, draw, setState, context),
-                                    ],
-                                  ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    yikingButton(
+                                      8,
+                                      () {
+                                        setState(() {
+                                          draw.add(8);
+                                        });
+                                      },
+                                    ),
+                                    yikingButton(
+                                      9,
+                                      () {
+                                        setState(() {
+                                          draw.add(9);
+                                        });
+                                      },
+                                    ),
+                                  ],
                                 ),
-                              ])
-                        : Padding(
-                            padding: const EdgeInsets.all(36.0),
-                            child: ElevatedButton(
-                              onPressed: () async {
-                                if (_questionField.text.isEmpty) {
-                                  await questionDialog(context, _questionField);
-                                } else {
-                                  result = await _draw.createNewDraw(
-                                    userId: currentUser!.id,
-                                    date: DateTime.now(),
-                                    question: _questionField.text,
-                                    draw: draw,
-                                  );
-                                  if (context.mounted) {
-                                    Navigator.of(context).pushReplacementNamed(
-                                        uniqueDrawRoute,
-                                        arguments: result);
-                                  }
+                              ),
+                            ])
+                      : Padding(
+                          padding: const EdgeInsets.all(36.0),
+                          child: CustomButtonAnimated(
+                            onTap: () async {
+                              if (_questionField.text.isEmpty) {
+                                await questionDialog(context, _questionField);
+                              } else {
+                                result = await _draw.createNewDraw(
+                                  userId: currentUser!.id,
+                                  date: DateTime.now(),
+                                  question: _questionField.text,
+                                  draw: draw,
+                                );
+                                if (context.mounted) {
+                                  Navigator.of(context).pushReplacementNamed(
+                                      uniqueDrawRoute,
+                                      arguments: result);
                                 }
-                              },
-                              child: Text(draw.length < 6
-                                  ? 'Tirage'
-                                  : 'Voir le résultat'),
+                              }
+                            },
+                            width: 240,
+                            height: 40,
+                            child: titleText(
+                              'Voir le résultat',
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                              shadow: [
+                                const Shadow(
+                                  color: Colors.white,
+                                  blurRadius: 7,
+                                ),
+                              ],
                             ),
                           ),
-                  ),
-                ],
-              ),
+                        ),
+                ),
+              ],
             ),
-          );
-        },
+          ),
+        ],
       ),
     );
   }

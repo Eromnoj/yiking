@@ -3,7 +3,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:yiking/routes/constants_routes.dart';
 import 'package:yiking/services/firebase/draw/draw_structure.dart';
+import 'package:yiking/styles/path/background_clipper.dart';
 import 'package:yiking/utilities/yiking/yiking_draw.dart';
+import 'package:yiking/views/account/widgets/app_button_widget.dart';
 import 'package:yiking/views/account/widgets/coin_container.dart';
 import 'package:yiking/utilities/dialogs/question_dialog.dart';
 import 'package:yiking/utilities/yiking/yiking_painter.dart';
@@ -11,6 +13,7 @@ import 'package:yiking/utilities/yiking/yiking_painter.dart';
 import 'package:yiking/services/auth/auth_service.dart';
 import 'package:yiking/services/auth/auth_user.dart';
 import 'package:yiking/services/firebase/draw/draw_storage.dart';
+import 'package:yiking/views/account/widgets/custom_sliver_widget.dart';
 import 'package:yiking/views/account/widgets/custom_text_widget.dart';
 
 class AppDrawView extends StatefulWidget {
@@ -54,94 +57,158 @@ class _AppDrawViewState extends State<AppDrawView> {
     double height = width;
 
     return Scaffold(
-      appBar: AppBar(
-        title: titleText(
-          'Nouveau tirage',
-          fontSize: 35,
-        ),
-      ),
-      body: LayoutBuilder(
-        builder: (context, constraint) {
-          return SingleChildScrollView(
-            child: ConstrainedBox(
-              constraints: BoxConstraints(minHeight: constraint.maxHeight),
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
+        body: CustomScrollView(
+      slivers: [
+        customAppBarSliver('Nouveau tirage', context),
+        SliverToBoxAdapter(
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              const SizedBox(
+                height: 40,
+              ),
+              titleText('Ma question :'),
+              GestureDetector(
+                onTap: () async {
+                  await questionDialog(context, _questionField);
+                },
+                child: Stack(
+                  alignment: AlignmentDirectional.center,
+                  children: [
+                    ClipPath(
+                      clipper: BackgroundClipperLineTitle(),
+                      child: Container(
+                        height: 50,
+                        width: MediaQuery.of(context).size.width * 0.85,
+                        decoration: BoxDecoration(
+                            gradient: LinearGradient(colors: [
+                          Colors.red.shade200,
+                          Colors.pink.shade300,
+                        ])),
+                      ),
+                    ),
+                    contentText(
+                      _questionField.text,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                      textAlign: TextAlign.center,
+                      shadow: [
+                        const Shadow(
+                          color: Colors.white,
+                          blurRadius: 7,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Center(
+                child: Stack(
+                  alignment: AlignmentDirectional.center,
+                  children: [
+                    ClipPath(
+                      clipper: BackgroundClipperHexagram(),
+                      child: Container(
+                        height: height,
+                        width: width,
+                        decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                colors: [
+                              Colors.amber,
+                              Colors.yellow.shade600,
+                            ])),
+                      ),
+                    ),
+                    CustomPaint(
+                      painter: YiKingPainter(draw.draw, Size(width, height)),
+                      child: SizedBox(
+                        height: height,
+                        width: width,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  ElevatedButton(
-                    onPressed: () async {
-                      await questionDialog(context, _questionField);
-                    },
-                    child: const Text(
-                      'Changer la question',
-                    ),
-                  ),
-                  contentText(_questionField.text),
-                  Center(
-                    child: Card(
-                      elevation: 10,
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                      ),
-                      child: CustomPaint(
-                        painter: YiKingPainter(draw.draw, Size(width, height)),
-                        child: SizedBox(
-                          height: height,
-                          width: width,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      coinContainer(draw.coin1, click),
-                      coinContainer(draw.coin2, click, pos: true),
-                      coinContainer(draw.coin3, click),
-                    ],
-                  ),
-                  ElevatedButton(
-                    onPressed: () async {
-                      if (draw.draw.length < 6) {
-                        setState(() {
-                          click = false;
-                        });
-                        Timer(
-                          const Duration(milliseconds: 800),
-                          () => setState(() {
-                            draw.chance();
-                            click = true;
-                          }),
-                        );
-                      } else {
-                        if (_questionField.text.isEmpty) {
-                          await questionDialog(context, _questionField);
-                        } else {
-                          result = await _draw.createNewDraw(
-                            userId: currentUser!.id,
-                            date: DateTime.now(),
-                            question: _questionField.text,
-                            draw: draw.draw,
-                          );
-                          if (context.mounted) {
-                            Navigator.of(context).pushReplacementNamed(
-                                uniqueDrawRoute,
-                                arguments: result);
-                          }
-                        }
-                      }
-                    },
-                    child: Text(draw.draw.length < 6
-                        ? 'Lancer les pièces'
-                        : 'Voir le résultat'),
-                  ),
+                  coinContainer(draw.coin1, click),
+                  coinContainer(draw.coin2, click, pos: true),
+                  coinContainer(draw.coin3, click),
                 ],
               ),
-            ),
-          );
-        },
-      ),
-    );
+              const SizedBox(
+                height: 20,
+              ),
+              CustomButtonAnimated(
+                  onTap: () async {
+                    if (draw.draw.length < 6) {
+                      setState(() {
+                        click = false;
+                      });
+                      Timer(
+                        const Duration(milliseconds: 800),
+                        () => setState(() {
+                          draw.chance();
+                          click = true;
+                        }),
+                      );
+                    } else {
+                      if (_questionField.text.isEmpty) {
+                        await questionDialog(context, _questionField);
+                      } else {
+                        result = await _draw.createNewDraw(
+                          userId: currentUser!.id,
+                          date: DateTime.now(),
+                          question: _questionField.text,
+                          draw: draw.draw,
+                        );
+                        if (context.mounted) {
+                          Navigator.of(context).pushReplacementNamed(
+                              uniqueDrawRoute,
+                              arguments: result);
+                        }
+                      }
+                    }
+                  },
+                  width: 240,
+                  height: 40,
+                  child: draw.draw.length < 6
+                      ? titleText(
+                          'Lancer les pièces',
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          shadow: [
+                            const Shadow(
+                              color: Colors.white,
+                              blurRadius: 7,
+                            ),
+                          ],
+                        )
+                      : titleText(
+                          'Voir le résultat',
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          shadow: [
+                            const Shadow(
+                              color: Colors.white,
+                              blurRadius: 7,
+                            ),
+                          ],
+                        )),
+            ],
+          ),
+        ),
+      ],
+    ));
   }
 }

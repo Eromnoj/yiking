@@ -68,20 +68,19 @@ Widget lineTitleText(
   );
 }
 
-Widget contentText(
-  String text, {
-  double fontSize = 17,
-  Color? color,
-  double padding = 4,
-  FontWeight fontWeight = FontWeight.normal,
-  TextOverflow? textOverflow,
-  List<Shadow>? shadow,
-}) {
+Widget contentText(String text,
+    {double fontSize = 17,
+    Color? color,
+    double padding = 4,
+    FontWeight fontWeight = FontWeight.normal,
+    TextOverflow? textOverflow,
+    List<Shadow>? shadow,
+    TextAlign textAlign = TextAlign.left}) {
   return Padding(
     padding: EdgeInsets.all(padding),
     child: Text(
       text,
-      textAlign: TextAlign.left,
+      textAlign: textAlign,
       style: TextStyle(
         fontSize: fontSize,
         color: color ?? color,

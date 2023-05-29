@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yiking/services/firebase/draw/draw_structure.dart';
+import 'package:yiking/views/account/widgets/custom_sliver_widget.dart';
 import 'package:yiking/views/account/widgets/list_tile.dart';
 
 import 'package:yiking/services/auth/auth_service.dart';
@@ -33,12 +34,27 @@ class _DrawListViewState extends State<DrawListView> {
           case ConnectionState.active:
             if (snapshot.hasData) {
               final draws = snapshot.data as Iterable<DrawStructure>;
-              return ListView.builder(
-                itemCount: draws.length,
-                itemBuilder: (context, index) {
-                  DrawStructure draw = draws.elementAt(index);
-                  return customListTile(context, _draw, draw);
-                },
+              return CustomScrollView(
+                slivers: [
+                  customAppBarSliver('Mes tirages', context),
+                  const SliverToBoxAdapter(
+                    child: SizedBox(
+                      height: 30,
+                    ),
+                  ),
+                  SliverList.builder(
+                    itemCount: draws.length,
+                    itemBuilder: (context, index) {
+                      DrawStructure draw = draws.elementAt(index);
+                      return customListTile(context, _draw, draw, index);
+                    },
+                  ),
+                  const SliverToBoxAdapter(
+                    child: SizedBox(
+                      height: 60,
+                    ),
+                  ),
+                ],
               );
             } else {
               return const CircularProgressIndicator();

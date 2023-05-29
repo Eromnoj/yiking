@@ -6,6 +6,7 @@ import 'package:yiking/utilities/yiking/yiking_painter.dart';
 import 'package:yiking/views/account/widgets/custom_text_widget.dart';
 import 'package:yiking/views/account/widgets/explanation_container_widget.dart';
 import 'package:yiking/views/account/widgets/mutate_line_widget.dart';
+import 'package:yiking/views/account/widgets/yiking_card_widget.dart';
 
 Widget showDrawResult(
   YikingDraw yikingDraw,
@@ -36,7 +37,7 @@ Widget showDrawResult(
       firstColor = Colors.green;
       secondColor = Colors.teal;
   }
-  yikingCard = yikingDraw.getImageId(drawImage: draw);
+  yikingCard = yikingDraw.getImageById(yikingDraw.getIndex(drawIndex: draw));
 
   YiKingPainter mainHexagram = YiKingPainter(
     draw,
@@ -83,15 +84,33 @@ Widget showDrawResult(
                             ? titleText(
                                 'Hexagramme principal',
                                 fontSize: 27,
+                                shadow: [
+                                  const Shadow(
+                                    color: Colors.white,
+                                    blurRadius: 7,
+                                  ),
+                                ],
                               )
                             : what == 'opposite'
                                 ? titleText(
                                     'Opposé',
                                     fontSize: 27,
+                                    shadow: [
+                                      const Shadow(
+                                        color: Colors.white,
+                                        blurRadius: 7,
+                                      ),
+                                    ],
                                   )
                                 : titleText(
                                     'Nucléaire',
                                     fontSize: 27,
+                                    shadow: [
+                                      const Shadow(
+                                        color: Colors.white,
+                                        blurRadius: 7,
+                                      ),
+                                    ],
                                   ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -108,87 +127,14 @@ Widget showDrawResult(
                           ],
                         ),
                         // Display card with a stack
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width / 1.4,
-                          child: Stack(
-                            children: [
-                              Image.asset(
-                                'assets/img/card/back/${yikingCard[1]}-back.png',
-                                fit: BoxFit.cover,
-                              ),
-                              Image.asset(
-                                'assets/img/card/front/${yikingCard[0]}-front.png',
-                                fit: BoxFit.cover,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                  left: 38,
-                                  right: 38,
-                                  top: 20,
-                                ),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Container(
-                                      decoration: const BoxDecoration(
-                                        color: Color(0xFFFFFFFF),
-                                        borderRadius: BorderRadius.all(
-                                          Radius.circular(10),
-                                        ),
-                                      ),
-                                      child: CustomPaint(
-                                        painter: mainHexagram,
-                                        child: SizedBox(
-                                          height: height / 3,
-                                          width: width / 3,
-                                        ),
-                                      ),
-                                    ),
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        titleText(
-                                          snapshot.data!.symbol,
-                                          fontSize: 45.0,
-                                          fontWeight: FontWeight.bold,
-                                          padding: 0,
-                                          color: const Color.fromARGB(
-                                              255, 177, 178, 224),
-                                          shadow: [
-                                            const Shadow(
-                                              color: Color.fromARGB(
-                                                  255, 19, 19, 39),
-                                              blurRadius: 5,
-                                            ),
-                                          ],
-                                        ),
-                                        titleText(
-                                          snapshot.data!.name,
-                                          fontWeight: FontWeight.bold,
-                                          padding: 0,
-                                          color: const Color.fromARGB(
-                                              255, 171, 173, 229),
-                                          shadow: [
-                                            const Shadow(
-                                              color: Color.fromARGB(
-                                                  255, 34, 34, 70),
-                                              blurRadius: 5,
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Image.asset(
-                                'assets/img/card/frame.png',
-                                fit: BoxFit.cover,
-                              ),
-                            ],
-                          ),
+                        yikingCardWidget(
+                          context,
+                          yikingCard,
+                          snapshot.data!.symbol,
+                          snapshot.data!.name,
+                          mainHexagram,
+                          height,
+                          width,
                         ),
                         const SizedBox(
                           height: 15,
@@ -201,6 +147,12 @@ Widget showDrawResult(
                               titleText(
                                 'Jugement',
                                 fontSize: 25,
+                                shadow: [
+                                  const Shadow(
+                                    color: Colors.white,
+                                    blurRadius: 7,
+                                  ),
+                                ],
                               ),
                               contentText(
                                 snapshot.data!.prophecy,
@@ -213,30 +165,9 @@ Widget showDrawResult(
                         ),
                         Padding(
                           padding: const EdgeInsets.all(16.0),
-                          child: Stack(
-                            alignment: AlignmentDirectional.centerEnd,
-                            children: [
-                              ClipPath(
-                                clipper: BackgroundClipperExplanation(),
-                                child: Container(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.9,
-                                  height: MediaQuery.of(context).size.width / 3,
-                                  decoration: const BoxDecoration(
-                                    gradient: LinearGradient(
-                                      begin: Alignment.topCenter,
-                                      end: Alignment.bottomRight,
-                                      colors: [
-                                        Colors.greenAccent,
-                                        Colors.amber,
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              explanationContainer(
-                                  snapshot.data!.prophecyExplanation),
-                            ],
+                          child: explanationContainer(
+                            snapshot.data!.prophecyExplanation,
+                            context,
                           ),
                         ),
                         if (what == '')

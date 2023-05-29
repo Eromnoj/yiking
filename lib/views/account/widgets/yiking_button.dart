@@ -1,28 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:yiking/utilities/yiking/button_painter.dart';
+import 'package:yiking/views/account/widgets/app_button_widget.dart';
+import 'package:yiking/views/account/widgets/custom_text_widget.dart';
 
 Widget yikingButton(
-    int line, List<dynamic> draw, Function setState, BuildContext context) {
-  return Column(
-    children: [
-      GestureDetector(
-        onTap: () {
-          setState(() {
-            draw.add(line);
-          });
-        },
-        child: CustomPaint(
-          painter: ButtonPainter(
-              line,
-              Size((MediaQuery.of(context).size.width / 3),
-                  (MediaQuery.of(context).size.width / 9))),
-          child: SizedBox(
-            width: (MediaQuery.of(context).size.width / 3),
-            height: (MediaQuery.of(context).size.width / 9),
+  int line,
+  Function onTap,
+) {
+  return SizedBox(
+    width: 140,
+    height: 75,
+    child: Column(
+      children: [
+        CustomButtonAnimated(
+          onTap: onTap,
+          width: 140,
+          height: 40,
+          child: CustomPaint(
+            painter: ButtonPainter(line, const Size(140, 30)),
+            child: const SizedBox(
+              width: 140,
+              height: 30,
+            ),
           ),
         ),
-      ),
-      Text("(${line.toString()})"),
-    ],
+        contentText('(${line.toString()})'),
+      ],
+    ),
   );
 }

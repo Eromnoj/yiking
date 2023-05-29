@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:yiking/views/account/widgets/app_button_widget.dart';
+import 'package:yiking/views/account/widgets/custom_text_widget.dart';
 
 Future<void> questionDialog(
     BuildContext context, TextEditingController textController) {
@@ -7,7 +9,7 @@ Future<void> questionDialog(
     barrierDismissible: false,
     builder: (context) {
       return SimpleDialog(
-        title: const Text('Posez votre question'),
+        title: titleText('Posez votre question'),
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -19,11 +21,24 @@ Future<void> questionDialog(
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: const Text('OK')),
+            child: CustomButtonAnimated(
+              onTap: () {
+                Navigator.of(context).pop();
+              },
+              width: 300,
+              height: 50,
+              child: titleText(
+                'OK',
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
+                shadow: [
+                  const Shadow(
+                    color: Colors.white,
+                    blurRadius: 7,
+                  ),
+                ],
+              ),
+            ),
           )
         ],
       );

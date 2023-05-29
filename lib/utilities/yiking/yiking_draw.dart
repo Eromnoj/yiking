@@ -131,30 +131,38 @@ class YikingDraw {
     return listIndex[trigram.indexOf(down)][trigram.indexOf(up)];
   }
 
-  List<String> getImageId({List<dynamic>? drawImage}) {
-    drawImage ??= draw;
+  List<String> getImageById(int hexaId) {
+    final List<List<int>> listIndex = [
+      [1, 9, 14, 43, 11, 34, 5, 26],
+      [44, 57, 50, 28, 46, 32, 48, 18],
+      [13, 37, 30, 49, 36, 55, 63, 22],
+      [10, 61, 38, 58, 19, 54, 60, 41],
+      [12, 20, 35, 45, 2, 16, 8, 23],
+      [25, 42, 21, 17, 24, 51, 3, 27],
+      [6, 59, 64, 47, 7, 40, 29, 4],
+      [33, 53, 56, 31, 15, 62, 39, 52],
+    ];
 
-    List<int> convertTotrigram = [];
-    for (int element in drawImage) {
-      switch (element) {
-        case (6):
-          convertTotrigram.add(0);
-          break;
-        case 7:
-          convertTotrigram.add(1);
-          break;
-        case 8:
-          convertTotrigram.add(0);
-          break;
-        default:
-          convertTotrigram.add(1);
-          break;
+    final List<String> trigram = [
+      '111', // Sky
+      '011', // Wind
+      '101', // Fire
+      '110', // mist
+      '000', // Earth
+      '100', // Thunder
+      '010', // Water
+      '001', // Mountain
+    ];
+
+    late String down;
+    late String up;
+
+    for (int i = 0; i < listIndex.length; i++) {
+      if (listIndex[i].contains(hexaId)) {
+        down = trigram[i];
+        up = trigram[listIndex[i].indexOf(hexaId)];
       }
     }
-
-    String down = convertTotrigram.sublist(0, 3).join('');
-    String up = convertTotrigram.sublist(3).join('');
-
     return [down, up];
   }
 }

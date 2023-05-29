@@ -16,12 +16,6 @@ Widget coinContainer(int coin, bool click, {pos = false}) {
           : const DecorationImage(
               image: AssetImage('assets/img/coin/face.png'),
             ),
-      // boxShadow: const [
-      //   BoxShadow(
-      //     blurRadius: 5,
-      //     blurStyle: BlurStyle.outer,
-      //   ),
-      // ],
     ),
     height: 80,
     width: 80,

@@ -25,45 +25,19 @@ void main() async {
         useMaterial3: true,
         fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
         colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color.fromARGB(255, 15, 13, 133),
+          seedColor: const Color.fromARGB(255, 196, 74, 18),
           brightness: Brightness.light,
-          // surfaceTint: Colors.transparent,
         ),
         inputDecorationTheme: const InputDecorationTheme(
           contentPadding: EdgeInsets.all(8),
           isCollapsed: true,
         ),
-        // appBarTheme: const AppBarTheme(
-        //   backgroundColor: Colors.transparent,
-        // ),
         elevatedButtonTheme: const ElevatedButtonThemeData(
           style: ButtonStyle(
             elevation: MaterialStatePropertyAll(1.0),
           ),
         ),
       ),
-      darkTheme: ThemeData(
-        useMaterial3: true,
-        fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color.fromARGB(255, 15, 13, 133),
-          brightness: Brightness.dark,
-          // surfaceTint: Colors.transparent,
-        ),
-        inputDecorationTheme: const InputDecorationTheme(
-          contentPadding: EdgeInsets.all(8),
-          isCollapsed: true,
-        ),
-        // appBarTheme: const AppBarTheme(
-        //   backgroundColor: Colors.transparent,
-        // ),
-        elevatedButtonTheme: const ElevatedButtonThemeData(
-          style: ButtonStyle(
-            elevation: MaterialStatePropertyAll(1.0),
-          ),
-        ),
-      ),
-      themeMode: ThemeMode.system,
       routes: {
         uniqueDrawRoute: (context) => const UniqueDrawView(),
         makeAYiKingDrawRoute: (context) => const AppDrawView(),

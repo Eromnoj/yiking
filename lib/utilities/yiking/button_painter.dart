@@ -10,20 +10,6 @@ class ButtonPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     size = containerSize;
-    Rect rect = const Offset(0, 0) & size;
-    canvas.drawRRect(
-      RRect.fromRectAndRadius(rect, const Radius.circular(10)),
-      Paint()
-        ..color = const Color.fromARGB(255, 199, 197, 208)
-        ..style = PaintingStyle.fill,
-    );
-    canvas.drawRRect(
-      RRect.fromRectAndRadius(rect, const Radius.circular(10)),
-      Paint()
-        ..color = const Color.fromARGB(255, 34, 34, 43)
-        ..style = PaintingStyle.stroke
-        ..strokeWidth = 3,
-    );
 
     switch (select) {
       case 6:

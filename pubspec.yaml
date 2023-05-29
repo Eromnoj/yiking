@@ -73,6 +73,7 @@ flutter:
     - assets/img/card/frame.png
     - assets/img/card/back/
     - assets/img/card/front/
+    - assets/img/icons/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

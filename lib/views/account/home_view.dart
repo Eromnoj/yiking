@@ -7,7 +7,6 @@ import 'package:yiking/views/account/account_view.dart';
 import 'package:yiking/views/account/draw_list_view.dart';
 import 'package:yiking/views/account/full_yiking_view.dart';
 import 'package:yiking/views/account/new_draw_view.dart';
-import 'package:yiking/views/account/widgets/custom_text_widget.dart';
 import 'package:yiking/services/auth/bloc/auth_bloc.dart';
 import 'package:yiking/services/auth/bloc/auth_state.dart';
 
@@ -49,12 +48,6 @@ class _HomeViewState extends State<HomeView> {
     return BlocBuilder<AuthBloc, AuthState>(
       builder: (context, state) {
         return Scaffold(
-          appBar: AppBar(
-            title: titleText(
-              'Mon Carnet Yi-King',
-              fontSize: 25,
-            ),
-          ),
           extendBody: true,
           body: PageView(
             controller: _pageController,
@@ -67,28 +60,28 @@ class _HomeViewState extends State<HomeView> {
             ],
           ),
           bottomNavigationBar: CurvedNavigationBar(
-            items: const [
-              Icon(
-                Icons.home,
-                color: Color.fromARGB(255, 179, 181, 238),
+            items: [
+              const ImageIcon(
+                AssetImage('assets/img/icons/coin_icon.png'),
+                color: Colors.red,
               ),
-              Icon(
-                Icons.list_alt,
-                color: Color.fromARGB(255, 179, 181, 238),
+              ImageIcon(
+                const AssetImage('assets/img/icons/list_icon.png'),
+                color: Colors.amber.shade900,
               ),
-              Icon(
-                Icons.import_contacts,
-                color: Color.fromARGB(255, 179, 181, 238),
+              ImageIcon(
+                const AssetImage('assets/img/icons/yiking_icon.png'),
+                color: Colors.orange.shade400,
               ),
-              Icon(
-                Icons.account_box,
-                color: Color.fromARGB(255, 179, 181, 238),
+              ImageIcon(
+                const AssetImage('assets/img/icons/question_icon.png'),
+                color: Colors.yellow.shade700,
               ),
             ],
             onTap: _onItemTapped,
             index: _seletedIndex,
             backgroundColor: Colors.transparent,
-            color: const Color.fromARGB(255, 36, 35, 70),
+            color: const Color.fromARGB(255, 250, 236, 211),
             height: 50,
             animationDuration: const Duration(milliseconds: 300),
           ),

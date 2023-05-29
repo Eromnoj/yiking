@@ -72,9 +72,7 @@ Widget mutateLine(List<dynamic> draw, int id, List<String> content,
                     ),
                   ),
                 ),
-                explanationContainer(
-                  lineExplanation,
-                ),
+                explanationContainer(lineExplanation, context, mutate: true),
               ],
             ),
           ),
@@ -114,17 +112,29 @@ Widget mutateLine(List<dynamic> draw, int id, List<String> content,
                   }
                 },
               ),
-              Container(
-                decoration: const BoxDecoration(
-                    color: Color(0xFFFFFFFF),
-                    borderRadius: BorderRadius.all(Radius.circular(10))),
-                child: CustomPaint(
-                  painter: lineHexagram,
-                  child: SizedBox(
-                    height: height / 3,
-                    width: width / 3,
+              Stack(
+                alignment: AlignmentDirectional.center,
+                children: [
+                  ClipPath(
+                    clipper: BackgroundClipperHexagram(),
+                    child: Container(
+                      height: height / 3,
+                      width: width / 3,
+                      decoration: BoxDecoration(
+                          gradient: LinearGradient(colors: [
+                        Colors.amber,
+                        Colors.yellow.shade600,
+                      ])),
+                    ),
                   ),
-                ),
+                  CustomPaint(
+                    painter: lineHexagram,
+                    child: SizedBox(
+                      height: height / 3,
+                      width: width / 3,
+                    ),
+                  ),
+                ],
               ),
             ],
           ),

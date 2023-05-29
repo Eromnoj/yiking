@@ -1,10 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:yiking/services/auth/auth_service.dart';
+import 'package:yiking/services/auth/auth_user.dart';
 import 'package:yiking/services/firebase/draw/draw_constants.dart';
 import 'package:yiking/services/firebase/draw/draw_exceptions.dart';
 import 'package:yiking/services/firebase/draw/draw_structure.dart';
 
 class DrawStorage {
   final draws = FirebaseFirestore.instance.collection('draws');
+
+  final AuthUser user = AuthService().currentUser!;
 
   Future<void> deleteNote({required String documentId}) async {
     try {
@@ -14,11 +18,11 @@ class DrawStorage {
     }
   }
 
-  Stream<Iterable<DrawStructure>> allDraws({required String userId}) =>
-      draws.orderBy(dateField, descending: true).snapshots().map((event) =>
-          event.docs.map((doc) => DrawStructure.fromSnapShot(doc)).where(
-                (draw) => draw.userId == userId,
-              ));
+  Stream<Iterable<DrawStructure>> allDraws({required String userId}) => draws
+      .orderBy(dateField, descending: true)
+      .where(ownedUserIdField, isEqualTo: user.id)
+      .snapshots()
+      .map((event) => event.docs.map((doc) => DrawStructure.fromSnapShot(doc)));
 
   Future<DrawStructure> createNewDraw({
     required String userId,
