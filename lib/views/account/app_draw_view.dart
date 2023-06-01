@@ -5,16 +5,16 @@ import 'package:yiking/routes/constants_routes.dart';
 import 'package:yiking/services/firebase/draw/draw_structure.dart';
 import 'package:yiking/styles/path/background_clipper.dart';
 import 'package:yiking/utilities/yiking/yiking_draw.dart';
-import 'package:yiking/views/account/widgets/app_button_widget.dart';
-import 'package:yiking/views/account/widgets/coin_container.dart';
+import 'package:yiking/views/widgets/app_button_widget.dart';
+import 'package:yiking/views/widgets/coin_container.dart';
 import 'package:yiking/utilities/dialogs/question_dialog.dart';
 import 'package:yiking/utilities/yiking/yiking_painter.dart';
 
 import 'package:yiking/services/auth/auth_service.dart';
 import 'package:yiking/services/auth/auth_user.dart';
 import 'package:yiking/services/firebase/draw/draw_storage.dart';
-import 'package:yiking/views/account/widgets/custom_sliver_widget.dart';
-import 'package:yiking/views/account/widgets/custom_text_widget.dart';
+import 'package:yiking/views/widgets/custom_sliver_widget.dart';
+import 'package:yiking/views/widgets/custom_text_widget.dart';
 
 class AppDrawView extends StatefulWidget {
   const AppDrawView({super.key});

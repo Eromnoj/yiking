@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yiking/services/firebase/draw/draw_structure.dart';
-import 'package:yiking/views/account/widgets/custom_sliver_widget.dart';
-import 'package:yiking/views/account/widgets/list_tile.dart';
+import 'package:yiking/views/widgets/custom_sliver_widget.dart';
+import 'package:yiking/views/widgets/list_tile.dart';
 
 import 'package:yiking/services/auth/auth_service.dart';
 import 'package:yiking/services/auth/auth_user.dart';

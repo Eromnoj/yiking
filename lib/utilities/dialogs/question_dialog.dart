@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:yiking/views/account/widgets/app_button_widget.dart';
-import 'package:yiking/views/account/widgets/custom_text_widget.dart';
+import 'package:yiking/views/widgets/app_button_widget.dart';
+import 'package:yiking/views/widgets/custom_text_widget.dart';
 
 Future<void> questionDialog(
     BuildContext context, TextEditingController textController) {

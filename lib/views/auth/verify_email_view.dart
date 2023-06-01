@@ -4,7 +4,7 @@ import 'package:yiking/services/auth/bloc/auth_event.dart';
 
 import '../../services/auth/bloc/auth_bloc.dart';
 import '../../services/auth/bloc/auth_state.dart';
-import '../account/widgets/custom_text_widget.dart';
+import '../widgets/custom_text_widget.dart';
 
 class VerifyEmailView extends StatefulWidget {
   const VerifyEmailView({super.key});

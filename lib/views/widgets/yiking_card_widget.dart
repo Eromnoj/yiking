@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yiking/views/account/widgets/custom_text_widget.dart';
+import 'package:yiking/views/widgets/custom_text_widget.dart';
 
 Widget yikingCardWidget(
   BuildContext context,

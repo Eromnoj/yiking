@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yiking/styles/path/background_clipper.dart';
-import 'package:yiking/views/account/widgets/custom_text_widget.dart';
+import 'package:yiking/views/widgets/custom_text_widget.dart';
 
 Widget customAppBarSliver(String text, BuildContext context) {
   return SliverAppBar(

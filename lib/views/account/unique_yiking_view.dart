@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:yiking/services/firebase/yiking_data_fr/yiking_structure.dart';
 import 'package:yiking/utilities/yiking/yiking_draw.dart';
 import 'package:yiking/utilities/yiking/yiking_painter.dart';
-import 'package:yiking/views/account/widgets/custom_sliver_widget.dart';
-import 'package:yiking/views/account/widgets/custom_text_widget.dart';
-import 'package:yiking/views/account/widgets/explanation_container_widget.dart';
-import 'package:yiking/views/account/widgets/yiking_card_widget.dart';
+import 'package:yiking/views/widgets/custom_sliver_widget.dart';
+import 'package:yiking/views/widgets/custom_text_widget.dart';
+import 'package:yiking/views/widgets/explanation_container_widget.dart';
+import 'package:yiking/views/widgets/yiking_card_widget.dart';
 
 import '../../styles/path/background_clipper.dart';
 

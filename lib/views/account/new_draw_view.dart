@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yiking/routes/constants_routes.dart';
-import 'package:yiking/views/account/widgets/app_button_widget.dart';
-import 'package:yiking/views/account/widgets/custom_sliver_widget.dart';
-import 'package:yiking/views/account/widgets/custom_text_widget.dart';
+import 'package:yiking/views/widgets/app_button_widget.dart';
+import 'package:yiking/views/widgets/custom_sliver_widget.dart';
+import 'package:yiking/views/widgets/custom_text_widget.dart';
 
 import '../../services/auth/auth_service.dart';
 import '../../services/auth/auth_user.dart';

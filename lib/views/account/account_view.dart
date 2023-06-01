@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yiking/services/auth/bloc/auth_event.dart';
 import 'package:yiking/utilities/dialogs/confirm_delete_account_dialig.dart';
-import 'package:yiking/views/account/widgets/custom_sliver_widget.dart';
+import 'package:yiking/views/widgets/custom_sliver_widget.dart';
 import 'package:yiking/views/auth/login_view.dart';
 import '../../services/auth/bloc/auth_bloc.dart';
 import '../../services/auth/bloc/auth_state.dart';

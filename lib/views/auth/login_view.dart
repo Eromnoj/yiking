@@ -3,10 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yiking/services/auth/auth_exceptions.dart';
 import 'package:yiking/services/auth/bloc/auth_event.dart';
 import 'package:yiking/utilities/dialogs/error_dialogs.dart';
+import 'package:yiking/views/widgets/app_button_widget.dart';
+import 'package:yiking/views/widgets/custom_sliver_widget.dart';
 
 import '../../services/auth/bloc/auth_bloc.dart';
 import '../../services/auth/bloc/auth_state.dart';
-import '../account/widgets/custom_text_widget.dart';
+import '../widgets/custom_text_widget.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -49,103 +51,131 @@ class _LoginViewState extends State<LoginView> {
       },
       builder: (context, state) {
         return Scaffold(
-          appBar: AppBar(
-            title: titleText(
-              'Mon Carnet Yiking',
-              fontSize: 35,
-            ),
-          ),
-          body: LayoutBuilder(
-            builder: (context, constraint) {
-              return SingleChildScrollView(
-                child: ConstrainedBox(
-                  constraints: BoxConstraints(minHeight: constraint.maxHeight),
-                  child: Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        titleText('Me connecter'),
-                        Column(children: [
-                          customTextField(
-                            "Votre adresse email",
-                            _emailField,
-                            TextInputType.emailAddress,
-                            false,
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          customTextField(
-                            "Mot de passe",
-                            _passwordField,
-                            TextInputType.visiblePassword,
-                            true,
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          ElevatedButton(
-                            onPressed: () {
-                              final email = _emailField.text;
-                              final password = _passwordField.text;
-                              context
-                                  .read<AuthBloc>()
-                                  .add(const AuthEventInitialize());
+            body: CustomScrollView(
+          slivers: [
+            customAppBarSliver('Mon Carnet Yiking', context),
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const SizedBox(
+                      height: 100,
+                    ),
+                    titleText('Me connecter'),
+                    Column(children: [
+                      customTextField(
+                        "Votre adresse email",
+                        _emailField,
+                        TextInputType.emailAddress,
+                        false,
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      customTextField(
+                        "Mot de passe",
+                        _passwordField,
+                        TextInputType.visiblePassword,
+                        true,
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      CustomButtonAnimated(
+                        onTap: () {
+                          final email = _emailField.text;
+                          final password = _passwordField.text;
+                          context
+                              .read<AuthBloc>()
+                              .add(const AuthEventInitialize());
 
-                              context.read<AuthBloc>().add(
-                                  AuthEventLogInWithEmail(email, password));
-                            },
-                            child: titleText('Connexion'),
-                          ),
-                        ]),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        ElevatedButton(
-                          onPressed: () async {
-                            context
-                                .read<AuthBloc>()
-                                .add(const AuthEventInitialize());
-
-                            context
-                                .read<AuthBloc>()
-                                .add(const AuthEventLogInWithGoogle());
-                          },
-                          child: titleText('Me connecter avec Google'),
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Column(
-                          children: [
-                            TextButton(
-                              onPressed: () {
-                                context
-                                    .read<AuthBloc>()
-                                    .add(const AuthEventRegister());
-                              },
-                              child: contentText('Créer un carnet'),
-                            ),
-                            TextButton(
-                              onPressed: () {
-                                context.read<AuthBloc>().add(
-                                    const AuthEventRecoverPassword(
-                                        email: null));
-                              },
-                              child: contentText('Mot de passe oublié ?'),
+                          context
+                              .read<AuthBloc>()
+                              .add(AuthEventLogInWithEmail(email, password));
+                        },
+                        width: MediaQuery.sizeOf(context).width * 0.85,
+                        height: MediaQuery.sizeOf(context).height / 12,
+                        child: titleText(
+                          'Connexion',
+                          fontWeight: FontWeight.bold,
+                          shadow: [
+                            const Shadow(
+                              color: Colors.white,
+                              blurRadius: 7,
                             ),
                           ],
                         ),
+                      ),
+                    ]),
+                    CustomButtonAnimated(
+                      onTap: () async {
+                        context
+                            .read<AuthBloc>()
+                            .add(const AuthEventInitialize());
+
+                        context
+                            .read<AuthBloc>()
+                            .add(const AuthEventLogInWithGoogle());
+                      },
+                      width: MediaQuery.sizeOf(context).width * 0.85,
+                      height: MediaQuery.sizeOf(context).height / 12,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          titleText(
+                            'Se connecter avec ',
+                            fontWeight: FontWeight.bold,
+                            shadow: [
+                              const Shadow(
+                                color: Colors.white,
+                                blurRadius: 7,
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            width: 40,
+                            height: 40,
+                            child: Image.asset(
+                              'assets/img/logo/google_logo.png',
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Column(
+                      children: [
+                        TextButton(
+                          onPressed: () {
+                            context
+                                .read<AuthBloc>()
+                                .add(const AuthEventRegister());
+                          },
+                          child: contentText('Créer un carnet'),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            context.read<AuthBloc>().add(
+                                const AuthEventRecoverPassword(email: null));
+                          },
+                          child: contentText('Mot de passe oublié ?'),
+                        ),
                       ],
                     ),
-                  ),
+                  ],
                 ),
-              );
-            },
-          ),
-        );
+              ),
+            ),
+          ],
+        ));
       },
     );
   }

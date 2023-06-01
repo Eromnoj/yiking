@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:yiking/services/firebase/yiking_data_fr/yiking_storage.dart';
 import 'package:yiking/services/firebase/yiking_data_fr/yiking_structure.dart';
-import 'package:yiking/views/account/widgets/custom_sliver_widget.dart';
-import 'package:yiking/views/account/widgets/yiking_list_tile.dart';
+import 'package:yiking/views/widgets/custom_sliver_widget.dart';
+import 'package:yiking/views/widgets/yiking_list_tile.dart';
 
 class FullYikingView extends StatefulWidget {
   const FullYikingView({super.key});

@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:yiking/services/firebase/yiking_data_fr/yiking_storage.dart';
 import 'package:yiking/utilities/yiking/yiking_draw.dart';
 import 'package:yiking/utilities/yiking/yiking_painter.dart';
-import 'package:yiking/views/account/widgets/custom_text_widget.dart';
-import 'package:yiking/views/account/widgets/explanation_container_widget.dart';
+import 'package:yiking/views/widgets/custom_text_widget.dart';
+import 'package:yiking/views/widgets/explanation_container_widget.dart';
 
-import '../../../styles/path/background_clipper.dart';
+import '../../styles/path/background_clipper.dart';
 
 Widget mutateLine(List<dynamic> draw, int id, List<String> content,
     String lineExplanation, double height, double width, BuildContext context) {

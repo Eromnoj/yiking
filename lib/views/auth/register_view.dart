@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yiking/services/auth/auth_exceptions.dart';
 import 'package:yiking/services/auth/bloc/auth_event.dart';
 import 'package:yiking/utilities/dialogs/error_dialogs.dart';
-import 'package:yiking/views/account/widgets/custom_text_widget.dart';
+import 'package:yiking/views/widgets/app_button_widget.dart';
+import 'package:yiking/views/widgets/custom_sliver_widget.dart';
+import 'package:yiking/views/widgets/custom_text_widget.dart';
 
 import '../../services/auth/bloc/auth_bloc.dart';
 import '../../services/auth/bloc/auth_state.dart';
@@ -52,61 +54,81 @@ class _RegisterViewState extends State<RegisterView> {
       },
       builder: (context, state) {
         return Scaffold(
-          appBar: AppBar(
-            title: titleText(
-              'Créer un carnet',
-              fontSize: 25,
-            ),
-          ),
-          body: Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                titleText('Créer un carnet'),
-                Column(
-                  children: [
-                    customTextField(
-                      "Votre adresse email",
-                      _emailField,
-                      TextInputType.emailAddress,
-                      false,
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    customTextField(
-                      "Mot de passe",
-                      _passwordField,
-                      TextInputType.visiblePassword,
-                      true,
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        final email = _emailField.text;
-                        final password = _passwordField.text;
-                        context.read<AuthBloc>().add(AuthEventCreateAccount(
-                              email,
-                              password,
-                            ));
-                      },
-                      child: titleText('Créer'),
-                    ),
-                  ],
-                ),
-                TextButton(
-                  onPressed: () {
-                    context.read<AuthBloc>().add(const AuthEventLogOut());
-                  },
-                  child: contentText(
-                    'Retour à la page de connexion',
+          body: CustomScrollView(
+            slivers: [
+              customAppBarSliver('Créer un carnet', context),
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      const SizedBox(
+                        height: 100,
+                      ),
+                      titleText('Créer un carnet'),
+                      Column(
+                        children: [
+                          customTextField(
+                            "Votre adresse email",
+                            _emailField,
+                            TextInputType.emailAddress,
+                            false,
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          customTextField(
+                            "Mot de passe",
+                            _passwordField,
+                            TextInputType.visiblePassword,
+                            true,
+                          ),
+                          const SizedBox(
+                            height: 30,
+                          ),
+                          CustomButtonAnimated(
+                            onTap: () {
+                              final email = _emailField.text;
+                              final password = _passwordField.text;
+                              context
+                                  .read<AuthBloc>()
+                                  .add(AuthEventCreateAccount(
+                                    email,
+                                    password,
+                                  ));
+                            },
+                            width: MediaQuery.sizeOf(context).width * 0.85,
+                            height: MediaQuery.sizeOf(context).height / 12,
+                            child: titleText(
+                              'Créer',
+                              fontWeight: FontWeight.bold,
+                              shadow: [
+                                const Shadow(
+                                  color: Colors.white,
+                                  blurRadius: 7,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 120,
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          context.read<AuthBloc>().add(const AuthEventLogOut());
+                        },
+                        child: contentText(
+                          'Retour à la page de connexion',
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         );
       },

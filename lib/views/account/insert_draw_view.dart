@@ -9,10 +9,10 @@ import 'package:yiking/utilities/yiking/yiking_painter.dart';
 import 'package:yiking/services/auth/auth_service.dart';
 import 'package:yiking/services/auth/auth_user.dart';
 import 'package:yiking/services/firebase/draw/draw_storage.dart';
-import 'package:yiking/views/account/widgets/app_button_widget.dart';
-import 'package:yiking/views/account/widgets/custom_sliver_widget.dart';
-import 'package:yiking/views/account/widgets/custom_text_widget.dart';
-import 'package:yiking/views/account/widgets/yiking_button.dart';
+import 'package:yiking/views/widgets/app_button_widget.dart';
+import 'package:yiking/views/widgets/custom_sliver_widget.dart';
+import 'package:yiking/views/widgets/custom_text_widget.dart';
+import 'package:yiking/views/widgets/yiking_button.dart';
 
 import '../../styles/path/background_clipper.dart';
 

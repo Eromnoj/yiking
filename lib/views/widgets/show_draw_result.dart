@@ -3,10 +3,10 @@ import 'package:yiking/services/firebase/yiking_data_fr/yiking_storage.dart';
 import 'package:yiking/styles/path/background_clipper.dart';
 import 'package:yiking/utilities/yiking/yiking_draw.dart';
 import 'package:yiking/utilities/yiking/yiking_painter.dart';
-import 'package:yiking/views/account/widgets/custom_text_widget.dart';
-import 'package:yiking/views/account/widgets/explanation_container_widget.dart';
-import 'package:yiking/views/account/widgets/mutate_line_widget.dart';
-import 'package:yiking/views/account/widgets/yiking_card_widget.dart';
+import 'package:yiking/views/widgets/custom_text_widget.dart';
+import 'package:yiking/views/widgets/explanation_container_widget.dart';
+import 'package:yiking/views/widgets/mutate_line_widget.dart';
+import 'package:yiking/views/widgets/yiking_card_widget.dart';
 
 Widget showDrawResult(
   YikingDraw yikingDraw,
