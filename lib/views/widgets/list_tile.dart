@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:yiking/routes/constants_routes.dart';
 import 'package:yiking/styles/path/background_clipper.dart';
 import 'package:yiking/utilities/dialogs/confirm_delete_dialog.dart';
@@ -66,7 +67,9 @@ Widget customListTile(
                         ),
                       ),
                       contentText(
-                        '${element.date.day} / ${element.date.month} / ${element.date.year}',
+                        DateFormat.yMd(
+                                Localizations.localeOf(context).languageCode)
+                            .format(element.date),
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
                         shadow: [

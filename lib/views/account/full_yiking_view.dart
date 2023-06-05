@@ -56,7 +56,13 @@ class _FullYikingViewState extends State<FullYikingView> {
               ],
             );
           default:
-            return const CircularProgressIndicator();
+            return const Center(
+              child: SizedBox(
+                height: 100,
+                width: 100,
+                child: CircularProgressIndicator(),
+              ),
+            );
         }
       },
     );

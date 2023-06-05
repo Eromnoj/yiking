@@ -208,7 +208,15 @@ Widget showDrawResult(
               ),
             );
           default:
-            return const CircularProgressIndicator();
+            return what == ''
+                ? const Center(
+                    child: SizedBox(
+                      height: 100,
+                      width: 100,
+                      child: CircularProgressIndicator(),
+                    ),
+                  )
+                : const SizedBox();
         }
       },
     ),

@@ -1,9 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.yiking">
+    package="fr.jomoreschi.yiking">
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
    <application
-        android:label="Yi King"
+        android:label="Yi Jing"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity

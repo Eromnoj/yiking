@@ -58,10 +58,22 @@ class _DrawListViewState extends State<DrawListView> {
                 ],
               );
             } else {
-              return const CircularProgressIndicator();
+              return const Center(
+                child: SizedBox(
+                  height: 100,
+                  width: 100,
+                  child: CircularProgressIndicator(),
+                ),
+              );
             }
           default:
-            return const CircularProgressIndicator();
+            return const Center(
+              child: SizedBox(
+                height: 100,
+                width: 100,
+                child: CircularProgressIndicator(),
+              ),
+            );
         }
       },
     );
