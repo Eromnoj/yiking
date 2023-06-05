@@ -40,13 +40,14 @@ class _UniqueDrawViewState extends State<UniqueDrawView> {
         slivers: [
           customAppBarSliver('Mon tirage', context),
           SliverToBoxAdapter(child: titleText(draw!.question, fontSize: 30)),
-          SliverToBoxAdapter(child: showDrawResult(yikingDraw, width, height)),
           SliverToBoxAdapter(
-              child:
-                  showDrawResult(yikingDraw, width, height, what: 'nuclear')),
+              child: showDrawResult(yikingDraw, width, height, context)),
           SliverToBoxAdapter(
-              child:
-                  showDrawResult(yikingDraw, width, height, what: 'opposite')),
+              child: showDrawResult(yikingDraw, width, height, context,
+                  what: 'nuclear')),
+          SliverToBoxAdapter(
+              child: showDrawResult(yikingDraw, width, height, context,
+                  what: 'opposite')),
         ],
       ),
     );

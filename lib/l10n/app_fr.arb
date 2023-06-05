@@ -1,0 +1,13 @@
+{
+  "title":"Mon Carnet Yiking",
+  "noUser":"Aucun utilisateur trouvé",
+  "wrongPassword": "Mauvais mot de passe",
+  "connectionError": "Erreur lors de la tentative de connexion",
+  "loginScreenTitle": "Me connecter",
+  "emailAddress": "Votre adresse Email",
+  "password" : "Votre mot de pass",
+  "logInButton" : "Connexion",
+  "googleLogIn" : "Se connecter avec ",
+  "createAccount": "Créer un Carnet",
+  "pwdForgotten": "Mot de passe oublié ?"
+}

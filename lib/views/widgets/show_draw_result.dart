@@ -11,7 +11,8 @@ import 'package:yiking/views/widgets/yiking_card_widget.dart';
 Widget showDrawResult(
   YikingDraw yikingDraw,
   double width,
-  double height, {
+  double height,
+  BuildContext context, {
   String what = '',
 }) {
   List<dynamic> draw;
@@ -49,7 +50,8 @@ Widget showDrawResult(
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: FutureBuilder(
-      future: YikingStorage().getOne(yikingDraw.getIndex(drawIndex: draw)),
+      future: YikingStorage(Localizations.localeOf(context))
+          .getOne(yikingDraw.getIndex(drawIndex: draw)),
       builder: (context, snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.done:

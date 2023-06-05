@@ -83,7 +83,8 @@ Widget mutateLine(List<dynamic> draw, int id, List<String> content,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               FutureBuilder(
-                future: YikingStorage().getOne(alternateHexagramId),
+                future: YikingStorage(Localizations.localeOf(context))
+                    .getOne(alternateHexagramId),
                 builder: (context, snapshot) {
                   switch (snapshot.connectionState) {
                     case ConnectionState.done:

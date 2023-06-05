@@ -12,18 +12,21 @@ class FullYikingView extends StatefulWidget {
 }
 
 class _FullYikingViewState extends State<FullYikingView> {
-  late final YikingStorage _yiking;
+  // late final YikingStorage _yiking;
+  // late Locale myLocal;
 
-  @override
-  void initState() {
-    _yiking = YikingStorage();
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   myLocal = Localizations.localeOf(context);
+  //   print(myLocal);
+  //   _yiking = YikingStorage(myLocal);
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-      stream: _yiking.allYikings(),
+      stream: YikingStorage(Localizations.localeOf(context)).allYikings(),
       builder: (context, snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.active:

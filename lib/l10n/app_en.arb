@@ -1,0 +1,13 @@
+{
+  "title":"My Yiking Notebook",
+  "noUser":"No User found",
+  "wrongPassword": "Wrong Password",
+  "connectionError": "Error when trying to connect",
+  "loginScreenTitle": "Log In",
+  "emailAddress": "Your e-mail Address",
+  "password" : "Your password",
+  "logInButton" : "Log In",
+  "googleLogIn" : "Log In with ",
+  "createAccount": "Create a Notebook",
+  "pwdForgotten": "Forget your password ?"
+}

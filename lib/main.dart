@@ -16,13 +16,16 @@ import 'package:yiking/views/auth/login_view.dart';
 import 'package:yiking/views/auth/recover_view.dart';
 import 'package:yiking/views/auth/register_view.dart';
 import 'package:yiking/views/auth/verify_email_view.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
       .then((value) => runApp(
             MaterialApp(
-              title: 'Mon Carnet Yiking',
+              supportedLocales: AppLocalizations.supportedLocales,
+              localizationsDelegates: AppLocalizations.localizationsDelegates,
+              title: 'Yiking',
               theme: ThemeData(
                 useMaterial3: true,
                 fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
