@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yiking/extensions/buildcontext/loc.dart';
 import 'package:yiking/services/auth/auth_exceptions.dart';
 import 'package:yiking/services/auth/bloc/auth_event.dart';
 import 'package:yiking/utilities/dialogs/error_dialogs.dart';
@@ -39,15 +40,13 @@ class _RecoverViewState extends State<RecoverView> {
       listener: (context, state) async {
         if (state is AuthStateRecoverPassword) {
           if (state.exception is InvalidEmailAuthException) {
-            await errorDialog(context, 'Email invalide');
+            await errorDialog(context, context.loc.emailIncorrect);
           } else if (state.exception is UserNotFoundAuthException) {
-            await errorDialog(context, 'Utilisateur non trouvé');
+            await errorDialog(context, context.loc.noUser);
           } else if (state.exception is GenericAuthException) {
-            await errorDialog(context,
-                'Une erreur est survenue, veuillez recommencer utérieurement');
+            await errorDialog(context, context.loc.genericError);
           } else if (state.hasSentEmail! == true) {
-            await passwordResetDialog(context,
-                'Un email avec les infos nécessaires vous a été envoyé');
+            await passwordResetDialog(context, context.loc.recoryEmailSent);
           }
         }
       },
@@ -55,7 +54,7 @@ class _RecoverViewState extends State<RecoverView> {
         return Scaffold(
           body: CustomScrollView(
             slivers: [
-              customAppBarSliver('Récupérer mon compte', context),
+              customAppBarSliver(context.loc.recoverScreenTitle, context),
               SliverToBoxAdapter(
                 child: Padding(
                   padding: const EdgeInsets.all(12.0),
@@ -66,14 +65,14 @@ class _RecoverViewState extends State<RecoverView> {
                         height: 100,
                       ),
                       titleText(
-                        'Créer un nouveau mot de passe',
+                        context.loc.recoverScreenTitle,
                       ),
                       const SizedBox(
                         height: 20,
                       ),
                       Column(
                         children: [
-                          customTextField('Votre email', _emailField,
+                          customTextField(context.loc.emailAddress, _emailField,
                               TextInputType.emailAddress, false),
                           const SizedBox(
                             height: 40,
@@ -87,7 +86,7 @@ class _RecoverViewState extends State<RecoverView> {
                             width: MediaQuery.sizeOf(context).width * 0.85,
                             height: MediaQuery.sizeOf(context).height / 8,
                             child: titleText(
-                              'Envoyer le mail de renouvellement',
+                              context.loc.sendEmailButton,
                               fontWeight: FontWeight.bold,
                               shadow: [
                                 const Shadow(
@@ -108,7 +107,7 @@ class _RecoverViewState extends State<RecoverView> {
                                 .read<AuthBloc>()
                                 .add(const AuthEventLogOut());
                           },
-                          child: contentText('Retour à l\'écran de connexion'))
+                          child: contentText(context.loc.backToLogin))
                     ],
                   ),
                 ),

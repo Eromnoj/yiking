@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yiking/extensions/buildcontext/loc.dart';
 import 'package:yiking/services/firebase/yiking_data_fr/yiking_storage.dart';
 import 'package:yiking/services/firebase/yiking_data_fr/yiking_structure.dart';
 import 'package:yiking/views/widgets/custom_sliver_widget.dart';
@@ -33,7 +34,7 @@ class _FullYikingViewState extends State<FullYikingView> {
             final yikingEntry = snapshot.data as Iterable<YikingStructure>;
             return CustomScrollView(
               slivers: [
-                customAppBarSliver('Tous les Hexagrammes', context),
+                customAppBarSliver(context.loc.allHexagrams, context),
                 const SliverToBoxAdapter(
                   child: SizedBox(
                     height: 30,

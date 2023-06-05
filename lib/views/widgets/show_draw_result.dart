@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yiking/extensions/buildcontext/loc.dart';
 import 'package:yiking/services/firebase/yiking_data_fr/yiking_storage.dart';
 import 'package:yiking/styles/path/background_clipper.dart';
 import 'package:yiking/utilities/yiking/yiking_draw.dart';
@@ -84,7 +85,7 @@ Widget showDrawResult(
                       children: [
                         what == ''
                             ? titleText(
-                                'Hexagramme principal',
+                                context.loc.mainHexagram,
                                 fontSize: 27,
                                 shadow: [
                                   const Shadow(
@@ -95,7 +96,7 @@ Widget showDrawResult(
                               )
                             : what == 'opposite'
                                 ? titleText(
-                                    'Opposé',
+                                    context.loc.opposedHexagram,
                                     fontSize: 27,
                                     shadow: [
                                       const Shadow(
@@ -105,7 +106,7 @@ Widget showDrawResult(
                                     ],
                                   )
                                 : titleText(
-                                    'Nucléaire',
+                                    context.loc.nuclearHexgram,
                                     fontSize: 27,
                                     shadow: [
                                       const Shadow(
@@ -147,7 +148,7 @@ Widget showDrawResult(
                           child: Column(
                             children: [
                               titleText(
-                                'Jugement',
+                                context.loc.judgement,
                                 fontSize: 25,
                                 shadow: [
                                   const Shadow(

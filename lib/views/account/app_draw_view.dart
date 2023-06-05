@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:yiking/extensions/buildcontext/loc.dart';
 import 'package:yiking/routes/constants_routes.dart';
 import 'package:yiking/services/firebase/draw/draw_structure.dart';
 import 'package:yiking/styles/path/background_clipper.dart';
@@ -59,7 +60,7 @@ class _AppDrawViewState extends State<AppDrawView> {
     return Scaffold(
         body: CustomScrollView(
       slivers: [
-        customAppBarSliver('Nouveau tirage', context),
+        customAppBarSliver(context.loc.newDrawScreenTitle, context),
         SliverToBoxAdapter(
           child: Column(
             mainAxisSize: MainAxisSize.max,
@@ -68,7 +69,7 @@ class _AppDrawViewState extends State<AppDrawView> {
               const SizedBox(
                 height: 40,
               ),
-              titleText('Ma question :'),
+              titleText(context.loc.myQuestion),
               GestureDetector(
                 onTap: () async {
                   await questionDialog(context, _questionField);
@@ -184,7 +185,7 @@ class _AppDrawViewState extends State<AppDrawView> {
                   height: 40,
                   child: draw.draw.length < 6
                       ? titleText(
-                          'Lancer les pièces',
+                          context.loc.throwCoins,
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
                           shadow: [
@@ -195,7 +196,7 @@ class _AppDrawViewState extends State<AppDrawView> {
                           ],
                         )
                       : titleText(
-                          'Voir le résultat',
+                          context.loc.seeResult,
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
                           shadow: [

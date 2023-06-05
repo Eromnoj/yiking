@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yiking/extensions/buildcontext/loc.dart';
 import 'package:yiking/services/firebase/draw/draw_storage.dart';
 import 'package:yiking/services/firebase/draw/draw_structure.dart';
 
@@ -9,8 +10,8 @@ Future<void> deleteDialog(
     barrierDismissible: false,
     builder: (context) {
       return SimpleDialog(
-        title: const Text(
-          'Confirmez-vous la suppression de ce tirage ?',
+        title: Text(
+          context.loc.confirmDrawDelete,
           textAlign: TextAlign.center,
         ),
         children: [
@@ -25,9 +26,9 @@ Future<void> deleteDialog(
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: const Text(
-                  'Annuler',
-                  style: TextStyle(color: Colors.red),
+                child: Text(
+                  context.loc.cancelButton,
+                  style: const TextStyle(color: Colors.red),
                 ),
               ),
               TextButton(
@@ -35,7 +36,7 @@ Future<void> deleteDialog(
                   draw.deleteNote(documentId: element.documentId);
                   Navigator.of(context).pop();
                 },
-                child: const Text('Confirmer'),
+                child: Text(context.loc.confirmButton),
               ),
             ],
           ),

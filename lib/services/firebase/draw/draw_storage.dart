@@ -51,7 +51,7 @@ class DrawStorage {
   }
 
   // creating a singleton
-  static final DrawStorage _shared = DrawStorage._sharedInstance();
-  DrawStorage._sharedInstance();
-  factory DrawStorage() => _shared;
+  // static final DrawStorage _shared = DrawStorage._sharedInstance();
+  // DrawStorage._sharedInstance();
+  // factory DrawStorage() => _shared;
 }

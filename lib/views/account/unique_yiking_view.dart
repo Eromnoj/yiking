@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yiking/extensions/buildcontext/loc.dart';
 import 'package:yiking/services/firebase/yiking_data_fr/yiking_structure.dart';
 import 'package:yiking/utilities/yiking/yiking_draw.dart';
 import 'package:yiking/utilities/yiking/yiking_painter.dart';
@@ -108,7 +109,7 @@ class _UniqueYikingViewState extends State<UniqueYikingView> {
                       ),
                     ),
                     titleText(
-                      'Jugement',
+                      context.loc.judgement,
                       fontSize: 25,
                     ),
                     contentText(

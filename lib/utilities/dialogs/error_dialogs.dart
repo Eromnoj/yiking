@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yiking/extensions/buildcontext/loc.dart';
 
 Future<void> errorDialog(BuildContext context, String text) {
   return showDialog(
@@ -6,14 +7,14 @@ Future<void> errorDialog(BuildContext context, String text) {
     barrierDismissible: false,
     builder: (context) {
       return AlertDialog(
-        title: const Text('An error Occured'),
+        title: Text(context.loc.genericError),
         content: Text(text),
         actions: [
           TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: const Text('OK'))
+              child: Text(context.loc.okButton))
         ],
       );
     },

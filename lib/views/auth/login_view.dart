@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yiking/extensions/buildcontext/loc.dart';
 import 'package:yiking/services/auth/auth_exceptions.dart';
 import 'package:yiking/services/auth/bloc/auth_event.dart';
 import 'package:yiking/utilities/dialogs/error_dialogs.dart';
@@ -41,11 +42,11 @@ class _LoginViewState extends State<LoginView> {
       listener: (context, state) async {
         if (state is AuthStateLoggedOut) {
           if (state.exception is UserNotFoundAuthException) {
-            await errorDialog(context, 'Aucun utilisateur trouvé');
+            await errorDialog(context, context.loc.noUser);
           } else if (state.exception is WrongPassordAuthException) {
-            await errorDialog(context, 'Mauvais mot de passe');
+            await errorDialog(context, context.loc.wrongPassword);
           } else if (state.exception is GenericAuthException) {
-            await errorDialog(context, 'Erreur lors la tentative de connexion');
+            await errorDialog(context, context.loc.connectionError);
           }
         }
       },
@@ -53,7 +54,7 @@ class _LoginViewState extends State<LoginView> {
         return Scaffold(
             body: CustomScrollView(
           slivers: [
-            customAppBarSliver('Mon Carnet Yiking', context),
+            customAppBarSliver(context.loc.appTitle, context),
             SliverToBoxAdapter(
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
@@ -64,10 +65,10 @@ class _LoginViewState extends State<LoginView> {
                     const SizedBox(
                       height: 100,
                     ),
-                    titleText('Me connecter'),
+                    titleText(context.loc.loginScreenTitle),
                     Column(children: [
                       customTextField(
-                        "Votre adresse email",
+                        context.loc.emailAddress,
                         _emailField,
                         TextInputType.emailAddress,
                         false,
@@ -76,7 +77,7 @@ class _LoginViewState extends State<LoginView> {
                         height: 10,
                       ),
                       customTextField(
-                        "Mot de passe",
+                        context.loc.password,
                         _passwordField,
                         TextInputType.visiblePassword,
                         true,
@@ -99,7 +100,7 @@ class _LoginViewState extends State<LoginView> {
                         width: MediaQuery.sizeOf(context).width * 0.85,
                         height: MediaQuery.sizeOf(context).height / 12,
                         child: titleText(
-                          'Connexion',
+                          context.loc.logInButton,
                           fontWeight: FontWeight.bold,
                           shadow: [
                             const Shadow(
@@ -126,7 +127,7 @@ class _LoginViewState extends State<LoginView> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           titleText(
-                            'Se connecter avec ',
+                            context.loc.googleLogIn,
                             fontWeight: FontWeight.bold,
                             shadow: [
                               const Shadow(
@@ -159,14 +160,14 @@ class _LoginViewState extends State<LoginView> {
                                 .read<AuthBloc>()
                                 .add(const AuthEventRegister());
                           },
-                          child: contentText('Créer un carnet'),
+                          child: contentText(context.loc.createAccount),
                         ),
                         TextButton(
                           onPressed: () {
                             context.read<AuthBloc>().add(
                                 const AuthEventRecoverPassword(email: null));
                           },
-                          child: contentText('Mot de passe oublié ?'),
+                          child: contentText(context.loc.pwdForgotten),
                         ),
                       ],
                     ),

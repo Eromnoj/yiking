@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:yiking/extensions/buildcontext/loc.dart';
 import 'package:yiking/routes/constants_routes.dart';
 import 'package:yiking/services/firebase/draw/draw_structure.dart';
 import 'package:yiking/utilities/dialogs/question_dialog.dart';
@@ -55,7 +56,7 @@ class _InsertDrawViewState extends State<InsertDrawView> {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          customAppBarSliver('Nouveau tirage', context),
+          customAppBarSliver(context.loc.newDrawScreenTitle, context),
           SliverToBoxAdapter(
             child: Column(
               mainAxisSize: MainAxisSize.max,
@@ -64,7 +65,7 @@ class _InsertDrawViewState extends State<InsertDrawView> {
                 const SizedBox(
                   height: 40,
                 ),
-                titleText('Ma question :'),
+                titleText(context.loc.myQuestion),
                 GestureDetector(
                   onTap: () async {
                     await questionDialog(context, _questionField);
@@ -213,7 +214,7 @@ class _InsertDrawViewState extends State<InsertDrawView> {
                             width: 240,
                             height: 40,
                             child: titleText(
-                              'Voir le résultat',
+                              context.loc.seeResult,
                               fontWeight: FontWeight.bold,
                               fontSize: 20,
                               shadow: [

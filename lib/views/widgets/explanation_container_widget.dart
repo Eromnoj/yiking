@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yiking/extensions/buildcontext/loc.dart';
 import 'package:yiking/styles/path/background_clipper.dart';
 import 'package:yiking/views/widgets/custom_text_widget.dart';
 
@@ -31,7 +32,7 @@ Widget explanationContainer(
         padding: const EdgeInsets.all(12.0),
         child: Column(
           children: [
-            titleText('Interprétation',
+            titleText(context.loc.explanation,
                 fontWeight: FontWeight.bold,
                 color: const Color.fromARGB(255, 34, 34, 43),
                 shadow: [

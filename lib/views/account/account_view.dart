@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yiking/extensions/buildcontext/loc.dart';
 import 'package:yiking/services/auth/bloc/auth_event.dart';
 import 'package:yiking/utilities/dialogs/confirm_delete_account_dialig.dart';
 import 'package:yiking/views/widgets/custom_sliver_widget.dart';
@@ -26,22 +27,22 @@ class _AccountViewState extends State<AccountView> {
         } else {
           return CustomScrollView(
             slivers: [
-              customAppBarSliver('Mon appli', context),
+              customAppBarSliver(context.loc.myAppScreenTitle, context),
               SliverToBoxAdapter(
                 child: Center(
                   child: Column(children: [
-                    const Text('Supprimer mon compte ?'),
+                    Text(context.loc.deleteAccountQuestion),
                     ElevatedButton(
                       onPressed: () async {
                         await deleteAccountDialog(context);
                       },
-                      child: const Text('Supprimer'),
+                      child: Text(context.loc.deleteButton),
                     ),
                     ElevatedButton(
                       onPressed: () async {
                         context.read<AuthBloc>().add(const AuthEventLogOut());
                       },
-                      child: const Text('Me déconnecter'),
+                      child: Text(context.loc.logOutButton),
                     ),
                   ]),
                 ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yiking/extensions/buildcontext/loc.dart';
 import 'package:yiking/services/auth/auth_exceptions.dart';
 import 'package:yiking/services/auth/bloc/auth_event.dart';
 import 'package:yiking/utilities/dialogs/error_dialogs.dart';
@@ -41,14 +42,13 @@ class _RegisterViewState extends State<RegisterView> {
       listener: (context, state) async {
         if (state is AuthStateRegistering) {
           if (state.exception is WeakPasswordAuthException) {
-            await errorDialog(context, 'Mot de passe trop faible');
+            await errorDialog(context, context.loc.weakPassword);
           } else if (state.exception is EmailAlreadyInUseAuthException) {
-            await errorDialog(context, 'Cet email est déjà utlisé');
+            await errorDialog(context, context.loc.emailAlreadyinUse);
           } else if (state.exception is InvalidEmailAuthException) {
-            await errorDialog(context, 'L\'email entré n\'est pas correct');
+            await errorDialog(context, context.loc.emailIncorrect);
           } else if (state.exception is GenericAuthException) {
-            await errorDialog(
-                context, 'Erreur lors la tentative de création du compte');
+            await errorDialog(context, context.loc.createError);
           }
         }
       },
@@ -56,7 +56,7 @@ class _RegisterViewState extends State<RegisterView> {
         return Scaffold(
           body: CustomScrollView(
             slivers: [
-              customAppBarSliver('Créer un carnet', context),
+              customAppBarSliver(context.loc.registerScreenTitle, context),
               SliverToBoxAdapter(
                 child: Padding(
                   padding: const EdgeInsets.all(12.0),
@@ -66,11 +66,11 @@ class _RegisterViewState extends State<RegisterView> {
                       const SizedBox(
                         height: 100,
                       ),
-                      titleText('Créer un carnet'),
+                      titleText(context.loc.registerScreenTitle),
                       Column(
                         children: [
                           customTextField(
-                            "Votre adresse email",
+                            context.loc.emailAddress,
                             _emailField,
                             TextInputType.emailAddress,
                             false,
@@ -79,7 +79,7 @@ class _RegisterViewState extends State<RegisterView> {
                             height: 10,
                           ),
                           customTextField(
-                            "Mot de passe",
+                            context.loc.password,
                             _passwordField,
                             TextInputType.visiblePassword,
                             true,
@@ -101,7 +101,7 @@ class _RegisterViewState extends State<RegisterView> {
                             width: MediaQuery.sizeOf(context).width * 0.85,
                             height: MediaQuery.sizeOf(context).height / 12,
                             child: titleText(
-                              'Créer',
+                              context.loc.registerButton,
                               fontWeight: FontWeight.bold,
                               shadow: [
                                 const Shadow(
@@ -121,7 +121,7 @@ class _RegisterViewState extends State<RegisterView> {
                           context.read<AuthBloc>().add(const AuthEventLogOut());
                         },
                         child: contentText(
-                          'Retour à la page de connexion',
+                          context.loc.backToLogin,
                         ),
                       ),
                     ],

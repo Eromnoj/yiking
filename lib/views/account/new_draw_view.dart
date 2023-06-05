@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yiking/extensions/buildcontext/loc.dart';
 import 'package:yiking/routes/constants_routes.dart';
 import 'package:yiking/views/widgets/app_button_widget.dart';
 import 'package:yiking/views/widgets/custom_sliver_widget.dart';
@@ -34,7 +35,7 @@ class _NewDrawViewState extends State<NewDrawView> {
       builder: (context, state) {
         return CustomScrollView(
           slivers: [
-            customAppBarSliver('Tirer le Yi-King', context),
+            customAppBarSliver(context.loc.yiJingDrawScreenTitle, context),
             SliverToBoxAdapter(
               child: Padding(
                 padding: const EdgeInsets.all(24.0),
@@ -51,7 +52,7 @@ class _NewDrawViewState extends State<NewDrawView> {
                       width: MediaQuery.of(context).size.width * 0.85,
                       height: MediaQuery.of(context).size.height / 8,
                       child: titleText(
-                        'Effectuer un tirage avec l\'application',
+                        context.loc.drawWithAppButton,
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
                         shadow: [
@@ -72,7 +73,7 @@ class _NewDrawViewState extends State<NewDrawView> {
                       width: MediaQuery.of(context).size.width * 0.85,
                       height: MediaQuery.of(context).size.height / 8,
                       child: titleText(
-                        'Entrer un tirage manuellement',
+                        context.loc.insertDrawButton,
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
                         shadow: [

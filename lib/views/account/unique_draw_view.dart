@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:yiking/extensions/buildcontext/loc.dart';
 import 'package:yiking/services/firebase/draw/draw_structure.dart';
 import 'package:yiking/utilities/yiking/yiking_draw.dart';
 import 'package:yiking/views/widgets/custom_sliver_widget.dart';
@@ -38,7 +39,7 @@ class _UniqueDrawViewState extends State<UniqueDrawView> {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          customAppBarSliver('Mon tirage', context),
+          customAppBarSliver(context.loc.myDrawScreenTitle, context),
           SliverToBoxAdapter(child: titleText(draw!.question, fontSize: 30)),
           SliverToBoxAdapter(
               child: showDrawResult(yikingDraw, width, height, context)),

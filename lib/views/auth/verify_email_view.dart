@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yiking/extensions/buildcontext/loc.dart';
 import 'package:yiking/services/auth/bloc/auth_event.dart';
+import 'package:yiking/views/widgets/custom_sliver_widget.dart';
 
 import '../../services/auth/bloc/auth_bloc.dart';
 import '../../services/auth/bloc/auth_state.dart';
@@ -19,38 +21,37 @@ class _VerifyEmailViewState extends State<VerifyEmailView> {
     return BlocBuilder<AuthBloc, AuthState>(
       builder: (context, state) {
         return Scaffold(
-          appBar: AppBar(
-            title: titleText(
-              'Vérifier votre adresse mail',
-              fontSize: 25,
-            ),
-          ),
-          body: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                contentText(
-                  'Veuillez confirmer votre compte en cliquant sur le lien dans le mail reçu',
+          body: CustomScrollView(
+            slivers: [
+              customAppBarSliver(context.loc.checkEmailScreenTitle, context),
+              SliverToBoxAdapter(
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      contentText(context.loc.accountConfirm),
+                      const SizedBox(
+                        height: 50,
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          context.read<AuthBloc>().add(const AuthEventLogOut());
+                        },
+                        child: contentText(context.loc.backToLogin),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          context
+                              .read<AuthBloc>()
+                              .add(const AuthEventSendVerificationEmail());
+                        },
+                        child: contentText(context.loc.resentEmail),
+                      ),
+                    ],
+                  ),
                 ),
-                const SizedBox(
-                  height: 50,
-                ),
-                TextButton(
-                  onPressed: () {
-                    context.read<AuthBloc>().add(const AuthEventLogOut());
-                  },
-                  child: contentText('Retour à la connexion'),
-                ),
-                TextButton(
-                  onPressed: () {
-                    context
-                        .read<AuthBloc>()
-                        .add(const AuthEventSendVerificationEmail());
-                  },
-                  child: contentText('Renvoyer le mail de vérification'),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         );
       },

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yiking/extensions/buildcontext/loc.dart';
 import 'package:yiking/views/widgets/app_button_widget.dart';
 import 'package:yiking/views/widgets/custom_text_widget.dart';
 
@@ -9,7 +10,7 @@ Future<void> questionDialog(
     barrierDismissible: false,
     builder: (context) {
       return SimpleDialog(
-        title: titleText('Posez votre question'),
+        title: titleText(context.loc.askQuestion),
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -28,7 +29,7 @@ Future<void> questionDialog(
               width: 300,
               height: 50,
               child: titleText(
-                'OK',
+                context.loc.okButton,
                 fontWeight: FontWeight.bold,
                 fontSize: 20,
                 shadow: [

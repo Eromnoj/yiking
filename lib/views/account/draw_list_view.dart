@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yiking/extensions/buildcontext/loc.dart';
 import 'package:yiking/services/firebase/draw/draw_structure.dart';
 import 'package:yiking/views/widgets/custom_sliver_widget.dart';
 import 'package:yiking/views/widgets/list_tile.dart';
@@ -36,7 +37,7 @@ class _DrawListViewState extends State<DrawListView> {
               final draws = snapshot.data as Iterable<DrawStructure>;
               return CustomScrollView(
                 slivers: [
-                  customAppBarSliver('Mes tirages', context),
+                  customAppBarSliver(context.loc.myDrawsScreenTitle, context),
                   const SliverToBoxAdapter(
                     child: SizedBox(
                       height: 30,

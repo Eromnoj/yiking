@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yiking/extensions/buildcontext/loc.dart';
 
 Future<void> passwordResetDialog(BuildContext context, String text) {
   return showDialog(
@@ -6,14 +7,14 @@ Future<void> passwordResetDialog(BuildContext context, String text) {
     barrierDismissible: false,
     builder: (context) {
       return AlertDialog(
-        title: const Text('Information'),
+        title: Text(context.loc.info),
         content: Text(text),
         actions: [
           TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: const Text('OK'))
+              child: Text(context.loc.okButton))
         ],
       );
     },

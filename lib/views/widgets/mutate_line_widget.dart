@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yiking/extensions/buildcontext/loc.dart';
 import 'package:yiking/services/firebase/yiking_data_fr/yiking_storage.dart';
 import 'package:yiking/utilities/yiking/yiking_draw.dart';
 import 'package:yiking/utilities/yiking/yiking_painter.dart';
@@ -91,7 +92,7 @@ Widget mutateLine(List<dynamic> draw, int id, List<String> content,
                       return Column(
                         children: [
                           titleText(
-                            'Hexagramme dérivé',
+                            context.loc.derivedHexagram,
                             fontWeight: FontWeight.bold,
                           ),
                           Row(
