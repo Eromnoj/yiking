@@ -29,12 +29,6 @@ Widget customAppBarSliver(String text, BuildContext context) {
         fontSize: 25,
         color: Colors.black,
         padding: 8,
-        shadow: [
-          const Shadow(
-            color: Colors.white,
-            blurRadius: 7,
-          ),
-        ],
       ),
     ),
   );

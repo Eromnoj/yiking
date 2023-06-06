@@ -2,26 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:yiking/styles/path/background_clipper.dart';
 
-Widget titleText(
-  String text, {
-  double fontSize = 20,
-  Color? color,
-  double padding = 8,
-  FontWeight fontWeight = FontWeight.normal,
-  List<Shadow>? shadow,
-}) {
+Widget titleText(String text,
+    {double fontSize = 20,
+    Color? color,
+    double padding = 8,
+    FontWeight fontWeight = FontWeight.normal,
+    List<Shadow> shadow = const [
+      Shadow(
+        color: Colors.white,
+        blurRadius: 7,
+      ),
+    ]}) {
   return Padding(
     padding: EdgeInsets.all(padding),
     child: Text(
       text,
       textAlign: TextAlign.center,
       style: TextStyle(
-        fontSize: fontSize,
-        color: color ?? color,
-        fontWeight: fontWeight,
-        fontFamily: GoogleFonts.architectsDaughter().fontFamily,
-        shadows: shadow ?? shadow,
-      ),
+          fontSize: fontSize,
+          color: color ?? color,
+          fontWeight: fontWeight,
+          fontFamily: GoogleFonts.architectsDaughter().fontFamily,
+          shadows: shadow),
     ),
   );
 }
@@ -33,7 +35,6 @@ Widget lineTitleText(
   Color? color,
   double padding = 8,
   FontWeight fontWeight = FontWeight.normal,
-  List<Shadow>? shadow,
 }) {
   return Padding(
     padding: EdgeInsets.all(padding),
@@ -60,7 +61,12 @@ Widget lineTitleText(
             color: color ?? color,
             fontWeight: fontWeight,
             fontFamily: GoogleFonts.architectsDaughter().fontFamily,
-            shadows: shadow ?? shadow,
+            shadows: const [
+              Shadow(
+                color: Colors.white,
+                blurRadius: 7,
+              ),
+            ],
           ),
         ),
       ],
@@ -74,7 +80,6 @@ Widget contentText(String text,
     double padding = 4,
     FontWeight fontWeight = FontWeight.normal,
     TextOverflow? textOverflow,
-    List<Shadow>? shadow,
     TextAlign textAlign = TextAlign.left}) {
   return Padding(
     padding: EdgeInsets.all(padding),
@@ -86,7 +91,12 @@ Widget contentText(String text,
         color: color ?? color,
         fontWeight: fontWeight,
         overflow: textOverflow ?? textOverflow,
-        shadows: shadow ?? shadow,
+        shadows: const [
+          Shadow(
+            color: Colors.white,
+            blurRadius: 7,
+          ),
+        ],
       ),
     ),
   );

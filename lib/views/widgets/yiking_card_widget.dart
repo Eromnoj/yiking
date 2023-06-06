@@ -56,11 +56,8 @@ Widget yikingCardWidget(
                     fontWeight: FontWeight.bold,
                     padding: 0,
                     color: const Color.fromARGB(255, 177, 178, 224),
-                    shadow: [
-                      const Shadow(
-                        color: Color.fromARGB(255, 19, 19, 39),
-                        blurRadius: 5,
-                      ),
+                    shadow: const [
+                      Shadow(),
                     ],
                   ),
                   titleText(
@@ -68,11 +65,8 @@ Widget yikingCardWidget(
                     fontWeight: FontWeight.bold,
                     padding: 0,
                     color: const Color.fromARGB(255, 171, 173, 229),
-                    shadow: [
-                      const Shadow(
-                        color: Color.fromARGB(255, 34, 34, 70),
-                        blurRadius: 5,
-                      ),
+                    shadow: const [
+                      Shadow(),
                     ],
                   ),
                 ],

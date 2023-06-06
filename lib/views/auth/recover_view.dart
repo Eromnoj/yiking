@@ -88,12 +88,6 @@ class _RecoverViewState extends State<RecoverView> {
                             child: titleText(
                               context.loc.sendEmailButton,
                               fontWeight: FontWeight.bold,
-                              shadow: [
-                                const Shadow(
-                                  color: Colors.white,
-                                  blurRadius: 7,
-                                ),
-                              ],
                             ),
                           ),
                         ],

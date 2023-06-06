@@ -87,33 +87,15 @@ Widget showDrawResult(
                             ? titleText(
                                 context.loc.mainHexagram,
                                 fontSize: 27,
-                                shadow: [
-                                  const Shadow(
-                                    color: Colors.white,
-                                    blurRadius: 7,
-                                  ),
-                                ],
                               )
                             : what == 'opposite'
                                 ? titleText(
                                     context.loc.opposedHexagram,
                                     fontSize: 27,
-                                    shadow: [
-                                      const Shadow(
-                                        color: Colors.white,
-                                        blurRadius: 7,
-                                      ),
-                                    ],
                                   )
                                 : titleText(
-                                    context.loc.nuclearHexgram,
+                                    context.loc.nuclearHexagram,
                                     fontSize: 27,
-                                    shadow: [
-                                      const Shadow(
-                                        color: Colors.white,
-                                        blurRadius: 7,
-                                      ),
-                                    ],
                                   ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -150,12 +132,6 @@ Widget showDrawResult(
                               titleText(
                                 context.loc.judgement,
                                 fontSize: 25,
-                                shadow: [
-                                  const Shadow(
-                                    color: Colors.white,
-                                    blurRadius: 7,
-                                  ),
-                                ],
                               ),
                               contentText(
                                 snapshot.data!.prophecy,

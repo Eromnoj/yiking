@@ -32,15 +32,11 @@ Widget explanationContainer(
         padding: const EdgeInsets.all(12.0),
         child: Column(
           children: [
-            titleText(context.loc.explanation,
-                fontWeight: FontWeight.bold,
-                color: const Color.fromARGB(255, 34, 34, 43),
-                shadow: [
-                  const Shadow(
-                    color: Colors.white,
-                    blurRadius: 7,
-                  ),
-                ]),
+            titleText(
+              context.loc.explanation,
+              fontWeight: FontWeight.bold,
+              color: const Color.fromARGB(255, 34, 34, 43),
+            ),
             contentText(
               text,
               fontSize: 16,

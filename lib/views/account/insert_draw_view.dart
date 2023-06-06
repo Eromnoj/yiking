@@ -90,12 +90,6 @@ class _InsertDrawViewState extends State<InsertDrawView> {
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
                         textAlign: TextAlign.center,
-                        shadow: [
-                          const Shadow(
-                            color: Colors.white,
-                            blurRadius: 7,
-                          ),
-                        ],
                       ),
                     ],
                   ),
@@ -217,12 +211,6 @@ class _InsertDrawViewState extends State<InsertDrawView> {
                               context.loc.seeResult,
                               fontWeight: FontWeight.bold,
                               fontSize: 20,
-                              shadow: [
-                                const Shadow(
-                                  color: Colors.white,
-                                  blurRadius: 7,
-                                ),
-                              ],
                             ),
                           ),
                         ),

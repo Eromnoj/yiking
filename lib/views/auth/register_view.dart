@@ -103,12 +103,6 @@ class _RegisterViewState extends State<RegisterView> {
                             child: titleText(
                               context.loc.registerButton,
                               fontWeight: FontWeight.bold,
-                              shadow: [
-                                const Shadow(
-                                  color: Colors.white,
-                                  blurRadius: 7,
-                                ),
-                              ],
                             ),
                           ),
                         ],

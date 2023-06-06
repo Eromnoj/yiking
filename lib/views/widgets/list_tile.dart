@@ -58,12 +58,6 @@ Widget customListTile(
                         child: contentText(
                           element.question,
                           fontWeight: FontWeight.bold,
-                          shadow: [
-                            const Shadow(
-                              color: Colors.white,
-                              blurRadius: 7,
-                            ),
-                          ],
                         ),
                       ),
                       contentText(
@@ -72,12 +66,6 @@ Widget customListTile(
                             .format(element.date),
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
-                        shadow: [
-                          const Shadow(
-                            color: Colors.white,
-                            blurRadius: 7,
-                          ),
-                        ],
                       ),
                     ],
                   ),

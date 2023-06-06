@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:yiking/extensions/buildcontext/loc.dart';
 import 'package:yiking/services/auth/auth_exceptions.dart';
 import 'package:yiking/services/auth/bloc/auth_event.dart';
@@ -21,7 +22,7 @@ class LoginView extends StatefulWidget {
 class _LoginViewState extends State<LoginView> {
   late TextEditingController _emailField;
   late TextEditingController _passwordField;
-
+  final Uri url = Uri.parse('https://jomoreschi.fr/yiking');
   @override
   void initState() {
     _emailField = TextEditingController();
@@ -102,12 +103,6 @@ class _LoginViewState extends State<LoginView> {
                         child: titleText(
                           context.loc.logInButton,
                           fontWeight: FontWeight.bold,
-                          shadow: [
-                            const Shadow(
-                              color: Colors.white,
-                              blurRadius: 7,
-                            ),
-                          ],
                         ),
                       ),
                     ]),
@@ -129,12 +124,6 @@ class _LoginViewState extends State<LoginView> {
                           titleText(
                             context.loc.googleLogIn,
                             fontWeight: FontWeight.bold,
-                            shadow: [
-                              const Shadow(
-                                color: Colors.white,
-                                blurRadius: 7,
-                              ),
-                            ],
                           ),
                           SizedBox(
                             width: 40,
@@ -169,6 +158,10 @@ class _LoginViewState extends State<LoginView> {
                           },
                           child: contentText(context.loc.pwdForgotten),
                         ),
+                        TextButton(
+                          onPressed: _launchUrl,
+                          child: contentText(context.loc.termsPrivacyLink),
+                        ),
                       ],
                     ),
                   ],
@@ -179,5 +172,11 @@ class _LoginViewState extends State<LoginView> {
         ));
       },
     );
+  }
+
+  Future<void> _launchUrl() async {
+    if (!await launchUrl(url)) {
+      throw Exception('Could not launch $url');
+    }
   }
 }

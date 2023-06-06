@@ -41,10 +41,11 @@ Widget yikingListTile(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                contentText(yikingEntry.symbol,
-                    fontSize: 50,
-                    fontWeight: FontWeight.bold,
-                    shadow: [const Shadow(color: Colors.white, blurRadius: 7)]),
+                contentText(
+                  yikingEntry.symbol,
+                  fontSize: 50,
+                  fontWeight: FontWeight.bold,
+                ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
@@ -52,25 +53,22 @@ Widget yikingListTile(
                       mainAxisAlignment: MainAxisAlignment.end,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        titleText(yikingEntry.name,
-                            fontWeight: FontWeight.bold,
-                            shadow: [
-                              const Shadow(color: Colors.white, blurRadius: 7)
-                            ]),
-                        contentText(yikingEntry.yikingId.toString(),
-                            fontWeight: FontWeight.bold,
-                            shadow: [
-                              const Shadow(color: Colors.white, blurRadius: 7)
-                            ]),
+                        titleText(
+                          yikingEntry.name,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        contentText(
+                          yikingEntry.yikingId.toString(),
+                          fontWeight: FontWeight.bold,
+                        ),
                       ],
                     ),
-                    contentText(yikingEntry.translate,
-                        textOverflow: TextOverflow.fade,
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                        shadow: [
-                          const Shadow(color: Colors.white, blurRadius: 7)
-                        ]),
+                    contentText(
+                      yikingEntry.translate,
+                      textOverflow: TextOverflow.fade,
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ],
                 ),
               ],

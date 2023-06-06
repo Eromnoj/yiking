@@ -32,12 +32,6 @@ Future<void> questionDialog(
                 context.loc.okButton,
                 fontWeight: FontWeight.bold,
                 fontSize: 20,
-                shadow: [
-                  const Shadow(
-                    color: Colors.white,
-                    blurRadius: 7,
-                  ),
-                ],
               ),
             ),
           )

@@ -58,129 +58,83 @@ class _AppDrawViewState extends State<AppDrawView> {
     double height = width;
 
     return Scaffold(
-        body: CustomScrollView(
-      slivers: [
-        customAppBarSliver(context.loc.newDrawScreenTitle, context),
-        SliverToBoxAdapter(
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              const SizedBox(
-                height: 40,
-              ),
-              titleText(context.loc.myQuestion),
-              GestureDetector(
-                onTap: () async {
-                  await questionDialog(context, _questionField);
-                },
-                child: Stack(
-                  alignment: AlignmentDirectional.center,
-                  children: [
-                    ClipPath(
-                      clipper: BackgroundClipperLineTitle(),
-                      child: Container(
-                        height: 50,
-                        width: MediaQuery.of(context).size.width * 0.85,
-                        decoration: BoxDecoration(
-                            gradient: LinearGradient(colors: [
-                          Colors.red.shade200,
-                          Colors.pink.shade300,
-                        ])),
-                      ),
-                    ),
-                    contentText(
-                      _questionField.text,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                      textAlign: TextAlign.center,
-                      shadow: [
-                        const Shadow(
-                          color: Colors.white,
-                          blurRadius: 7,
-                        ),
-                      ],
-                    ),
-                  ],
+      body: CustomScrollView(
+        slivers: [
+          customAppBarSliver(context.loc.newDrawScreenTitle, context),
+          SliverToBoxAdapter(
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                const SizedBox(
+                  height: 20,
                 ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Center(
-                child: Stack(
-                  alignment: AlignmentDirectional.center,
-                  children: [
-                    ClipPath(
-                      clipper: BackgroundClipperHexagram(),
-                      child: Container(
-                        height: height,
-                        width: width,
-                        decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                                begin: Alignment.topCenter,
-                                end: Alignment.bottomCenter,
-                                colors: [
-                              Colors.amber,
-                              Colors.yellow.shade600,
-                            ])),
-                      ),
-                    ),
-                    CustomPaint(
-                      painter: YiKingPainter(draw.draw, Size(width, height)),
-                      child: SizedBox(
-                        height: height,
-                        width: width,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  coinContainer(draw.coin1, click),
-                  coinContainer(draw.coin2, click, pos: true),
-                  coinContainer(draw.coin3, click),
-                ],
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              CustomButtonAnimated(
+                titleText(context.loc.myQuestion),
+                GestureDetector(
                   onTap: () async {
-                    if (draw.draw.length < 6) {
-                      setState(() {
-                        click = false;
-                      });
-                      Timer(
-                        const Duration(milliseconds: 800),
-                        () => setState(() {
-                          draw.chance();
-                          click = true;
-                        }),
-                      );
-                    } else {
-                      if (_questionField.text.isEmpty) {
-                        await questionDialog(context, _questionField);
-                      } else {
-                        result = await _draw.createNewDraw(
-                          userId: currentUser!.id,
-                          date: DateTime.now(),
-                          question: _questionField.text,
-                          draw: draw.draw,
-                        );
-                        if (context.mounted) {
-                          Navigator.of(context).pushReplacementNamed(
-                              uniqueDrawRoute,
-                              arguments: result);
-                        }
-                      }
-                    }
+                    await questionDialog(context, _questionField);
                   },
+                  child: Stack(
+                    alignment: AlignmentDirectional.center,
+                    children: [
+                      ClipPath(
+                        clipper: BackgroundClipperLineTitle(),
+                        child: Container(
+                          height: 50,
+                          width: MediaQuery.of(context).size.width * 0.85,
+                          decoration: BoxDecoration(
+                              gradient: LinearGradient(colors: [
+                            Colors.red.shade200,
+                            Colors.pink.shade300,
+                          ])),
+                        ),
+                      ),
+                      contentText(
+                        _questionField.text,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Center(
+                  child: Stack(
+                    alignment: AlignmentDirectional.center,
+                    children: [
+                      ClipPath(
+                        clipper: BackgroundClipperHexagram(),
+                        child: Container(
+                          height: height,
+                          width: width,
+                          decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                  colors: [
+                                Colors.amber,
+                                Colors.yellow.shade600,
+                              ])),
+                        ),
+                      ),
+                      CustomPaint(
+                        painter: YiKingPainter(draw.draw, Size(width, height)),
+                        child: SizedBox(
+                          height: height,
+                          width: width,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                CustomButtonAnimated(
+                  onTap: _onTapCoinOrButton,
                   width: 240,
                   height: 40,
                   child: draw.draw.length < 6
@@ -188,28 +142,69 @@ class _AppDrawViewState extends State<AppDrawView> {
                           context.loc.throwCoins,
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
-                          shadow: [
-                            const Shadow(
-                              color: Colors.white,
-                              blurRadius: 7,
-                            ),
-                          ],
                         )
                       : titleText(
                           context.loc.seeResult,
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
-                          shadow: [
-                            const Shadow(
-                              color: Colors.white,
-                              blurRadius: 7,
-                            ),
+                        ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                GestureDetector(
+                  onTap: _onTapCoinOrButton,
+                  child: draw.draw.length < 6
+                      ? Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            coinContainer(draw.coin1, click),
+                            coinContainer(draw.coin2, click, pos: true),
+                            coinContainer(draw.coin3, click),
                           ],
-                        )),
-            ],
+                        )
+                      : const SizedBox(
+                          height: 0,
+                        ),
+                ),
+                const SizedBox(
+                  height: 40,
+                ),
+              ],
+            ),
           ),
-        ),
-      ],
-    ));
+        ],
+      ),
+    );
+  }
+
+  Future<void> _onTapCoinOrButton() async {
+    if (draw.draw.length < 6) {
+      setState(() {
+        click = false;
+      });
+      Timer(
+        const Duration(milliseconds: 800),
+        () => setState(() {
+          draw.chance();
+          click = true;
+        }),
+      );
+    } else {
+      if (_questionField.text.isEmpty) {
+        await questionDialog(context, _questionField);
+      } else {
+        result = await _draw.createNewDraw(
+          userId: currentUser!.id,
+          date: DateTime.now(),
+          question: _questionField.text,
+          draw: draw.draw,
+        );
+        if (context.mounted) {
+          Navigator.of(context)
+              .pushReplacementNamed(uniqueDrawRoute, arguments: result);
+        }
+      }
+    }
   }
 }

@@ -55,12 +55,6 @@ class _NewDrawViewState extends State<NewDrawView> {
                         context.loc.drawWithAppButton,
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
-                        shadow: [
-                          const Shadow(
-                            color: Colors.white,
-                            blurRadius: 7,
-                          ),
-                        ],
                       ),
                     ),
                     const SizedBox(
@@ -76,12 +70,6 @@ class _NewDrawViewState extends State<NewDrawView> {
                         context.loc.insertDrawButton,
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
-                        shadow: [
-                          const Shadow(
-                            color: Colors.white,
-                            blurRadius: 7,
-                          ),
-                        ],
                       ),
                     ),
                   ],
