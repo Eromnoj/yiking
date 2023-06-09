@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yiking/extensions/buildcontext/loc.dart';
+import 'package:yijing/extensions/buildcontext/loc.dart';
 
 Future<void> passwordResetDialog(BuildContext context, String text) {
   return showDialog(

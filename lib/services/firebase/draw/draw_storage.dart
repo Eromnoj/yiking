@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:yiking/services/auth/auth_service.dart';
-import 'package:yiking/services/auth/auth_user.dart';
-import 'package:yiking/services/firebase/draw/draw_constants.dart';
-import 'package:yiking/services/firebase/draw/draw_exceptions.dart';
-import 'package:yiking/services/firebase/draw/draw_structure.dart';
+import 'package:yijing/services/auth/auth_service.dart';
+import 'package:yijing/services/auth/auth_user.dart';
+import 'package:yijing/services/firebase/draw/draw_constants.dart';
+import 'package:yijing/services/firebase/draw/draw_exceptions.dart';
+import 'package:yijing/services/firebase/draw/draw_structure.dart';
 
 class DrawStorage {
   final draws = FirebaseFirestore.instance.collection('draws');

@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:yiking/services/auth/auth_service.dart';
-import 'package:yiking/services/auth/bloc/auth_event.dart';
-import 'package:yiking/services/auth/bloc/auth_state.dart';
+import 'package:yijing/services/auth/auth_service.dart';
+import 'package:yijing/services/auth/bloc/auth_event.dart';
+import 'package:yijing/services/auth/bloc/auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc(AuthService provider)

@@ -1,4 +1,4 @@
-package fr.jomoreschi.yiking
+package fr.jomoreschi.yijingnote
 
 import io.flutter.embedding.android.FlutterActivity
 

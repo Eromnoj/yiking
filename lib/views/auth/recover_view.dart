@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:yiking/extensions/buildcontext/loc.dart';
-import 'package:yiking/services/auth/auth_exceptions.dart';
-import 'package:yiking/services/auth/bloc/auth_event.dart';
-import 'package:yiking/utilities/dialogs/error_dialogs.dart';
-import 'package:yiking/utilities/dialogs/password_reset_dialog.dart';
-import 'package:yiking/views/widgets/app_button_widget.dart';
-import 'package:yiking/views/widgets/custom_sliver_widget.dart';
+import 'package:yijing/extensions/buildcontext/loc.dart';
+import 'package:yijing/services/auth/auth_exceptions.dart';
+import 'package:yijing/services/auth/bloc/auth_event.dart';
+import 'package:yijing/utilities/dialogs/error_dialogs.dart';
+import 'package:yijing/utilities/dialogs/password_reset_dialog.dart';
+import 'package:yijing/views/widgets/app_button_widget.dart';
+import 'package:yijing/views/widgets/custom_sliver_widget.dart';
 
 import '../../services/auth/bloc/auth_bloc.dart';
 import '../../services/auth/bloc/auth_state.dart';

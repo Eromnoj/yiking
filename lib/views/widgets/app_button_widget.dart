@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:yiking/styles/path/background_clipper.dart';
+import 'package:yijing/styles/path/background_clipper.dart';
 
 class CustomButtonAnimated extends StatefulWidget {
   final Function onTap;

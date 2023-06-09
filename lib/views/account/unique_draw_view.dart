@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:yiking/extensions/buildcontext/loc.dart';
-import 'package:yiking/services/firebase/draw/draw_structure.dart';
-import 'package:yiking/utilities/yiking/yiking_draw.dart';
-import 'package:yiking/views/widgets/custom_sliver_widget.dart';
-import 'package:yiking/views/widgets/custom_text_widget.dart';
-import 'package:yiking/views/widgets/show_draw_result.dart';
+import 'package:yijing/extensions/buildcontext/loc.dart';
+import 'package:yijing/services/firebase/draw/draw_structure.dart';
+import 'package:yijing/utilities/yiking/yiking_draw.dart';
+import 'package:yijing/views/widgets/custom_sliver_widget.dart';
+import 'package:yijing/views/widgets/custom_text_widget.dart';
+import 'package:yijing/views/widgets/show_draw_result.dart';
 
 class UniqueDrawView extends StatefulWidget {
   const UniqueDrawView({super.key});

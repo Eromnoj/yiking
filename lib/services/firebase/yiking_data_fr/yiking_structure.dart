@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:yiking/services/firebase/yiking_data_fr/yiking_constant.dart';
+import 'package:yijing/services/firebase/yiking_data_fr/yiking_constant.dart';
 
 class YikingStructure {
   final int yikingId;

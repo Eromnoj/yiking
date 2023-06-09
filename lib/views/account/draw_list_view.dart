@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:yiking/extensions/buildcontext/loc.dart';
-import 'package:yiking/services/firebase/draw/draw_structure.dart';
-import 'package:yiking/views/widgets/custom_sliver_widget.dart';
-import 'package:yiking/views/widgets/list_tile.dart';
+import 'package:yijing/extensions/buildcontext/loc.dart';
+import 'package:yijing/services/firebase/draw/draw_structure.dart';
+import 'package:yijing/views/widgets/custom_sliver_widget.dart';
+import 'package:yijing/views/widgets/custom_text_widget.dart';
+import 'package:yijing/views/widgets/list_tile.dart';
 
-import 'package:yiking/services/auth/auth_service.dart';
-import 'package:yiking/services/auth/auth_user.dart';
-import 'package:yiking/services/firebase/draw/draw_storage.dart';
+import 'package:yijing/services/auth/auth_service.dart';
+import 'package:yijing/services/auth/auth_user.dart';
+import 'package:yijing/services/firebase/draw/draw_storage.dart';
 
 class DrawListView extends StatefulWidget {
   const DrawListView({super.key});
@@ -35,6 +36,7 @@ class _DrawListViewState extends State<DrawListView> {
           case ConnectionState.active:
             if (snapshot.hasData) {
               final draws = snapshot.data as Iterable<DrawStructure>;
+
               return CustomScrollView(
                 slivers: [
                   customAppBarSliver(context.loc.myDrawsScreenTitle, context),
@@ -43,13 +45,20 @@ class _DrawListViewState extends State<DrawListView> {
                       height: 30,
                     ),
                   ),
-                  SliverList.builder(
-                    itemCount: draws.length,
-                    itemBuilder: (context, index) {
-                      DrawStructure draw = draws.elementAt(index);
-                      return customListTile(context, _draw, draw, index);
-                    },
-                  ),
+                  draws.isNotEmpty
+                      ? SliverList.builder(
+                          itemCount: draws.length,
+                          itemBuilder: (context, index) {
+                            DrawStructure draw = draws.elementAt(index);
+                            return customListTile(context, _draw, draw, index);
+                          },
+                        )
+                      : SliverToBoxAdapter(
+                          child: Padding(
+                            padding: const EdgeInsets.all(40.0),
+                            child: titleText(context.loc.findAllDraws),
+                          ),
+                        ),
                   const SliverToBoxAdapter(
                     child: SizedBox(
                       height: 60,

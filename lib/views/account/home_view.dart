@@ -1,14 +1,14 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:yiking/services/auth/auth_service.dart';
-import 'package:yiking/services/auth/auth_user.dart';
-import 'package:yiking/views/account/account_view.dart';
-import 'package:yiking/views/account/draw_list_view.dart';
-import 'package:yiking/views/account/full_yiking_view.dart';
-import 'package:yiking/views/account/new_draw_view.dart';
-import 'package:yiking/services/auth/bloc/auth_bloc.dart';
-import 'package:yiking/services/auth/bloc/auth_state.dart';
+import 'package:yijing/services/auth/auth_service.dart';
+import 'package:yijing/services/auth/auth_user.dart';
+import 'package:yijing/views/account/account_view.dart';
+import 'package:yijing/views/account/draw_list_view.dart';
+import 'package:yijing/views/account/full_yiking_view.dart';
+import 'package:yijing/views/account/new_draw_view.dart';
+import 'package:yijing/services/auth/bloc/auth_bloc.dart';
+import 'package:yijing/services/auth/bloc/auth_state.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});

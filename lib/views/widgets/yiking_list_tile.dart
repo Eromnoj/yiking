@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:yiking/routes/constants_routes.dart';
-import 'package:yiking/services/firebase/yiking_data_fr/yiking_structure.dart';
-import 'package:yiking/styles/path/background_clipper.dart';
+import 'package:yijing/routes/constants_routes.dart';
+import 'package:yijing/services/firebase/yiking_data_fr/yiking_structure.dart';
+import 'package:yijing/styles/path/background_clipper.dart';
 
 import 'custom_text_widget.dart';
 

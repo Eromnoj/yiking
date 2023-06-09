@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:yiking/routes/constants_routes.dart';
-import 'package:yiking/styles/path/background_clipper.dart';
-import 'package:yiking/utilities/dialogs/confirm_delete_dialog.dart';
+import 'package:yijing/routes/constants_routes.dart';
+import 'package:yijing/styles/path/background_clipper.dart';
+import 'package:yijing/utilities/dialogs/confirm_delete_dialog.dart';
 
-import 'package:yiking/services/firebase/draw/draw_storage.dart';
-import 'package:yiking/services/firebase/draw/draw_structure.dart';
+import 'package:yijing/services/firebase/draw/draw_storage.dart';
+import 'package:yijing/services/firebase/draw/draw_structure.dart';
 
 import 'custom_text_widget.dart';
 

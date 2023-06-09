@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:yiking/extensions/buildcontext/loc.dart';
-import 'package:yiking/services/firebase/draw/draw_storage.dart';
-import 'package:yiking/services/firebase/draw/draw_structure.dart';
+import 'package:yijing/extensions/buildcontext/loc.dart';
+import 'package:yijing/services/firebase/draw/draw_storage.dart';
+import 'package:yijing/services/firebase/draw/draw_structure.dart';
 
 Future<void> deleteDialog(
     BuildContext context, DrawStructure element, DrawStorage draw) {

@@ -8,7 +8,7 @@
 PRODUCT_NAME = yiking
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = fr.jomoreschi.yiking
+PRODUCT_BUNDLE_IDENTIFIER = fr.jomoreschi.yijingnote
 
 // The copyright displayed in application information
 PRODUCT_COPYRIGHT = Copyright © 2023 fr.jomoreschi. All rights reserved.

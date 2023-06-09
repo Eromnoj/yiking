@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:yiking/services/firebase/draw/draw_constants.dart';
+import 'package:yijing/services/firebase/draw/draw_constants.dart';
 
 @immutable
 class DrawStructure {

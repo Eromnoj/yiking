@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:yiking/styles/path/background_clipper.dart';
+import 'package:yijing/styles/path/background_clipper.dart';
 
 Widget titleText(String text,
     {double fontSize = 20,

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:yiking/extensions/buildcontext/loc.dart';
-import 'package:yiking/services/auth/bloc/auth_event.dart';
-import 'package:yiking/styles/path/background_clipper.dart';
-import 'package:yiking/utilities/dialogs/confirm_delete_account_dialig.dart';
-import 'package:yiking/views/widgets/custom_sliver_widget.dart';
-import 'package:yiking/views/auth/login_view.dart';
-import 'package:yiking/views/widgets/custom_text_widget.dart';
+import 'package:yijing/extensions/buildcontext/loc.dart';
+import 'package:yijing/services/auth/bloc/auth_event.dart';
+import 'package:yijing/styles/path/background_clipper.dart';
+import 'package:yijing/utilities/dialogs/confirm_delete_account_dialig.dart';
+import 'package:yijing/views/widgets/custom_sliver_widget.dart';
+import 'package:yijing/views/auth/login_view.dart';
+import 'package:yijing/views/widgets/custom_text_widget.dart';
 import '../../services/auth/bloc/auth_bloc.dart';
 import '../../services/auth/bloc/auth_state.dart';
 

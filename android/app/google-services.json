@@ -1,71 +1,41 @@
 {
   "project_info": {
-    "project_number": "643567538956",
-    "project_id": "yi-king-599f0",
-    "storage_bucket": "yi-king-599f0.appspot.com"
+    "project_number": "171925926862",
+    "project_id": "yi-jing-3c122",
+    "storage_bucket": "yi-jing-3c122.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:643567538956:android:af027c78c026423837ef29",
+        "mobilesdk_app_id": "1:171925926862:android:20f76e0d148fc99d79f19f",
         "android_client_info": {
-          "package_name": "com.example.yiking"
+          "package_name": "fr.jomoreschi.yijingnote"
         }
       },
       "oauth_client": [
         {
-          "client_id": "643567538956-e8usqttels8li534mu0lu1plbho1vd7g.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.yiking",
-            "certificate_hash": "d4121d269b35285c17b662bec2344236390f0d5c"
-          }
-        },
-        {
-          "client_id": "643567538956-v39beskodp42mlor2deqj77g2be78c79.apps.googleusercontent.com",
+          "client_id": "171925926862-5l22pe8s4u8c6neba6ln3hg1rum43idb.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyATmdea_GEDp4iYZcMdoNPVrG3sEuBD_tE"
+          "current_key": "AIzaSyAdrPo6hEXfBHqf2wYy0jZUwjWG4N51I3g"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "643567538956-7kmsqftcs1om779v92ln5quv7dhhnj62.apps.googleusercontent.com",
+              "client_id": "171925926862-5l22pe8s4u8c6neba6ln3hg1rum43idb.apps.googleusercontent.com",
               "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:643567538956:android:3944e2851af52cf237ef29",
-        "android_client_info": {
-          "package_name": "fr.jomoreschi.yiking"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "643567538956-v39beskodp42mlor2deqj77g2be78c79.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyATmdea_GEDp4iYZcMdoNPVrG3sEuBD_tE"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
+            },
             {
-              "client_id": "643567538956-7kmsqftcs1om779v92ln5quv7dhhnj62.apps.googleusercontent.com",
-              "client_type": 3
+              "client_id": "171925926862-p4nhe090hqjh19f84ogpkksdnos7bd40.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "fr.jomoreschi.yiking"
+              }
             }
           ]
         }

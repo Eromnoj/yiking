@@ -1,19 +1,19 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:yiking/extensions/buildcontext/loc.dart';
-import 'package:yiking/routes/constants_routes.dart';
-import 'package:yiking/services/firebase/draw/draw_structure.dart';
-import 'package:yiking/utilities/dialogs/question_dialog.dart';
-import 'package:yiking/utilities/yiking/yiking_painter.dart';
+import 'package:yijing/extensions/buildcontext/loc.dart';
+import 'package:yijing/routes/constants_routes.dart';
+import 'package:yijing/services/firebase/draw/draw_structure.dart';
+import 'package:yijing/utilities/dialogs/question_dialog.dart';
+import 'package:yijing/utilities/yiking/yiking_painter.dart';
 
-import 'package:yiking/services/auth/auth_service.dart';
-import 'package:yiking/services/auth/auth_user.dart';
-import 'package:yiking/services/firebase/draw/draw_storage.dart';
-import 'package:yiking/views/widgets/app_button_widget.dart';
-import 'package:yiking/views/widgets/custom_sliver_widget.dart';
-import 'package:yiking/views/widgets/custom_text_widget.dart';
-import 'package:yiking/views/widgets/yiking_button.dart';
+import 'package:yijing/services/auth/auth_service.dart';
+import 'package:yijing/services/auth/auth_user.dart';
+import 'package:yijing/services/firebase/draw/draw_storage.dart';
+import 'package:yijing/views/widgets/app_button_widget.dart';
+import 'package:yijing/views/widgets/custom_sliver_widget.dart';
+import 'package:yijing/views/widgets/custom_text_widget.dart';
+import 'package:yijing/views/widgets/yiking_button.dart';
 
 import '../../styles/path/background_clipper.dart';
 
@@ -192,6 +192,9 @@ class _InsertDrawViewState extends State<InsertDrawView> {
                               if (_questionField.text.isEmpty) {
                                 await questionDialog(context, _questionField);
                               } else {
+                                while (draw.length > 6) {
+                                  draw.removeLast();
+                                }
                                 result = await _draw.createNewDraw(
                                   userId: currentUser!.id,
                                   date: DateTime.now(),

@@ -1,10 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:yiking/services/auth/auth_exceptions.dart';
-import 'package:yiking/services/auth/auth_user.dart';
+import 'package:yijing/services/auth/auth_exceptions.dart';
+import 'package:yijing/services/auth/auth_user.dart';
 
-import 'package:yiking/firebase_options.dart';
+import 'package:yijing/firebase_options.dart';
 
 class AuthService {
   AuthUser? get currentUser {

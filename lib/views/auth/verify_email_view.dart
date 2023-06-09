@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:yiking/extensions/buildcontext/loc.dart';
-import 'package:yiking/services/auth/bloc/auth_event.dart';
-import 'package:yiking/views/widgets/custom_sliver_widget.dart';
+import 'package:yijing/extensions/buildcontext/loc.dart';
+import 'package:yijing/services/auth/bloc/auth_event.dart';
+import 'package:yijing/views/widgets/custom_sliver_widget.dart';
 
 import '../../services/auth/bloc/auth_bloc.dart';
 import '../../services/auth/bloc/auth_state.dart';
