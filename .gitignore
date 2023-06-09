@@ -44,6 +44,6 @@ app.*.map.json
 /android/app/release
 
 /lib/firebase_options.dart
-
+/ios/firebase_app_id_file.json
 # data
 data_yiking.json
