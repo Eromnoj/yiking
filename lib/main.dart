@@ -20,12 +20,13 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
       .then((value) => runApp(
             MaterialApp(
               supportedLocales: AppLocalizations.supportedLocales,
               localizationsDelegates: AppLocalizations.localizationsDelegates,
-              title: 'Yiking',
+              title: 'Yijing',
               theme: ThemeData(
                 useMaterial3: true,
                 fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
