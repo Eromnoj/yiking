@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:yijing/extensions/buildcontext/loc.dart';
 import 'package:yijing/routes/constants_routes.dart';
+import 'package:yijing/services/ad_helper.dart';
 import 'package:yijing/services/firebase/draw/draw_structure.dart';
 import 'package:yijing/styles/path/background_clipper.dart';
 import 'package:yijing/utilities/yiking/yiking_draw.dart';
@@ -34,6 +35,8 @@ class _AppDrawViewState extends State<AppDrawView> {
   DrawStructure? result;
 
   bool click = true;
+
+  AdHelper intersticial = AdHelper();
   @override
   void initState() {
     super.initState();
@@ -44,6 +47,7 @@ class _AppDrawViewState extends State<AppDrawView> {
     Timer.run(
       () => questionDialog(context, _questionField),
     );
+    intersticial.createInterstitialAd();
   }
 
   @override
@@ -200,6 +204,7 @@ class _AppDrawViewState extends State<AppDrawView> {
           question: _questionField.text,
           draw: draw.draw,
         );
+        intersticial.showInterstitialAd();
         if (context.mounted) {
           Navigator.of(context)
               .pushReplacementNamed(uniqueDrawRoute, arguments: result);
