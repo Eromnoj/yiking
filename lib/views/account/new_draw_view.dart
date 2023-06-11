@@ -54,7 +54,7 @@ class _NewDrawViewState extends State<NewDrawView> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const SizedBox(
-                      height: 70,
+                      height: 100,
                     ),
                     CustomButtonAnimated(
                       onTap: () {
@@ -69,15 +69,7 @@ class _NewDrawViewState extends State<NewDrawView> {
                       ),
                     ),
                     const SizedBox(
-                      height: 25,
-                    ),
-                    SizedBox(
-                      width: banner.getBanner.size.width.toDouble(),
-                      height: banner.getBanner.size.height.toDouble(),
-                      child: AdWidget(ad: banner.getBanner),
-                    ),
-                    const SizedBox(
-                      height: 25,
+                      height: 60,
                     ),
                     CustomButtonAnimated(
                       onTap: () {
@@ -90,6 +82,14 @@ class _NewDrawViewState extends State<NewDrawView> {
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
                       ),
+                    ),
+                    const SizedBox(
+                      height: 25,
+                    ),
+                    SizedBox(
+                      width: banner.getBanner.size.width.toDouble(),
+                      height: banner.getBanner.size.height.toDouble(),
+                      child: AdWidget(ad: banner.getBanner),
                     ),
                   ],
                 ),

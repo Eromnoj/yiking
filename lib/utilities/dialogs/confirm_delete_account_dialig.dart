@@ -4,6 +4,8 @@ import 'package:yijing/extensions/buildcontext/loc.dart';
 import 'package:yijing/services/auth/bloc/auth_bloc.dart';
 import 'package:yijing/services/auth/bloc/auth_event.dart';
 
+import '../../views/widgets/custom_text_widget.dart';
+
 Future<void> deleteAccountDialog(
   BuildContext context,
 ) {
@@ -12,9 +14,8 @@ Future<void> deleteAccountDialog(
     barrierDismissible: false,
     builder: (context) {
       return SimpleDialog(
-        title: Text(
+        title: titleText(
           context.loc.confirmAccountDelete,
-          textAlign: TextAlign.center,
         ),
         children: [
           Row(
@@ -24,16 +25,14 @@ Future<void> deleteAccountDialog(
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: Text(
-                  context.loc.cancelButton,
-                  style: const TextStyle(color: Colors.red),
-                ),
+                child: contentText(context.loc.cancelButton,
+                    color: Colors.red, fontWeight: FontWeight.bold),
               ),
               TextButton(
                 onPressed: () {
                   context.read<AuthBloc>().add(const AuthEventDeleteUser());
                 },
-                child: Text(context.loc.confirmButton),
+                child: contentText(context.loc.confirmButton),
               ),
             ],
           ),

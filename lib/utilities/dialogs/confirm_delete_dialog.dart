@@ -3,6 +3,8 @@ import 'package:yijing/extensions/buildcontext/loc.dart';
 import 'package:yijing/services/firebase/draw/draw_storage.dart';
 import 'package:yijing/services/firebase/draw/draw_structure.dart';
 
+import '../../views/widgets/custom_text_widget.dart';
+
 Future<void> deleteDialog(
     BuildContext context, DrawStructure element, DrawStorage draw) {
   return showDialog(
@@ -10,9 +12,8 @@ Future<void> deleteDialog(
     barrierDismissible: false,
     builder: (context) {
       return SimpleDialog(
-        title: Text(
+        title: titleText(
           context.loc.confirmDrawDelete,
-          textAlign: TextAlign.center,
         ),
         children: [
           Text(
@@ -26,9 +27,9 @@ Future<void> deleteDialog(
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: Text(
+                child: contentText(
                   context.loc.cancelButton,
-                  style: const TextStyle(color: Colors.red),
+                  color: Colors.red,
                 ),
               ),
               TextButton(
@@ -36,7 +37,7 @@ Future<void> deleteDialog(
                   draw.deleteNote(documentId: element.documentId);
                   Navigator.of(context).pop();
                 },
-                child: Text(context.loc.confirmButton),
+                child: contentText(context.loc.confirmButton),
               ),
             ],
           ),
