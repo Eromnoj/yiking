@@ -2,25 +2,34 @@ import 'package:bloc/bloc.dart';
 import 'package:yijing/services/auth/auth_service.dart';
 import 'package:yijing/services/auth/bloc/auth_event.dart';
 import 'package:yijing/services/auth/bloc/auth_state.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc(AuthService provider)
       : super(const AuthStateLoggedOut(exception: null)) {
     on<AuthEventInitialize>(
       (event, emit) async {
-        await provider.initialize();
-        final user = provider.currentUser;
-        if (user == null) {
-          emit(
-            const AuthStateLoggedOut(
-              exception: null,
-            ),
-          );
-        } else if (!user.isEmailVerified) {
-          emit(const AuthStateCheckEmail());
+        bool result = await InternetConnectionChecker().hasConnection;
+
+        if (result) {
+          await provider.initialize();
+          final user = provider.currentUser;
+          if (user == null) {
+            emit(
+              const AuthStateLoggedOut(
+                exception: null,
+              ),
+            );
+          } else if (!user.isEmailVerified) {
+            emit(const AuthStateCheckEmail());
+          } else {
+            emit(AuthStateLoggedIn(
+                user: user.email,
+                id: user.id,
+                isVerified: user.isEmailVerified));
+          }
         } else {
-          emit(AuthStateLoggedIn(
-              user: user.email, id: user.id, isVerified: user.isEmailVerified));
+          emit(const AuthStateCheckConnection());
         }
       },
     );

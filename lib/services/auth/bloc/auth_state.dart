@@ -36,3 +36,7 @@ class AuthStateRecoverPassword extends AuthState {
   final bool? hasSentEmail;
   const AuthStateRecoverPassword({this.exception, this.hasSentEmail});
 }
+
+class AuthStateCheckConnection extends AuthState {
+  const AuthStateCheckConnection();
+}

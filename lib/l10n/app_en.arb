@@ -60,5 +60,7 @@
   "yijingNoteTitle": "Notes",
   "yijingNoteContent": "The Yi Jing is a tool for decision-making, and the interpretation may depend on your state of mind and the situation you are in. It is sometimes necessary to revisit the result of a draw as the situation evolves, to align your decisions based on new insights. Your draws are saved in the application for easy retrieval when needed.\n\nIt is important to note that understanding and interpreting the Yi Jing can be complex. If you are a beginner, it may be helpful to consult additional resources or seek guidance from an experienced Yi Jing practitioner for more accurate interpretation.\n\nThe texts of the hexagrams are based on the French translation from Chinese by Paul-Louis-Félix Philastre (1838-1902) in the public domain. The interpretations are based on research from various Yi Jing reference books.",
   "yijingManageTitle": "My Account",
-  "findAllDraws": "Find all your draws here."
+  "findAllDraws": "Find all your draws here.",
+  "mustBeConnectedTitle" : "You must be connected to the internet to use the app",
+  "mustBeConnectedText" : "Please check your connection and relaunch the app."
 }

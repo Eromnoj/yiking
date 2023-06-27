@@ -53,123 +53,124 @@ class _LoginViewState extends State<LoginView> {
       },
       builder: (context, state) {
         return Scaffold(
-            body: CustomScrollView(
-          slivers: [
-            customAppBarSliver(context.loc.appTitle, context),
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const SizedBox(
-                      height: 100,
-                    ),
-                    titleText(context.loc.loginScreenTitle),
-                    Column(children: [
-                      customTextField(
-                        context.loc.emailAddress,
-                        _emailField,
-                        TextInputType.emailAddress,
-                        false,
-                      ),
+          body: CustomScrollView(
+            slivers: [
+              customAppBarSliver(context.loc.appTitle, context),
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
                       const SizedBox(
-                        height: 10,
+                        height: 100,
                       ),
-                      customTextField(
-                        context.loc.password,
-                        _passwordField,
-                        TextInputType.visiblePassword,
-                        true,
-                      ),
-                      const SizedBox(
-                        height: 30,
-                      ),
+                      titleText(context.loc.loginScreenTitle),
+                      Column(children: [
+                        customTextField(
+                          context.loc.emailAddress,
+                          _emailField,
+                          TextInputType.emailAddress,
+                          false,
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        customTextField(
+                          context.loc.password,
+                          _passwordField,
+                          TextInputType.visiblePassword,
+                          true,
+                        ),
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        CustomButtonAnimated(
+                          onTap: () {
+                            final email = _emailField.text;
+                            final password = _passwordField.text;
+                            context
+                                .read<AuthBloc>()
+                                .add(const AuthEventInitialize());
+
+                            context
+                                .read<AuthBloc>()
+                                .add(AuthEventLogInWithEmail(email, password));
+                          },
+                          width: MediaQuery.sizeOf(context).width * 0.85,
+                          height: MediaQuery.sizeOf(context).height / 12,
+                          child: titleText(
+                            context.loc.logInButton,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ]),
                       CustomButtonAnimated(
-                        onTap: () {
-                          final email = _emailField.text;
-                          final password = _passwordField.text;
+                        onTap: () async {
                           context
                               .read<AuthBloc>()
                               .add(const AuthEventInitialize());
 
                           context
                               .read<AuthBloc>()
-                              .add(AuthEventLogInWithEmail(email, password));
+                              .add(const AuthEventLogInWithGoogle());
                         },
                         width: MediaQuery.sizeOf(context).width * 0.85,
                         height: MediaQuery.sizeOf(context).height / 12,
-                        child: titleText(
-                          context.loc.logInButton,
-                          fontWeight: FontWeight.bold,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            titleText(
+                              context.loc.googleLogIn,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            SizedBox(
+                              width: 40,
+                              height: 40,
+                              child: Image.asset(
+                                'assets/img/logo/google_logo.png',
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                    ]),
-                    CustomButtonAnimated(
-                      onTap: () async {
-                        context
-                            .read<AuthBloc>()
-                            .add(const AuthEventInitialize());
-
-                        context
-                            .read<AuthBloc>()
-                            .add(const AuthEventLogInWithGoogle());
-                      },
-                      width: MediaQuery.sizeOf(context).width * 0.85,
-                      height: MediaQuery.sizeOf(context).height / 12,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Column(
                         children: [
-                          titleText(
-                            context.loc.googleLogIn,
-                            fontWeight: FontWeight.bold,
+                          TextButton(
+                            onPressed: () {
+                              context
+                                  .read<AuthBloc>()
+                                  .add(const AuthEventRegister());
+                            },
+                            child: contentText(context.loc.createAccount),
                           ),
-                          SizedBox(
-                            width: 40,
-                            height: 40,
-                            child: Image.asset(
-                              'assets/img/logo/google_logo.png',
-                            ),
+                          TextButton(
+                            onPressed: () {
+                              context.read<AuthBloc>().add(
+                                  const AuthEventRecoverPassword(email: null));
+                            },
+                            child: contentText(context.loc.pwdForgotten),
+                          ),
+                          TextButton(
+                            onPressed: _launchUrl,
+                            child: contentText(context.loc.termsPrivacyLink),
                           ),
                         ],
                       ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Column(
-                      children: [
-                        TextButton(
-                          onPressed: () {
-                            context
-                                .read<AuthBloc>()
-                                .add(const AuthEventRegister());
-                          },
-                          child: contentText(context.loc.createAccount),
-                        ),
-                        TextButton(
-                          onPressed: () {
-                            context.read<AuthBloc>().add(
-                                const AuthEventRecoverPassword(email: null));
-                          },
-                          child: contentText(context.loc.pwdForgotten),
-                        ),
-                        TextButton(
-                          onPressed: _launchUrl,
-                          child: contentText(context.loc.termsPrivacyLink),
-                        ),
-                      ],
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
-        ));
+            ],
+          ),
+        );
       },
     );
   }

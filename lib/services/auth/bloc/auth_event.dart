@@ -46,3 +46,7 @@ class AuthEventSendVerificationEmail extends AuthEvent {
 class AuthEventDeleteUser extends AuthEvent {
   const AuthEventDeleteUser();
 }
+
+class AuthEventCheckConnection extends AuthEvent {
+  const AuthEventCheckConnection();
+}

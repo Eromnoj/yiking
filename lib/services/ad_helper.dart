@@ -3,45 +3,45 @@ import 'dart:io';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class AdHelper {
-  late BannerAd _bannerAd;
-  BannerAd get getBanner => _bannerAd;
+  // late BannerAd _bannerAd;
+  // BannerAd get getBanner => _bannerAd;
 
   InterstitialAd? _interstitialAd;
 
-  static String get bannerAdUnitId {
-    if (Platform.isAndroid) {
-      return 'ca-app-pub-3940256099942544/6300978111';
-    } else if (Platform.isIOS) {
-      return 'ca-app-pub-3940256099942544/2934735716';
-    } else {
-      throw UnsupportedError('Unsupported platform');
-    }
-  }
+  // static String get bannerAdUnitId {
+  //   if (Platform.isAndroid) {
+  //     return 'ca-app-pub-3940256099942544/6300978111';
+  //   } else if (Platform.isIOS) {
+  //     return 'ca-app-pub-3940256099942544/2934735716';
+  //   } else {
+  //     throw UnsupportedError('Unsupported platform');
+  //   }
+  // }
 
   static String get interstitialAdUnitId {
     if (Platform.isAndroid) {
       return "ca-app-pub-3940256099942544/1033173712";
-    } else if (Platform.isIOS) {
-      return "ca-app-pub-3940256099942544/4411468910";
+      // } else if (Platform.isIOS) {
+      //   return "ca-app-pub-3940256099942544/4411468910";
     } else {
       throw UnsupportedError("Unsupported platform");
     }
   }
 
-  void loadBannerAd() {
-    _bannerAd = BannerAd(
-      adUnitId: AdHelper.bannerAdUnitId,
-      request: const AdRequest(),
-      size: AdSize.banner,
-      listener: BannerAdListener(
-        onAdFailedToLoad: (ad, err) {
-          ad.dispose();
-        },
-      ),
-    );
+  // void loadBannerAd() {
+  //   _bannerAd = BannerAd(
+  //     adUnitId: AdHelper.bannerAdUnitId,
+  //     request: const AdRequest(),
+  //     size: AdSize.banner,
+  //     listener: BannerAdListener(
+  //       onAdFailedToLoad: (ad, err) {
+  //         ad.dispose();
+  //       },
+  //     ),
+  //   );
 
-    _bannerAd.load();
-  }
+  //   _bannerAd.load();
+  // }
 
   void createInterstitialAd() {
     InterstitialAd.load(

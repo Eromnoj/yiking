@@ -14,6 +14,7 @@ import 'package:yijing/views/account/insert_draw_view.dart';
 import 'package:yijing/views/account/unique_draw_view.dart';
 import 'package:yijing/views/account/unique_yiking_view.dart';
 import 'package:yijing/views/auth/login_view.dart';
+import 'package:yijing/views/auth/must_be_connected_view.dart';
 import 'package:yijing/views/auth/recover_view.dart';
 import 'package:yijing/views/auth/register_view.dart';
 import 'package:yijing/views/auth/verify_email_view.dart';
@@ -69,7 +70,9 @@ class MyApp extends StatelessWidget {
     context.read<AuthBloc>().add(const AuthEventInitialize());
     return BlocBuilder<AuthBloc, AuthState>(
       builder: (context, state) {
-        if (state is AuthStateLoggedIn) {
+        if (state is AuthStateCheckConnection) {
+          return const MustBeConnected();
+        } else if (state is AuthStateLoggedIn) {
           if (state.isVerified == true) {
             return const HomeView();
           } else {
