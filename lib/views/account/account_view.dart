@@ -2,14 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:yijing/extensions/buildcontext/loc.dart';
+import 'package:yijing/services/auth/auth_service.dart';
+import 'package:yijing/services/auth/auth_user.dart';
 import 'package:yijing/services/auth/bloc/auth_event.dart';
+import 'package:yijing/services/firebase/draw/draw_storage.dart';
 import 'package:yijing/styles/path/background_clipper.dart';
-import 'package:yijing/utilities/dialogs/confirm_delete_account_dialig.dart';
 import 'package:yijing/views/widgets/custom_sliver_widget.dart';
 import 'package:yijing/views/auth/login_view.dart';
 import 'package:yijing/views/widgets/custom_text_widget.dart';
-import '../../services/auth/bloc/auth_bloc.dart';
-import '../../services/auth/bloc/auth_state.dart';
+import 'package:yijing/services/auth/bloc/auth_bloc.dart';
+import 'package:yijing/services/auth/bloc/auth_state.dart';
+import 'package:gdpr_dialog/gdpr_dialog.dart';
 
 class AccountView extends StatefulWidget {
   const AccountView({super.key});
@@ -19,11 +22,23 @@ class AccountView extends StatefulWidget {
 }
 
 class _AccountViewState extends State<AccountView> {
+  late final DrawStorage _draw;
+  late final AuthUser? currentUser;
+
+  bool confirmDelete = false;
+
   final Uri url = Uri.parse('https://jomoreschi.fr/yiking');
   Future<void> _launchUrl() async {
     if (!await launchUrl(url)) {
       throw Exception('Could not launch $url');
     }
+  }
+
+  @override
+  void initState() {
+    _draw = DrawStorage();
+    currentUser = AuthService().currentUser;
+    super.initState();
   }
 
   @override
@@ -205,15 +220,56 @@ class _AccountViewState extends State<AccountView> {
                       ),
                       Padding(
                         padding: const EdgeInsets.all(18.0),
-                        child: Row(
+                        child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             contentText(context.loc.deleteAccountQuestion),
+                            Checkbox(
+                                value: confirmDelete,
+                                onChanged: (bool? value) {
+                                  setState(() {
+                                    confirmDelete = !confirmDelete;
+                                  });
+                                }),
+                            confirmDelete
+                                ? ElevatedButton(
+                                    onPressed: () async {
+                                      bool? deleteOk =
+                                          await _draw.deleteAllNotes(
+                                              userId: currentUser!.id);
+
+                                      if (context.mounted) {
+                                        if (deleteOk) {
+                                          context
+                                              .read<AuthBloc>()
+                                              .add(const AuthEventDeleteUser());
+                                        }
+                                      }
+                                    },
+                                    child: Text(context.loc.deleteButton),
+                                  )
+                                : const SizedBox(
+                                    height: 40.0,
+                                  ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(18.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            contentText(
+                              context.loc.manageGDPR,
+                              textAlign: TextAlign.center,
+                            ),
                             ElevatedButton(
-                              onPressed: () async {
-                                await deleteAccountDialog(context);
+                              onPressed: () {
+                                GdprDialog.instance.resetDecision();
+                                GdprDialog.instance.showDialog(
+                                    isForTest: false, testDeviceId: '');
                               },
-                              child: Text(context.loc.deleteButton),
+                              child: Text(context.loc.manageGDPRButton),
                             ),
                           ],
                         ),

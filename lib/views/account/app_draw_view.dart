@@ -36,6 +36,7 @@ class _AppDrawViewState extends State<AppDrawView> {
 
   bool click = true;
 
+  bool buttonIsActive = true;
   AdHelper intersticial = AdHelper();
   @override
   void initState() {
@@ -137,22 +138,24 @@ class _AppDrawViewState extends State<AppDrawView> {
                 const SizedBox(
                   height: 10,
                 ),
-                CustomButtonAnimated(
-                  onTap: _onTapCoinOrButton,
-                  width: 240,
-                  height: 40,
-                  child: draw.draw.length < 6
-                      ? titleText(
-                          context.loc.throwCoins,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                        )
-                      : titleText(
-                          context.loc.seeResult,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                        ),
-                ),
+                buttonIsActive
+                    ? CustomButtonAnimated(
+                        onTap: _onTapCoinOrButton,
+                        width: 240,
+                        height: 40,
+                        child: draw.draw.length < 6
+                            ? titleText(
+                                context.loc.throwCoins,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
+                              )
+                            : titleText(
+                                context.loc.seeResult,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
+                              ),
+                      )
+                    : contentText(context.loc.pleaseWait),
                 const SizedBox(
                   height: 10,
                 ),
@@ -198,6 +201,9 @@ class _AppDrawViewState extends State<AppDrawView> {
       if (_questionField.text.isEmpty) {
         await questionDialog(context, _questionField);
       } else {
+        setState(() {
+          buttonIsActive = false;
+        });
         result = await _draw.createNewDraw(
           userId: currentUser!.id,
           date: DateTime.now(),

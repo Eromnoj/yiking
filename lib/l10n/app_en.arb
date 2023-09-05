@@ -62,5 +62,8 @@
   "yijingManageTitle": "My Account",
   "findAllDraws": "Find all your draws here.",
   "mustBeConnectedTitle" : "You must be connected to the internet to use the app",
-  "mustBeConnectedText" : "Please check your connection and relaunch the app."
+  "mustBeConnectedText" : "Please check your connection and relaunch the app.",
+  "pleaseWait" : "Please wait...",
+  "manageGDPR" : "Manage ads personnalisation and GDPR",
+  "manageGDPRButton" : "Manage"
 }

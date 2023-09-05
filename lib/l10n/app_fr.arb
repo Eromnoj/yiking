@@ -62,5 +62,8 @@
   "yijingManageTitle" : "Mon Compte",
   "findAllDraws": "Retrouvez ici tous vos tirages.",
   "mustBeConnectedTitle" : "Vous devez être connecté à internet pour utiliser l'application",
-  "mustBeConnectedText" : "Veuillez vérifier votre connexion et relancer l'application."
+  "mustBeConnectedText" : "Veuillez vérifier votre connexion et relancer l'application.",
+  "pleaseWait" : "Veuillez patienter...",
+  "manageGDPR" : "Gérer la personnalisation de la publicité et la RGPD",
+  "manageGDPRButton" : "Gérer"
 }

@@ -9,6 +9,7 @@ import 'package:yijing/views/account/full_yiking_view.dart';
 import 'package:yijing/views/account/new_draw_view.dart';
 import 'package:yijing/services/auth/bloc/auth_bloc.dart';
 import 'package:yijing/services/auth/bloc/auth_state.dart';
+import 'package:gdpr_dialog/gdpr_dialog.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -21,6 +22,7 @@ class _HomeViewState extends State<HomeView> {
   late final AuthUser? currentUser;
   int _seletedIndex = 0;
   final PageController _pageController = PageController();
+  ConsentStatus gpdrStatus = ConsentStatus.unknown;
 
   void _onItemTapped(int index) {
     _onPageSwipped(index);
@@ -40,6 +42,18 @@ class _HomeViewState extends State<HomeView> {
   @override
   void initState() {
     currentUser = AuthService().currentUser;
+    GdprDialog.instance
+        .getConsentStatus()
+        .then((value) => setState(() => gpdrStatus = value));
+    switch (gpdrStatus) {
+      case ConsentStatus.required:
+      case ConsentStatus.unknown:
+        GdprDialog.instance.showDialog(isForTest: false, testDeviceId: '');
+        break;
+      default:
+        break;
+    }
+
     super.initState();
   }
 

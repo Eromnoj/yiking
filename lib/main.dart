@@ -51,7 +51,7 @@ void main() async {
                 makeAYiKingDrawRoute: (context) => const AppDrawView(),
                 insertAYiKingDrawRoute: (context) => const InsertDrawView(),
                 userAccountRoute: (context) => const HomeView(),
-                uniqueYikingRoute: (context) => const UniqueYikingView(),
+                uniqueYikingRoute: (context) => const UniqueYikingView()
               },
               debugShowCheckedModeBanner: false,
               home: BlocProvider(

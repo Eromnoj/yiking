@@ -18,6 +18,31 @@ class DrawStorage {
     }
   }
 
+  Future<bool> deleteAllNotes({required String userId}) async {
+    try {
+      WriteBatch batch = FirebaseFirestore.instance.batch();
+
+      QuerySnapshot<Map<String, dynamic>> querySnapshot =
+          await draws.where(ownedUserIdField, isEqualTo: userId).get();
+
+      for (var doc in querySnapshot.docs) {
+        batch.delete(doc.reference);
+      }
+
+      batch.commit();
+
+      return true;
+      // QuerySnapshot<Map<String, dynamic>> querySnapshot =
+      //     await draws.where(ownedUserIdField, isEqualTo: userId).get();
+
+      // for (var doc in querySnapshot.docs) {
+      //   await draws.doc(doc.id).delete();
+      // }
+    } catch (e) {
+      throw CouldNotDeleteDrawException();
+    }
+  }
+
   Stream<Iterable<DrawStructure>> allDraws({required String userId}) => draws
       .orderBy(dateField, descending: true)
       .where(ownedUserIdField, isEqualTo: user.id)

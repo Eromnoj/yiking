@@ -34,6 +34,7 @@ class _InsertDrawViewState extends State<InsertDrawView> {
   DrawStructure? result;
 
   bool click = true;
+  bool buttonIsActive = true;
 
   AdHelper intersticial = AdHelper();
   @override
@@ -191,36 +192,44 @@ class _InsertDrawViewState extends State<InsertDrawView> {
                             ])
                       : Padding(
                           padding: const EdgeInsets.all(36.0),
-                          child: CustomButtonAnimated(
-                            onTap: () async {
-                              if (_questionField.text.isEmpty) {
-                                await questionDialog(context, _questionField);
-                              } else {
-                                while (draw.length > 6) {
-                                  draw.removeLast();
-                                }
-                                result = await _draw.createNewDraw(
-                                  userId: currentUser!.id,
-                                  date: DateTime.now(),
-                                  question: _questionField.text,
-                                  draw: draw,
-                                );
-                                intersticial.showInterstitialAd();
-                                if (context.mounted) {
-                                  Navigator.of(context).pushReplacementNamed(
-                                      uniqueDrawRoute,
-                                      arguments: result);
-                                }
-                              }
-                            },
-                            width: 240,
-                            height: 40,
-                            child: titleText(
-                              context.loc.seeResult,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20,
-                            ),
-                          ),
+                          child: buttonIsActive
+                              ? CustomButtonAnimated(
+                                  onTap: () async {
+                                    if (_questionField.text.isEmpty) {
+                                      await questionDialog(
+                                          context, _questionField);
+                                    } else {
+                                      setState(() {
+                                        buttonIsActive = false;
+                                      });
+                                      while (draw.length > 6) {
+                                        draw.removeLast();
+                                      }
+                                      result = await _draw.createNewDraw(
+                                        userId: currentUser!.id,
+                                        date: DateTime.now(),
+                                        question: _questionField.text,
+                                        draw: draw,
+                                      );
+
+                                      intersticial.showInterstitialAd();
+                                      if (context.mounted) {
+                                        Navigator.of(context)
+                                            .pushReplacementNamed(
+                                                uniqueDrawRoute,
+                                                arguments: result);
+                                      }
+                                    }
+                                  },
+                                  width: 240,
+                                  height: 40,
+                                  child: titleText(
+                                    context.loc.seeResult,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20,
+                                  ),
+                                )
+                              : contentText(context.loc.pleaseWait),
                         ),
                 ),
               ],
